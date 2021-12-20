@@ -59,3 +59,8 @@ objectives they will be moved up into the timeline section and ticked off using 
 ## 8. Installation Instructions
 
 <!--write clear instructions on how to get your project working on the user's local environment-->
+
+1. clone this repository to your local environment directory
+2. follow the instructions in the .env.config file
+3. open the index.php on your local apache server
+4. Have fun!
