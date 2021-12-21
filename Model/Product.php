@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 class Product {
-    private $id;
-    private $name;
-    private $price;
-    private $description;
-    private $status;
-    private $image;
+    private string $id;
+    private string $name;
+    private number $price;
+    private string $description;
+    private string $status;
+    private string $image;
 
-    public function __construct($id, $name, $price, $description, $status, $image){
+    public function __construct(string $id, string $name, number $price, string $description, string $status, string $image){
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
