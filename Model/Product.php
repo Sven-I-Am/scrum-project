@@ -5,12 +5,12 @@ declare(strict_types=1);
 class Product {
     private string $id;
     private string $name;
-    private number $price;
+    private float $price;
     private string $description;
     private string $status;
     private string $image;
 
-    public function __construct(string $id, string $name, number $price, string $description, string $status, string $image){
+    public function __construct(string $id, string $name, float $price, string $description, string $status, string $image){
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
@@ -53,7 +53,7 @@ class Product {
         return $this->description;
     }
 
-    public function setDecdription(){
+    public function setDescription(){
         $this->description;
     }
 
