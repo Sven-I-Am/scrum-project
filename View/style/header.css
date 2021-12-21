@@ -8,7 +8,11 @@
 }
 
 .logo{
+    transition: transform .7s ease-in-out;
     width: 50px;
+}
+.logo:hover{
+    transform: rotate(360deg);
 }
 .logoname{
     font-size: 30px;

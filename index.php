@@ -22,7 +22,7 @@ $controller->render($_GET, $_POST);
 
 //remove below before full deployment
 
-//whatIsHappening();
+whatIsHappening();
 
 function whatIsHappening()
 {

@@ -8,7 +8,7 @@ class HomepageController
     public function render(array $GET, array $POST)
     {
         //this is just example code, you can remove the line below
-        $seller = new Seller('John Smith');
+        // $seller = new Seller('John Smith');
 
         // you should not echo anything inside your controller - only assign vars here
 
