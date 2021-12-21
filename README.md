@@ -56,11 +56,12 @@ objectives they will be moved up into the timeline section and ticked off using 
 
 ### Nice to have
 
-## 8. Installation Instructions
+## 8. Installation Instructions for developers
 
 <!--write clear instructions on how to get your project working on the user's local environment-->
 
 1. clone this repository to your local environment directory
-2. follow the instructions in the .env.config file
-3. open the index.php on your local apache server
-4. Have fun!
+2. git checkout to the development branch
+3. follow the instructions in the .env.config file
+4. open the index.php on your local apache server
+5. Make sure to create a new branch of the development branch before you start working on a new feature/issue/bugfix
