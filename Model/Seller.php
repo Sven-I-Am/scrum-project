@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 class Seller
 {
-    private $id;
-    private $name;
-    private $adress;
-    private $email;
-    private $password;
+    private string $id;
+    private string $name;
+    private string $adress;
+    private string $email;
+    private string $password;
 
-    public function __construct($id, $name, $adress, $email, $password){
+    public function __construct(string $id, string $name, string $adress, string $email, string $password){
         $this->id = $id;
         $this->name = $name;
         $this->adress = $adress;
