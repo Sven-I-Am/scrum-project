@@ -29,7 +29,7 @@ CREATE TABLE `CATEGORY` (
   PRIMARY KEY (`CategoryID`),
   KEY `CATEGORY_FK` (`ProductID`),
   CONSTRAINT `CATEGORY_FK` FOREIGN KEY (`ProductID`) REFERENCES `PRODUCT` (`ProductID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `PRODUCT` (
   PRIMARY KEY (`ProductID`),
   KEY `PRODUCT_FK` (`SellerID`),
   CONSTRAINT `PRODUCT_FK` FOREIGN KEY (`SellerID`) REFERENCES `SELLER` (`SellerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `SELLER` (
   `Email` varchar(100) DEFAULT NULL,
   `Password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`SellerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
