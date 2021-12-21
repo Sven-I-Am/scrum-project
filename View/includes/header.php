@@ -35,7 +35,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
      
-      <div class="mx-2">
+      <div class="mr-2">
           <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
           
           <!-- If we require Shopping-Cart -->
