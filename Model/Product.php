@@ -5,18 +5,22 @@ declare(strict_types=1);
 class Product {
     private string $id;
     private string $name;
-    private float $price;
     private string $description;
-    private string $status;
+    private float $price;
+    private string $sold;
     private string $image;
+    private string $userId;
+    private string $sellDate;
 
-    public function __construct(string $id, string $name, float $price, string $description, string $status, string $image){
+    public function __construct(string $id, string $name, string $description, float $price, string $sold, string $image, $userId, $sellDate){
         $this->id = $id;
         $this->name = $name;
-        $this->price = $price;
         $this->description = $description;
-        $this->status = $status;
+        $this->price = $price;
+        $this->sold = $sold;
         $this->image = $image;
+        $this->userId = $userId;
+        $this->sellDate = $sellDate;
     }
 
     // get and set product's id
@@ -38,15 +42,6 @@ class Product {
         $this->name;
     }
 
-    // get and set product's price
-    public function getPrice(){
-        return $this->price;
-    }
-
-    public function setPrice(){
-        $this->price;
-    }
-
     // get and set product's description
 
     public function getDescription(){
@@ -57,13 +52,22 @@ class Product {
         $this->description;
     }
 
-    // get and set product's status
+    // get and set product's price
+    public function getPrice(){
+        return $this->price;
+    }
 
-    public function getStatus(){
+    public function setPrice(){
+        $this->price;
+    }
+
+    // get and set product's sold
+
+    public function getSold(){
         return $this->status;
     }
 
-    public function setStatus(){
+    public function setSold(){
         $this->status;
     }
 
@@ -77,5 +81,24 @@ class Product {
         $this->image;
     }
 
+    // get and set product's userId
+
+    public function getUserId(){
+        return $this->userId;
+    }
+
+    public function setUserId(){
+        return $this->userId;
+    }
+
+    // get and set product's sellDate
+
+    public function getSellDate(){
+        return $this->sellDate;
+    }
+
+    public function setSellDate(){
+        return $this->sellDate;
+    }
 }
 ?>
