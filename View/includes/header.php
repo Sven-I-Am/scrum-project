@@ -24,20 +24,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="collapse navbar-collapse d-flex">
 
-  <select class="nav-item dropdown mx-2" aria-label="Default select example">
-  <option selected>Search by Category</option>
-  <option value="card">Cards</option>
-  <option value="toys">Toys</option>
-  <option value="tshirt">T-Shirts</option>
-</select>
-
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+     <select class="nav-item dropdown mx-2" aria-label="Default select example">
+     <option selected>Search by Category</option>
+     <option value="card">Cards</option>
+     <option value="toys">Toys</option>
+     <option value="tshirt">T-Shirts</option>
+     </select>
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-     
-      <div class="mr-2">
+     <div class="mr-2">
           <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          
           <!-- If we require Shopping-Cart -->
           <!-- <img src=".\assets\logo\cart.png" alt=""> -->
        </div>
