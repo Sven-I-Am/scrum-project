@@ -8,6 +8,7 @@
 }
 body{
     overflow-x: hidden;
+    background-color: bisque;
 }
 
 .logo{
@@ -20,8 +21,4 @@ body{
 .logoname{
     font-size: 30px;
     font-weight: bold;
-}
-
-.navbar{
-    margin-top: 6px;
 }
