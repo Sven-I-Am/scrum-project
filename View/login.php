@@ -1,15 +1,4 @@
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-    </style>
-</head>
-<body>
+<?php require 'includes/header.php'?>
     <div class="wrapper">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
@@ -20,7 +9,7 @@
         }        
         ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="?page=login&action=login" method="post">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
@@ -34,8 +23,7 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="View/register.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="?page=login&action=newuser">Sign up now</a>.</p>
         </form>
     </div>
-</body>
-</html>
+<?php require 'includes/footer.php'?>
