@@ -7,12 +7,12 @@ class Product {
     private string $name;
     private string $description;
     private float $price;
-    private string $sold;
+    private bool $sold;
     private string $image;
-    private string $userId;
+    private int $userId;
     private string $sellDate;
 
-    public function __construct(string $id, string $name, string $description, float $price, string $sold, string $image, $userId, $sellDate){
+    public function __construct(string $id, string $name, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
