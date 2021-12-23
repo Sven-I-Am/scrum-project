@@ -2,12 +2,21 @@
 
 declare(strict_types=1);
 
-//include all your model files here
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
+//require connection
+require 'Model/Connection.php';
+require '.env';
+//include all your model files here
 require 'Model/User.php';
 require 'Model/Product.php';
+//include all Loaders here
+require 'Loader/UserLoader.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
+require 'Controller/LoginController.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
@@ -17,6 +26,8 @@ if (isset($_GET['page']) && $_GET['page'] === 'login') {
     $controller = new LoginController();
 }
 
+
+//$controller = new LoginController();
 
 $controller->render($_GET, $_POST);
 

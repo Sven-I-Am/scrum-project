@@ -1,3 +1,4 @@
+<?php require 'includes/header.php' ?>
 
 <html lang="en">
 <head>
@@ -20,10 +21,10 @@
         }        
         ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="?page=login&action=login" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
+                <input type="text" name="userName" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
@@ -34,8 +35,9 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="View/register.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="?page=login&action=newuser">Sign up now</a>.</p>
         </form>
     </div>
 </body>
 </html>
+<?php require 'includes/footer.php' ?>

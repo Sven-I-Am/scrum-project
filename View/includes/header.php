@@ -14,6 +14,7 @@
     <title>Pokeball Ecommerce website</title>
   </head>
   <body>
+  <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <img class="logo" src=".\assets\logo\pokeballLogo.png">
@@ -34,7 +35,7 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
      <div class="mr-2">
-          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+     <a href="?page=login"><button class="btn btn-danger">Login</button></a>
           <!-- If we require Shopping-Cart -->
           <!-- <img src=".\assets\logo\cart.png" alt=""> -->
        </div>
@@ -77,7 +78,7 @@
             </div>
         </div>
     </div>
-
+  </header>
  
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
