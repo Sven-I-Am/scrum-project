@@ -37,7 +37,6 @@ class LoginController
         if ($_POST['password'] === $_POST['passwordRepeat']){
             $newUser = new User(0, $_POST['userName'], $_POST['email'], $_POST['password']);
             $user = UserLoader::createUser($this->db, $newUser);
-            var_dump($user);
             require 'View/product.php';
         } else {
             $error = "Your passwords do not match, please try again.";
