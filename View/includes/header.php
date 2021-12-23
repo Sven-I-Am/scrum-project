@@ -35,11 +35,60 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
      <div class="mr-2">
+<<<<<<< HEAD
         <a href="?page=login"><button class="btn btn-danger">Login</button></a>
+=======
+     <a href="?page=login"><button class="btn btn-danger">Login</button></a>
+>>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3
           <!-- If we require Shopping-Cart -->
           <!-- <img src=".\assets\logo\cart.png" alt=""> -->
        </div>
      </div>
   </div>
 </nav>
+<<<<<<< HEAD
   </header>
+=======
+
+ <!-- login Modal -->
+ <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Sign in to Pokeball Eshop</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address:</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+  </header>
+ 
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
+>>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3

@@ -27,6 +27,7 @@ class LoginController
                     break;
                 case 'newuser':
                     require 'View/register.php';
+                    break;
             }
         }
 

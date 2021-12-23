@@ -5,12 +5,19 @@ declare(strict_types=1);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+<<<<<<< HEAD
 
 //require connection
 require 'Model/Connection.php';
 require '.env';
 //include all your model files here
+=======
+>>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3
 
+//require connection
+require 'Model/Connection.php';
+require '.env';
+//include all your model files here
 require 'Model/User.php';
 require 'Model/Product.php';
 //include all Loaders here

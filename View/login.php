@@ -1,4 +1,20 @@
+<<<<<<< HEAD
 <?php require 'includes/header.php'?>
+=======
+<?php require 'includes/header.php' ?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
+    </style>
+</head>
+<body>
+>>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3
     <div class="wrapper">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
@@ -12,7 +28,7 @@
         <form action="?page=login&action=login" method="post">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
+                <input type="text" name="userName" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
@@ -26,4 +42,10 @@
             <p>Don't have an account? <a href="?page=login&action=newuser">Sign up now</a>.</p>
         </form>
     </div>
+<<<<<<< HEAD
 <?php require 'includes/footer.php'?>
+=======
+</body>
+</html>
+<?php require 'includes/footer.php' ?>
+>>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3
