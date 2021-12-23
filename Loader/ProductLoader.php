@@ -3,10 +3,12 @@
 class ProductLoader{
    
 
-    public function readAllProducts(){
+    public static function readAllProducts(PDO $PDO){
+        
+        $product = $PDO->query("SELECT * FROM product");
 
-        $products = $this->db->query("SELECT * FROM product");
-        return $products;
+        return $product['name'];
+
     }
 
     public static function createProduct(PDO $PDO, Product $product){
