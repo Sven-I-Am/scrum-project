@@ -5,15 +5,8 @@ declare(strict_types=1);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-<<<<<<< HEAD
 
-//require connection
-require 'Model/Connection.php';
-require '.env';
 //include all your model files here
-=======
->>>>>>> b5391a253ae750a6b08cbfd5294524083c0bb0a3
-
 //require connection
 require 'Model/Connection.php';
 require '.env';
@@ -28,9 +21,9 @@ require 'Controller/LoginController.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
-
-$controller = new HomepageController();
-if (isset($_GET['page']) && $_GET['page'] === 'login') {
+if(!isset($_GET['page']) || $_GET['page']==='home') {
+    $controller = new HomepageController();
+} elseif ($_GET['page'] === 'login') {
     $controller = new LoginController();
 }
 
