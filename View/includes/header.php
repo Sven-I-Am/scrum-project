@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     
     <!-- Local CSS link -->
-    <link rel="stylesheet" href=".\View\style\header.css">
+    <link rel="stylesheet" href=".\View\style\style.css">
     <title>Pokeball Ecommerce website</title>
   </head>
   <body>
@@ -34,49 +34,13 @@
     <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
      <div class="mr-2">
-          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <a href="login.php"><button class="btn btn-danger">Login</button></a>
           <!-- If we require Shopping-Cart -->
           <!-- <img src=".\assets\logo\cart.png" alt=""> -->
        </div>
      </div>
   </div>
 </nav>
-
- <!-- login Modal -->
- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Sign in to Pokeball Eshop</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address:</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-                </div>
-    
-            </div>
-        </div>
-    </div>
 
  
   <!-- Option 1: Bootstrap Bundle with Popper -->
