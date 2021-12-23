@@ -29,17 +29,13 @@ class Product {
         return $this->id;
     }
 
-    public function setId(){
-        $this->id;
-    }
-
     // get and set product's name
 
     public function getName(){
         return $this->name;
     }
-    public function setName(){
-        $this->name;
+    public function setName(string $name){
+        $this->name = $name;
     }
 
     // get and set product's description
@@ -48,8 +44,8 @@ class Product {
         return $this->description;
     }
 
-    public function setDescription(){
-        $this->description;
+    public function setDescription(string $description){
+        $this->description = $description;
     }
 
     // get and set product's price
@@ -57,18 +53,18 @@ class Product {
         return $this->price;
     }
 
-    public function setPrice(){
-        $this->price;
+    public function setPrice(float $price){
+        $this->price = $price;
     }
 
     // get and set product's sold
 
     public function getSold(){
-        return $this->status;
+        return $this->sold;
     }
 
-    public function setSold(){
-        $this->status;
+    public function setSold(bool $sold){
+        $this->sold = $sold;
     }
 
     // get and set product's image
@@ -77,17 +73,13 @@ class Product {
         return $this->image;
     }
 
-    public function setImage(){
-        $this->image;
+    public function setImage(string $image){
+        $this->image = $image;
     }
 
     // get and set product's userId
 
     public function getUserId(){
-        return $this->userId;
-    }
-
-    public function setUserId(){
         return $this->userId;
     }
 
@@ -97,8 +89,8 @@ class Product {
         return $this->sellDate;
     }
 
-    public function setSellDate(){
-        return $this->sellDate;
+    public function setSellDate(string $sellDate){
+        return $this->sellDate = $sellDate;
     }
 }
 ?>
