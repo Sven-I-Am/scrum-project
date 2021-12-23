@@ -12,5 +12,6 @@ class LoginController
 
         //load the view
         require 'View/login.php';
+        require 'View/register.php';
     }
 }

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 class User
 {
-    private int $id;
-    private string $userName;
+    private int $userid;
+    private string $username;
     private string $email;
     private string $password;
 
-    public function __construct(int $id, string $userName, string $email, string $password)
+    public function __construct(int $userid, string $username, string $email, string $password)
     {
-        $this->id = $id; //if empty = NULL
-        $this->userName = $userName;
+        $this->userid = $userid; //if empty = NULL
+        $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }
@@ -21,18 +21,18 @@ class User
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->userid;
     }
 
     // get and set userName
 
     public function getUserName(): string
     {
-        return $this->userName;
+        return $this->username;
     }
     public function setUserName(string $data)
     {
-        $this->userName = $data;
+        $this->username = $data;
     }
 
     // get and set user email
