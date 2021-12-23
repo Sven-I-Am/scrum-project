@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 class Product {
-    private string $id;
+    private int $id;
     private string $name;
     private string $description;
     private float $price;
@@ -12,7 +12,7 @@ class Product {
     private int $userId;
     private string $sellDate;
 
-    public function __construct(string $id, string $name, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate){
+    public function __construct(int $id, string $name, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
