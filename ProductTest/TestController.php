@@ -17,10 +17,18 @@ class TestController{
 
     public function render(array $GET, array $POST){
 
+
         if(isset($_POST['submit'])){
         
             ProductLoader::createProduct($this->db, new Product(0, $_POST['name'], $_POST['description'], floatval($_POST['price']), false, $_POST['image'], 0, ""));
             
+        }
+
+        if(isset($_POST['show'])){
+
+            echo ProductLoader::readAllProducts($this->db);
+
+            echo "show";
         }
     }
     
