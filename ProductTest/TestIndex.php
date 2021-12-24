@@ -7,5 +7,5 @@
 <input typr="text" name="image">
 <input type="submit" name="submit">
 
-<input type="submit" name="show">
+<input type="submit" name="delete">
 </form>
