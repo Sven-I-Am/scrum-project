@@ -18,17 +18,19 @@ class TestController{
     public function render(array $GET, array $POST){
 
 
+        // I have to create some validation to receive de information?
+
         if(isset($_POST['submit'])){
         
             ProductLoader::createProduct($this->db, new Product(0, $_POST['name'], $_POST['description'], floatval($_POST['price']), false, $_POST['image'], 0, ""));
             
         }
 
-        if(isset($_POST['show'])){
+        if(isset($_POST['delete'])){
 
-            echo ProductLoader::readAllProducts($this->db);
+            ProductLoader::deleteProduct($this->db, $_GET['id']);
 
-            echo "show";
+            echo "delete";
         }
     }
     
