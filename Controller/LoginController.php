@@ -43,7 +43,7 @@ class LoginController
 
         if ($_POST['password'] === $_POST['passwordRepeat']){
             $userName = Sanitize::sanitizeInput($_POST['userName']);
-            $email = Sanitize::sanitizeInput($POST['email']);
+            $email = Sanitize::sanitizeInput($_POST['email']);
             $password = Sanitize::sanitizeInput($_POST['password']);
     
             $newUser = new User(0, $userName, $email, $password);
