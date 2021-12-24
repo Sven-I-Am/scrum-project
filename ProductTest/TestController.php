@@ -68,7 +68,7 @@ class TestController{
                 $response =[];
                 $name = $_POST['name'];
                 $description = $_POST['description'];
-                $price = floatval($_POST['price']);
+                $price = $_POST['price'];
                 $image = $_POST['image'];
     
                 if(empty($_POST['name'])){
@@ -76,6 +76,11 @@ class TestController{
                     $errors['name'] = "An name is required!";
                     $check = false;
     
+                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$name)){
+
+                    $errors['name'] = "Name can only have letters and numbers";
+                    $check = false;
+
                 }
     
                 if(empty($_POST['description'])){
@@ -83,6 +88,9 @@ class TestController{
                     $errors['description'] = "A description is required!";
                     $check = false;
     
+                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$description)){
+                    $errors['description'] = "Description can only have letters and numbers";
+                    $check = false;
                 }
     
                 if(empty($_POST['price'])){
@@ -90,6 +98,9 @@ class TestController{
                     $errors['price'] = "A price is required!";
                     $check = false;
     
+                }elseif(!preg_match("/(^-?\d\d*\.\d\d*$)|(^-?\.\d\d*$)/",$price)){
+                    $errors['price'] = "The price have to be number.numer. Example: 12.50, 11.00";
+                    $check = false;
                 }
     
                 if(empty($_POST['image'])){
@@ -97,6 +108,9 @@ class TestController{
                     $errors['image'] = "An image is required!";
                     $check = false;
     
+                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$image)){
+                    $errors['image'] = "Name can only have letters and numbers";
+                    $check = false;
                 }
     
                 if($check === true){
