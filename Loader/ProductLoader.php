@@ -5,14 +5,16 @@ class ProductLoader{
 
     public static function readAllProducts(PDO $PDO){
         
-        $products = $PDO->query("SELECT * FROM product");
+        $database = $PDO->query("SELECT * FROM product");
+        $products = [];
 
-        foreach($products as $key => $product){
+        foreach($database as $key => $product){
 
-            var_dump($product['price']);
+            array_push($products, new Product($product['id'], $product['name'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate']));
 
-            return new Product($product['id'], $product['name'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate']);
         }      
+        
+        return $products;
 
     }
 
