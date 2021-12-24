@@ -24,11 +24,14 @@ class LoginController
         } else {
             $error = "";
             switch ($_GET['action']) {
+                case 'newuser':
+                    require 'View/register.php';
+                    break;
                 case 'register':
                     $this->registerUser();
                     break;
-                case 'newuser':
-                    require 'View/register.php';
+                case 'login':
+                    $this->loginUser();
                     break;
             }
         }
@@ -51,5 +54,18 @@ class LoginController
             require 'View/login.php';
         }
     }
-       
+  
+    public function loginUser(){
+        $userName = Sanitize::sanitizeInput($_POST['userName']);
+        $password = Sanitize::sanitizeInput($_POST['password']);
+        $checkUser = new User (0, $userName, '', $password);
+        $response = UserLoader::readOne($this->db, $checkUser);
+        if (gettype($response) === 'object'){
+            $_SESSION['user'] = $response;
+            require 'View/product.php';
+        } else {
+            echo "<script type='text/javascript'>alert(' . $response . ');</script>";
+            require 'View/login.php';
+        }
+    }
 }
