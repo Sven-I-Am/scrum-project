@@ -12,7 +12,6 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
 }
 
 .logo{
@@ -25,14 +24,15 @@ body{
 .logoname{
     font-size: 30px;
     font-weight: bold;
-}img{
+}
+img{
     height: 40%;
     width: 30px;
 }
 img:hover{
     cursor: pointer;
-    -ms-transform: scale(1.1); /* IE 9 */
-    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
      transform: scale(1.1); 
 }
 
@@ -41,6 +41,28 @@ button:hover{
     font-weight: bold;    
 }
 
+#content{
+    background:rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left:0;
+    margin-bottom: 50%;
+    width: 100%;
+    height: 75%;
+    color:white;
+    padding: 20px;
+    visibility: hidden;
+  
+}
+#content p{
+    margin-top:30px;
+    margin-left:10px;
+    
+}
+#content:hover{
+    left: 0;
+    visibility: visible;
+}
 .footer{
     text-align: center;
     margin-left: 20%;
