@@ -21,10 +21,11 @@ class TestController{
         // create a product in the database
         // I have to create some validation to receive de information?
         // I have to change userId for a $_GET['userId']
+        
 
         if(isset($_POST['submit'])){
         
-            ProductLoader::createProduct($this->db, new Product(0, $_POST['name'], $_POST['description'], floatval($_POST['price']), false, $_POST['image'], 1, "12"));
+            $this->createProduct();
             
         }
 
@@ -58,5 +59,59 @@ class TestController{
             
         }
     }
+
+    public function createProduct ()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            
+                $check = true;
+                $response =[];
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $price = floatval($_POST['price']);
+                $image = $_POST['image'];
+    
+                if(empty($_POST['name'])){
+    
+                    $errors['name'] = "An name is required!";
+                    $check = false;
+    
+                }
+    
+                if(empty($_POST['description'])){
+    
+                    $errors['description'] = "A description is required!";
+                    $check = false;
+    
+                }
+    
+                if(empty($_POST['price'])){
+    
+                    $errors['price'] = "A price is required!";
+                    $check = false;
+    
+                }
+    
+                if(empty($_POST['image'])){
+    
+                    $errors['image'] = "An image is required!";
+                    $check = false;
+    
+                }
+    
+                if($check === true){
+    
+                    ProductLoader::createProduct($this->db, new Product(0, $name, $description, $price, false, $image, 1, "12"));
+                    $response['status'] = 'success';
+    
+                }else{
+    
+                    $response['status'] = 'error';
+                    $response['errors'] = $errors;
+                }
+    
+               return $response;
+            }
+        }
     
 }
