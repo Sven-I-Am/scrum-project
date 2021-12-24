@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+require_once './Model/User.php';
+require_once './Loader/UserLoader.php';
 
 class LoginController
 {
@@ -34,8 +36,14 @@ class LoginController
     }
 
     public function registerUser(){
+        
+
         if ($_POST['password'] === $_POST['passwordRepeat']){
-            $newUser = new User(0, $_POST['userName'], $_POST['email'], $_POST['password']);
+            $userName = Sanitize::sanitizeInput($_POST['userName']);
+            $email = Sanitize::sanitizeInput($POST['email']);
+            $password = Sanitize::sanitizeInput($_POST['password']);
+    
+            $newUser = new User(0, $userName, $email, $password);
             $user = UserLoader::createUser($this->db, $newUser);
             require 'View/product.php';
         } else {
@@ -43,4 +51,5 @@ class LoginController
             require 'View/login.php';
         }
     }
+       
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 class User
 {
     private int $userid;
-    private string $username;
+   private string $username;
     private string $email;
     private string $password;
 
@@ -29,6 +29,7 @@ class User
     public function getUserName(): string
     {
         return $this->username;
+        
     }
     public function setUserName(string $data)
     {
