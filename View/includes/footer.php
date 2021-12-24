@@ -1,5 +1,3 @@
- <!-- Local CSS link -->
- <link rel="stylesheet" href=".\View\style\footer.css">
 
 <footer class=" footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
     <div class="col-md-6 d-flex align-items-center">
@@ -14,3 +12,8 @@
       <li class="ms-3"><a class="text-muted" href="http://facebook.com"><img width="30" height="30" src=".\assets\images\facebook.png" alt=""></a></li>
     </ul>
   </footer>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
