@@ -68,8 +68,12 @@ class TestController{
                 $response =[];
                 $name = $_POST['name'];
                 $description = $_POST['description'];
-                $price = $_POST['price'];
+                $priceInput = $_POST['price'];
+                $stringPrice = str_replace(",", ".", $priceInput);
+                $price = floatval($stringPrice);
                 $image = $_POST['image'];
+
+                var_dump($price);
     
                 if(empty($_POST['name'])){
     
@@ -98,9 +102,14 @@ class TestController{
                     $errors['price'] = "A price is required!";
                     $check = false;
     
-                }elseif(!preg_match("/(^-?\d\d*\.\d\d*$)|(^-?\.\d\d*$)/",$price)){
-                    $errors['price'] = "The price have to be number.numer. Example: 12.50, 11.00";
-                    $check = false;
+                }else{
+
+                    if($price == 0){
+
+                        $errors['price'] = "The price have to be number.numer. Example: 12.50, 11.00";
+                        $check = false;
+
+                    }                    
                 }
     
                 if(empty($_POST['image'])){
