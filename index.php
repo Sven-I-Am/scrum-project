@@ -17,21 +17,24 @@ require 'Model/User.php';
 require 'Model/Product.php';
 //include all Loaders here
 require 'Loader/UserLoader.php';
+require 'Loader/ProductLoader.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/LoginController.php';
+require 'ProductTest/TestController.php';
 //include helper classes here
 require 'Helper/Sanitize.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
 
-if(!isset($_GET['page']) || $_GET['page']==='home') {
-    $controller = new HomepageController();
-} elseif ($_GET['page'] === 'login') {
-    $controller = new LoginController();
-}
+// if(!isset($_GET['page']) || $_GET['page']==='home') {
+//     $controller = new HomepageController();
+// } elseif ($_GET['page'] === 'login') {
+//     $controller = new LoginController();
+// }
 
+$controller = new TestController();
 
 //$controller = new LoginController();
 
