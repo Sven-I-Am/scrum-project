@@ -8,4 +8,6 @@
 <input type="submit" name="submit">
 
 <input type="submit" name="delete">
+<input type="submit" name="read">
+
 </form>
