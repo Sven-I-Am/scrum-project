@@ -5,7 +5,7 @@ class ProductLoader{
 
     public static function readAllProducts(PDO $PDO){
         
-        $database = $PDO->query("SELECT * FROM product");
+        $database = $PDO->query("SELECT * FROM PRODUCT");
         $products = [];
 
         foreach($database as $key => $product){
@@ -29,13 +29,13 @@ class ProductLoader{
         $sellDate = $product->getSellDate();
 
 
-        $PDO->query("INSERT INTO product (name, description, price, sold, image, userid, selldate)
+        $PDO->query("INSERT INTO PRODUCT (name, description, price, sold, image, userid, selldate)
             VALUES ('$name', '$description', '$price', '$sold', '$image', '$userId', '$sellDate')");
     }
 
     public static function deleteProduct(PDO $PDO, int $id){
         
-        $PDO->query("DELETE FROM product WHERE id = $id");
+        $PDO->query("DELETE FROM PRODUCT WHERE id = $id");
 
     }
 }
