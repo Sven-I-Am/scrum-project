@@ -14,10 +14,17 @@ require ("./Helper/Sanitize.php");
 
 <form method="post">
 
+<<<<<<< Updated upstream
 <input type="text" name="name">  <?php if(isset($errors['name'])) { echo $errors['name']; } ?>" 
 <input type="text" name="description"> <?php if(isset($errors['description'])) { echo $errors['description']; } ?>
 <input type="text" name="price"> <?php if(isset($errors['price'])) { echo $errors['price']; } ?>
 <input type="text" name="image" > <?php if(isset($errors['image'])) { echo $errors['image']; } ?>
+=======
+<input type="text" name="name"> <?php if(isset($errors['name']))  { echo $errors['name']; } ?>
+<input type="text" name="description"> <?php if(isset($errors['description']))  { echo $errors['description']; } ?>
+<input type="text" name="price"> <?php if(isset($errors['price']))  { echo $errors['price']; } ?>
+<input type="text" name="image"> <?php if(isset($errors['image']))  { echo $errors['image']; } ?>
+>>>>>>> Stashed changes
 
 <input type="submit" name="submit">
 
