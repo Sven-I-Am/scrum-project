@@ -23,7 +23,7 @@ require 'Controller/HomepageController.php';
 require 'Controller/LoginController.php';
 require 'ProductTest/TestController.php';
 //include helper classes here
-require 'Helper/Sanitize.php';
+// require 'Helper/Sanitize.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
