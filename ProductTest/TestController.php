@@ -17,6 +17,7 @@ class TestController{
 
     public function render(array $GET, array $POST){
 
+        $data;
 
         // create a product in the database
         // I have to create some validation to receive de information?
@@ -25,8 +26,13 @@ class TestController{
 
         if(isset($_POST['submit'])){
         
-            $this->createProduct();
+            $data = $this->createProduct();
             
+            if(isset($data['status']) && $data['status'] == 'error') {
+                $errors = $data['errors'];
+                var_dump($errors);
+                echo $data['name'];
+            }
         }
 
         //  delete a product from the database
@@ -66,12 +72,12 @@ class TestController{
             
                 $check = true;
                 $response =[];
-                $name = $_POST['name'];
-                $description = $_POST['description'];
+                $name = Sanitize::sanitizeInput($_POST['name']);
+                $description = Sanitize::sanitizeInput($_POST['description']);
                 $priceInput = $_POST['price'];
                 $stringPrice = str_replace(",", ".", $priceInput);
                 $price = floatval($stringPrice);
-                $image = $_POST['image'];
+                $image = Sanitize::sanitizeInput($_POST['image']);
 
                 var_dump($price);
     
@@ -100,19 +106,20 @@ class TestController{
                         $check = false;                   
                 }
     
-                if(empty($_POST['image'])){
+                if(empty($_POST['image']) || !filter_var($image, FILTER_VALIDATE_URL)){
     
-                    $errors['image'] = "An image is required!";
-                    $check = false;
-    
-                }elseif(!filter_var($image, FILTER_VALIDATE_URL)){
-                    $check = false;
                     $errors['image'] = $image."  is not a valid URL";
+                    $check = false;
+    
                 }
+                // elseif(!filter_var($image, FILTER_VALIDATE_URL)){
+                //     $check = false;
+                //     $errors['image'] = $image."  is not a valid URL";
+                // }
     
                 if($check === true){
     
-                    ProductLoader::createProduct($this->db, new Product(0, Sanitize::sanitizeInput($name), Sanitize::sanitizeInput($description), $price, false, Sanitize::sanitizeInput($image), 1, "12"));
+                    ProductLoader::createProduct($this->db, new Product(0, $name, $description, $price, false, $image, 1, "12"));
                     $response['status'] = 'success';
     
                 }else{
