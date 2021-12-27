@@ -77,14 +77,9 @@ class TestController{
     
                 if(empty($_POST['name'])){
     
-                    $errors['name'] = "An name is required!";
+                    $errors['name'] = "A name is required!";
                     $check = false;
     
-                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$name)){
-
-                    $errors['name'] = "Name can only have letters and numbers";
-                    $check = false;
-
                 }
     
                 if(empty($_POST['description'])){
@@ -92,9 +87,6 @@ class TestController{
                     $errors['description'] = "A description is required!";
                     $check = false;
     
-                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$description)){
-                    $errors['description'] = "Description can only have letters and numbers";
-                    $check = false;
                 }
     
                 if(empty($_POST['price'])){
@@ -102,14 +94,10 @@ class TestController{
                     $errors['price'] = "A price is required!";
                     $check = false;
     
-                }else{
+                }elseif($price == 0){
 
-                    if($price == 0){
-
-                        $errors['price'] = "The price have to be number.numer. Example: 12.50, 11.00";
-                        $check = false;
-
-                    }                    
+                        $errors['price'] = "The price have to be number.numer or number,number. Example: 12.50, 11,00";
+                        $check = false;                   
                 }
     
                 if(empty($_POST['image'])){
@@ -117,14 +105,14 @@ class TestController{
                     $errors['image'] = "An image is required!";
                     $check = false;
     
-                }elseif(!preg_match("/^[a-zA-Z0-9]*$/",$image)){
-                    $errors['image'] = "Name can only have letters and numbers";
+                }elseif(!filter_var($image, FILTER_VALIDATE_URL)){
                     $check = false;
+                    $errors['image'] = $image."  is not a valid URL";
                 }
     
                 if($check === true){
     
-                    ProductLoader::createProduct($this->db, new Product(0, $name, $description, $price, false, $image, 1, "12"));
+                    ProductLoader::createProduct($this->db, new Product(0, Sanitize::sanitizeInput($name), Sanitize::sanitizeInput($description), $price, false, Sanitize::sanitizeInput($image), 1, "12"));
                     $response['status'] = 'success';
     
                 }else{
@@ -132,7 +120,7 @@ class TestController{
                     $response['status'] = 'error';
                     $response['errors'] = $errors;
                 }
-    
+
                return $response;
             }
         }
