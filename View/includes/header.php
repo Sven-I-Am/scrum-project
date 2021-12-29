@@ -15,44 +15,45 @@
     <title>Gbay Ecommerce website</title>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-2 logoname" href="?page=home">
-                <img class="logo" src=".\assets\logo\pokeballLogo.png">
-                Gbay</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="collapse navbar-collapse d-flex">
-                    <select>
-                    <option value="0" selected>All categories</option>
-                    <?php forEach($categories as $category) {?>
-                        <option value="<?php echo $category["categoryid"]; ?>"><?php echo $category["name"]; ?></option>
-                    <?php } ?>
-                    </select>
-                    <select class="nav-item dropdown mx-2" aria-label="Default select example" name="universe">
-                        <option value="0" selected>All universes</option>
-                        <?php forEach($universes as $universe) {?>
-                            <option value="<?php echo $universe["uid"]; ?>"><?php echo $universe["type"]; ?></option>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-2 logoname" href="?page=home">
+                    <img class="logo" src=".\assets\logo\pokeballLogo.png">
+                    Gbay</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="collapse navbar-collapse d-flex">
+                        <select>
+                        <option value="0" selected>All categories</option>
+                        <?php forEach($categories as $category) {?>
+                            <option value="<?php echo $category["categoryid"]; ?>"><?php echo $category["name"]; ?></option>
                         <?php } ?>
-                    </select>
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <div class="mr-2">
-                    <?php if(!isset($_SESSION['user'])) { ?>
-                        <a href="?page=login"><button class="btn btn-danger">Login</button></a>
-                        <a href="?page=login&action=newuser"><button class="btn btn-primary">Register</button></a>
-                    <?php } else { ?>
-                        <a href="?page=login&action=logout"><button class="btn btn-danger">Logout</button></a>
-                        <a href="?page=login&action=dashboard"><button class="btn btn-primary">Dashboard</button></a>
-                    <?php } ?>
-                    <!-- If we require Shopping-Cart -->
-                     <img src=".\assets\logo\cart.png" alt="">
+                        </select>
+                        <select class="nav-item dropdown mx-2" aria-label="Default select example" name="universe">
+                            <option value="0" selected>All universes</option>
+                            <?php forEach($universes as $universe) {?>
+                                <option value="<?php echo $universe["uid"]; ?>"><?php echo $universe["type"]; ?></option>
+                            <?php } ?>
+                        </select>
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <div class="mr-2">
+                        <?php if(!isset($_SESSION['user'])) { ?>
+                            <a href="?page=login"><button class="btn btn-danger">Login</button></a>
+                            <a href="?page=login&action=newuser"><button class="btn btn-primary">Register</button></a>
+                        <?php } else { ?>
+                            <a href="?page=login&action=logout"><button class="btn btn-danger">Logout</button></a>
+                            <a href="?page=login&action=dashboard"><button class="btn btn-primary">Dashboard</button></a>
+                        <?php } ?>
+                        <!-- If we require Shopping-Cart -->
+                         <img src=".\assets\logo\cart.png" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+<main>
