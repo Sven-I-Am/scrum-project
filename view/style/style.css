@@ -37,7 +37,69 @@ body{
     font-weight: bold;
 }
 
+/* product card */
+
+.productCard {
+    width: 300px;
+    height: 400px;
+    background: white;
+    padding: 2px;
+}
+
+.cardContent {
+    width:100%;
+    height: 100%;
+}
+
+.productName{
+    font-size: 22px;
+}
+
+.productImgContainer {
+    position: relative;
+    height: 250px;
+    margin: auto;
+}
+
+.productImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.productDescription {
+    background:rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color:white;
+    visibility: hidden;
+    transition: all 0.2s;
+}
+
+.productCard:hover .productDescription{
+    visibility: visible;
+}
+
+.productDetails {
+    margin-top: 5px;
+}
+
+.cardUniverse p{
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background: #EC1D24;
+    border-radius: 5px;
+}
+
+
+
+
 /* product setting */
+/*
 
 img{
     height: 40%;
@@ -73,7 +135,7 @@ button:hover{
     visibility: visible;
 }
 
-/* Dashboard setting */
+!* Dashboard setting *!
 
 .dashboard{
     margin-left: 30%;
@@ -96,6 +158,7 @@ button:hover{
 .items{
     text-align:right;
 }
+*/
 
 /* login setting */
 .wrapper{
@@ -115,8 +178,8 @@ button:hover{
     font-size: 18px;
     color:black;
     margin-left: 20%;
-    position: relative;
-    bottom: 7;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: 2.5rem;
 }

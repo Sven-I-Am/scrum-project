@@ -1,33 +1,28 @@
 <?php
 
-function component($ProductImage,$ProductLabel,$ProductDescription,$ProductName,$ProductType,$ProductPrice){
+function component($img, $name, $description, $universe){
 
     $element="
-    <form action=\"#\">
-        <div class=\"col\">
-            <div class=\"card h-auto border border-2 border-dark \">
-               <img src=\"$ProductImage\" class=\"card-img-top labelinfo\">
-               <div class=\"label\">$ProductLabel</div>
-                <div class=\"content\">
-                    <p>$ProductDescription</p>
+        <form method='post' action='#' class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
+            <div class='cardContent'>
+                <div class='row text-center'>
+                    <h2 class='productName'>$name</h2>
                 </div>
-                 <div class=\"card-body\">
-                 <div class=\"row\">
-                 <div class=\"col\">
-                    <h5 class=\"card-title gap-2 m-auto text-danger text-center\">$ProductName</h5>
-                 </div>  
-                 <div class=\"col\">
-                    <h5 class=\"card-title gap-2 mx-auto text-primary\">$ProductType</h5>
-                 </div> 
-                   </div>
-                    <h5 class=\"card-title gap-2 mx-auto text-center\">$ProductPrice</h5>
-                     <div class=\"d-grid gap-2 col-6 mx-auto\">
-                        <button type=\"button\" class=\"btn btn-outline-primary\">Buy</button>
+                <div class='row productImgContainer'>
+                    <img src='$img' alt='$name' class='productImage card-img-top labelinfo'>
+                    <div class='productDescription text-center'>
+                        <p class='my-4 mx-5'>$description</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </form>
+                <div class='row productDetails'>
+                    <div class='col text-center cardUniverse'><p>$universe</p></div>
+                    <div class='col text-center cardCategory'><p>category</p></div>
+                    <div class='col text-center cardCondition'><p>condition</p></div>
+                    
+                </div>
+                
+            </div>  
+        </form>
     ";
     echo $element;
 }

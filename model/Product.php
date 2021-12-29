@@ -5,6 +5,7 @@ declare(strict_types=1);
 class Product {
     private int $id;
     private string $name;
+    private string $condition;
     private string $description;
     private float $price;
     private bool $sold;
@@ -14,9 +15,10 @@ class Product {
     private int $categoryId;
     private int $universeId;
 
-    public function __construct(int $id, string $name, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate, int $categoryId, int $universeId){
+    public function __construct(int $id, string $name, string $condition, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate, int $categoryId, int $universeId){
         $this->id = $id;
         $this->name = $name;
+        $this->condition = $condition;
         $this->description = $description;
         $this->price = $price;
         $this->sold = $sold;
@@ -27,14 +29,12 @@ class Product {
         $this->universeId = $universeId;
     }
 
-    // get and set product's id
-
+    // get id
     public function getId(){
         return $this->id;
     }
 
-    // get and set product's name
-
+    // get and set product name
     public function getName(){
         return $this->name;
     }
@@ -42,12 +42,18 @@ class Product {
         $this->name = $name;
     }
 
-    // get and set product's description
+    // get and set product condition
+    public function getCondition(){
+        return $this->condition;
+    }
+    public function setCondition(string $condition){
+        $this->condition = $condition;
+    }
 
+    // get and set product's description
     public function getDescription(){
         return $this->description;
     }
-
     public function setDescription(string $description){
         $this->description = $description;
     }
@@ -56,7 +62,6 @@ class Product {
     public function getPrice(){
         return $this->price;
     }
-
     public function setPrice(float $price){
         $this->price = $price;
     }
@@ -66,7 +71,6 @@ class Product {
     public function getSold(){
         return $this->sold;
     }
-
     public function setSold(bool $sold){
         $this->sold = $sold;
     }
@@ -76,7 +80,6 @@ class Product {
     public function getImage(){
         return $this->image;
     }
-
     public function setImage(string $image){
         $this->image = $image;
     }

@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `UNIVERSE`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `UNIVERSE` (
                             `id` int NOT NULL AUTO_INCREMENT,
-                            `type` varchar(100) DEFAULT NULL,
+                            `name` varchar(100) DEFAULT NULL,
                             PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,7 +77,7 @@ UNLOCK TABLES;
 --
 LOCK TABLES `UNIVERSE` WRITE;
 /*!40000 ALTER TABLE `UNIVERSE` DISABLE KEYS */;
-INSERT INTO `UNIVERSE` VALUES (1,'pokemon'),(2,'marvel'),(3,'DC Universe'),(4,'Harry potter'),(5,'Rick & Morty'),(6,'Adventure Time'),(7,'Avatar the last aribender');
+INSERT INTO `UNIVERSE` VALUES (1,'pokemon'),(2,'marvel'),(3,'DC Universe'),(4,'Harry potter'),(5,'Rick & Morty'),(6,'Adventure Time'),(7,'Avatar TLA');
 /*!40000 ALTER TABLE `UNIVERSE` ENABLE KEYS */;
 UNLOCK TABLES;
 --
