@@ -11,13 +11,17 @@ error_reporting(E_ALL);
 require 'Controller/HomepageController.php';
 require 'Controller/LoginController.php';
 //include all helper files here
+require 'View/component.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
-if(!isset($_GET['page']) || $_GET['page']==='home') {
-    $controller = new HomepageController();
-} elseif ($_GET['page'] === 'login') {
+if (isset($_GET['login']))
+{
     $controller = new LoginController();
+}
+else
+{
+    $controller = new HomepageController();
 }
 
 $controller->render($_GET, $_POST);
