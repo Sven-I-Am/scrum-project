@@ -15,6 +15,10 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        if(isset($_SESSION['user'])){
+            $user = $_SESSION['user'];
+            $userProducts = Productloader::readUserProducts($this->db, $user->getId());
+        }
 
         if(!isset($GET['action'])){
             require 'view/login.php';
@@ -125,7 +129,8 @@ class UserController
         $response = UserLoader::readOne($this->db, $checkUser);
         if (gettype($response) === 'object'){
             $_SESSION['user'] = $response;
-            return 'view/product.php';
+            $_POST=[];
+            return 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
             return 'view/login.php';
