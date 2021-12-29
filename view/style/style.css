@@ -169,14 +169,12 @@ body{
 .items{
     text-align:right;
 }
-*/
 
 /* login setting */
 .wrapper{
     display: block;
-    margin: auto;
+    margin: 10px auto;
     border: 2px solid black;
-    margin-top:10px;
     width: 360px;
     padding: 20px;
     background-color: white;
