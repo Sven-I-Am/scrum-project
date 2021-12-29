@@ -47,7 +47,7 @@
                             <a href="?user&action=register"><button class="btn btn-primary">Register</button></a>
                         <?php } else { ?>
                             <a href="?user&action=logout"><button class="btn btn-danger">Logout</button></a>
-                            <a href="?user&dashboard"><button class="btn btn-primary">Dashboard</button></a>
+                            <a href="?user&action=dashboard"><button class="btn btn-primary">Dashboard</button></a>
                         <?php } ?>
                         <!-- If we require Shopping-Cart -->
                          <img src=".\assets\logo\cart.png" alt="">

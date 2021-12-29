@@ -37,6 +37,9 @@ class UserController
                 case 'logout':
                     require $this->logoutUser();
                     break;
+                case 'dashboard':
+                    require 'view/dashboard.php';
+                    break;
             }
         }
     }

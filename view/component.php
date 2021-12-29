@@ -15,7 +15,7 @@ function component($id, $img, $name, $description, $universe, $category, $condit
     }
 
     $element="
-        <form method='post' action='#' class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
+        
             <div class='cardContent'>
                 <div class='row text-center'>
                     <h2 class='productName'>$name</h2>
