@@ -5,7 +5,7 @@
         <p>Please fill in your credentials to login</p>
     </div>
 
-    <form action="?login&action=login" method="post">
+    <form action="?user&action=login" method="post">
         <div class="form-group">
             <label>Username
             <input type="text" name="userName" class="form-control" placeholder="username">
@@ -19,7 +19,7 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
-        <p>Don't have an account? <a href="?register">Sign up now</a>.</p>
+        <p>Don't have an account? <a href="?user&action=register">Sign up now</a>.</p>
     </form>
 </div>
 <?php require 'includes/footer.php'?>

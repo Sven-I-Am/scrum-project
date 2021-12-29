@@ -4,7 +4,7 @@
             <h2>Sign Up</h2>
             <p>Please fill in this form to create an account</p>
         </div>
-        <form action="?register&action=register" method="post">
+        <form action="?user&action=registerUser" method="post">
             <div class="form-group">
                 <label>Username
                 <input type="text" name="userName" placeholder="username" class="form-control  <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>">

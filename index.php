@@ -16,9 +16,8 @@ require 'loader/FilterLoader.php';
 require 'loader/ProductLoader.php';
 require 'loader/UserLoader.php';
 //include all your controllers here
-require 'controller/HomepageController.php';
-require 'controller/LoginController.php';
-require 'controller/RegisterController.php';
+require 'controller/ProductController.php';
+require 'controller/UserController.php';
 //include all helper files here
 require 'view/component.php';
 require 'helper/Sanitize.php';
@@ -26,17 +25,13 @@ require 'helper/Sanitize.php';
 session_start();
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
-if (isset($_GET['login']))
+if (isset($_GET['user']))
 {
-    $controller = new LoginController();
-}
-elseif (isset($_GET['register']))
-{
-    $controller = new RegisterController();
+    $controller = new UserController();
 }
 else
 {
-    $controller = new HomepageController();
+    $controller = new ProductController();
 }
 
 $controller->render($_GET, $_POST);

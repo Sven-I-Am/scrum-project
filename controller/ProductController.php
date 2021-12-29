@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class HomepageController
+class ProductController
 {
     private Connection $db;
     //create a new connection based on the database value.
@@ -18,18 +18,8 @@ class HomepageController
 
         if(!isset($GET['action'])){
             require 'view/product.php';
-        } else {
-            switch ($GET['action']) {
-                case 'logout':
-                    require $this->logoutUser();
-                    break;
-            }
         }
     }
 
-    public function logoutUser() {
-        unset($_SESSION['user']);
-        echo "<script type='text/javascript'>alert('You logged out');</script>";
-        return 'view/product.php';
-    }
+
 }
