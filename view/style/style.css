@@ -12,7 +12,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 22px;
 }
 
 /* Header setting */
@@ -37,7 +37,7 @@ body{
 }
 
 .logoname{
-    font-size: 30px;
+    font-size: 150%;
     font-weight: bold;
 }
 
@@ -56,7 +56,7 @@ body{
 }
 
 .productName{
-    font-size: 22px;
+    font-size: 120%;
 }
 
 .productImgContainer {
@@ -81,6 +81,7 @@ body{
     color:white;
     visibility: hidden;
     transition: all 0.2s;
+    font-size: 80%;
 }
 
 .productCard:hover .productDescription{
@@ -89,7 +90,7 @@ body{
 
 .productDetails {
     margin-top: 5px;
-    font-size: 12px;
+    font-size: 50%;
     font-weight: bold;
 }
 
@@ -125,7 +126,7 @@ body{
 .cardBtn {
     width: 150px;
     margin: auto;
-    font-size: 28px;
+    font-size: 125%;
 }
 
 .productPrice {
@@ -184,10 +185,10 @@ body{
 
 .footer{
     text-align: center;
-    font-size: 18px;
+    font-size: 70%;
     color:black;
-    margin-left: 20%;
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
@@ -195,7 +196,7 @@ body{
 
 .f-logo{
     padding: 5px;
-    font-size: 40px;
+    font-size: 200%;
     width: 40px;
     height: 40px;
     text-align: center;
