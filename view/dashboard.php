@@ -24,10 +24,11 @@
                 component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition());
                 ?>
 
-                <div><?php echo $product->getPrice(); ?> &euro;</div>
+
                 <div class="row">
-                    <button class="btn btn-primary me-md-2" type="submit" name="update">Update</button>
-                    <button class="btn btn-primary" type="submit" name="delete">Delete</button>
+                    <div class="w-50"><?php echo $product->getPrice(); ?> &euro;</div>
+                    <button class="btn btn-primary w-25" type="submit" name="update">Update</button>
+                    <button class="btn btn-danger w-25" type="submit" name="delete">Delete</button>
                 </div>
                 </div>
                 </div>
