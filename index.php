@@ -7,17 +7,17 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 //include all connection relatedfiles here
 require '.env';
-require 'Model/Connection.php';
+require 'model/Connection.php';
 //include all your model files here
-require 'Model/Product.php';
+require 'model/Product.php';
 //include all loader files here
-require 'Loader/FilterLoader.php';
-require 'Loader/ProductLoader.php';
+require 'loader/FilterLoader.php';
+require 'loader/ProductLoader.php';
 //include all your controllers here
-require 'Controller/HomepageController.php';
-require 'Controller/LoginController.php';
+require 'controller/HomepageController.php';
+require 'controller/LoginController.php';
 //include all helper files here
-require 'View/component.php';
+require 'view/component.php';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!

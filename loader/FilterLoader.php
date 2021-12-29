@@ -15,7 +15,7 @@ class FilterLoader
     }
     public static function getAllUniverses(PDO $PDO):array
     {
-        $handler = $PDO->query('SELECT * FROM Universe');
+        $handler = $PDO->query('SELECT * FROM UNIVERSE');
         return $handler->fetchAll();
     }
 }
