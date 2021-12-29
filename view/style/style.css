@@ -123,6 +123,10 @@ body{
     background: #B08D57;
 }
 
+.productId {
+    display: none;
+}
+
 .cardBtn {
     width: 150px;
     margin: auto;

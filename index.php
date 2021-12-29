@@ -33,7 +33,7 @@ else
 $controller->render($_GET, $_POST);
 
 //remove below before full deployment
-//whatIsHappening();
+whatIsHappening();
 function whatIsHappening()
 {
     echo '<h2>$_GET</h2>';
