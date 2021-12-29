@@ -19,15 +19,15 @@
             <?php
             if(!empty($userProducts)){
             foreach ($userProducts as $product) { ?>
-            <form method='post' class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
+            <form method='post' action="?action=productChange" class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
                 <?php
                 component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition());
                 ?>
 
                 <div><?php echo $product->getPrice(); ?> &euro;</div>
                 <div class="row">
-                    <a href="?updateProduct&id=<?php echo $product->getId(); ?>"><button class="btn btn-primary me-md-2" type="button">Update</button></a>
-                    <button class="btn btn-primary" type="submit">Delete</button>
+                    <button class="btn btn-primary me-md-2" type="submit" name="update">Update</button>
+                    <button class="btn btn-primary" type="submit" name="delete">Delete</button>
                 </div>
                 </div>
                 </div>
