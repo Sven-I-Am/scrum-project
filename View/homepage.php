@@ -2,7 +2,7 @@
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
 <section>
-    <h4>Hello <?php echo $seller->getName() ?>,</h4>
+    <h4>Hello</h4>
 
     <p><a href="index.php?page=login">To login page</a></p>
 
