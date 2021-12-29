@@ -77,7 +77,7 @@ UNLOCK TABLES;
 --
 LOCK TABLES `UNIVERSE` WRITE;
 /*!40000 ALTER TABLE `UNIVERSE` DISABLE KEYS */;
-INSERT INTO `UNIVERSE` VALUES (1,'pokemon'),(2,'marvel'),(3,'DC Universe'),(4,'Harry potter'),(5,'Rick & Morty'),(6,'Adventure Time'),(7,'Avatar TLA');
+INSERT INTO `UNIVERSE` VALUES (1,'Pokemon'),(2,'Marvel'),(3,'DC Universe'),(4,'Harry potter'),(5,'Rick & Morty'),(6,'Adventure Time'),(7,'Avatar TLA');
 /*!40000 ALTER TABLE `UNIVERSE` ENABLE KEYS */;
 UNLOCK TABLES;
 --
