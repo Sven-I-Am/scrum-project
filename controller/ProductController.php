@@ -17,7 +17,7 @@ class ProductController
         $products = ProductLoader::readAllProducts($this->db);
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
-            $userProducts = Productloader::readUserProducts($this->db, $user->getId());
+            $_SESSION['userProducts'] = Productloader::readUserProducts($this->db, $user->getId());
         }
 
         if(!isset($GET['action'])){
@@ -37,8 +37,17 @@ class ProductController
 
     public function deleteProduct($id): string
     {
+        $user = $_SESSION['user'];
         $product = ProductLoader::readOneProduct($this->db, intval($id));
-        return 'view/dashboard.php';
+        if ($product->getUserId()===$user->getId()){
+            ProductLoader::deleteProduct($this->db, intval($id));
+            $_SESSION['userProducts'] = Productloader::readUserProducts($this->db, $user->getId());
+            return 'view/dashboard.php';
+        } else {
+            echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
+            return 'view/product.php';
+        }
+
     }
 
 
