@@ -29,13 +29,13 @@
                         <select>
                         <option value="0" selected>All categories</option>
                         <?php forEach($categories as $category) {?>
-                            <option value="<?php echo $category["categoryid"]; ?>"><?php echo $category["name"]; ?></option>
+                            <option value="<?php echo $category["id"]; ?>"><?php echo $category["name"]; ?></option>
                         <?php } ?>
                         </select>
                         <select class="nav-item dropdown mx-2" aria-label="Default select example" name="universe">
                             <option value="0" selected>All universes</option>
                             <?php forEach($universes as $universe) {?>
-                                <option value="<?php echo $universe["uid"]; ?>"><?php echo $universe["type"]; ?></option>
+                                <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
                             <?php } ?>
                         </select>
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -1,6 +1,6 @@
 <?php
 
-function component($img, $name, $description, $universe){
+function component($img, $name, $description, $uName){
 
     $element="
         <form method='post' action='#' class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
@@ -15,7 +15,7 @@ function component($img, $name, $description, $universe){
                     </div>
                 </div>
                 <div class='row productDetails'>
-                    <div class='col text-center cardUniverse'><p>$universe</p></div>
+                    <div class='col text-center cardUniverse'><p>$uName</p></div>
                     <div class='col text-center cardCategory'><p>category</p></div>
                     <div class='col text-center cardCondition'><p>condition</p></div>
                     
