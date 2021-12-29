@@ -5,8 +5,12 @@ declare(strict_types=1);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
+//include all connection relatedfiles here
+require '.env';
+require 'Model/Connection.php';
 //include all your model files here
+//include all loader files here
+require 'Loader/FilterLoader.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/LoginController.php';
