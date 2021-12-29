@@ -14,6 +14,7 @@ body{
     flex-direction: column;
     font-size: 14px;
 }
+
 /* Header setting */
 
 .label{
@@ -25,13 +26,16 @@ body{
     text-align: center;
     font-weight: bold;
 }
+
 .logo{
     transition: transform .7s ease-in-out;
     width: 50px;
 }
+
 .logo:hover{
     transform: rotate(360deg);
 }
+
 .logoname{
     font-size: 30px;
     font-weight: bold;
@@ -94,66 +98,55 @@ body{
     border-radius: 5px;
     color: white;
 }
+
 .cardCategory p{
     background: #042C3B;
     border-radius: 5px;
     color: white;
 }
+
 .cardCondition p{
     border-radius: 5px;
     color: #0f0f0f;
 }
+
 .cardConditionNew {
     background: #F9A602;
 }
+
 .cardConditionGood {
     background: #BEC2CB;
 }
+
 .cardConditionUsed {
     background: #B08D57;
 }
 
-
-
-
-/* product setting */
-/*
-
-img{
-    height: 40%;
-    width: 30px;
+.cardBtn {
+    width: 150px;
+    margin: auto;
+    font-size: 28px;
 }
 
-button:hover{
-    letter-spacing: 1px;
-    font-weight: bold;
+.productPrice {
+    display: inline-block;
+    margin: 0;
 }
 
-.content{
-    background:rgba(0, 0, 0, 0.7);
-    position: absolute;
-    top:0;
-    left:0;
-    margin-bottom: 50%;
-    width: 100%;
-    height: 68%;
-    color:white;
-    padding: 20px;
-    visibility: hidden;
-    transition: all 0.2s;
-
-}
-.content p{
-    margin-top:30px;
-    margin-left:10px;
-
-}
-.card:hover .content{
-    left: 0;
-    visibility: visible;
+.productBuy {
+    display: none;
+    margin: 0;
 }
 
-!* Dashboard setting *!
+.cardBtn:hover .productPrice {
+    display: none;
+}
+
+.cardBtn:hover .productBuy {
+    display: inline-block;
+}
+
+/* Dashboard setting */
 
 .dashboard{
     margin-left: 30%;
