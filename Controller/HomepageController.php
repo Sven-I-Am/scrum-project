@@ -14,7 +14,7 @@ class HomepageController
     {
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
-
+        $products = ProductLoader::readAllProducts($this->db);
         // then the view will actually display them.
 
         //load the view

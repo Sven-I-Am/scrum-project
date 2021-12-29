@@ -9,8 +9,10 @@ error_reporting(E_ALL);
 require '.env';
 require 'Model/Connection.php';
 //include all your model files here
+require 'Model/Product.php';
 //include all loader files here
 require 'Loader/FilterLoader.php';
+require 'Loader/ProductLoader.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/LoginController.php';
