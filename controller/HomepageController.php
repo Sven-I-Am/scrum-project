@@ -15,9 +15,21 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        // then the view will actually display them.
 
-        //load the view
-        require 'view/product.php';
+        if(!isset($GET['action'])){
+            require 'view/product.php';
+        } else {
+            switch ($GET['action']) {
+                case 'logout':
+                    require $this->logoutUser();
+                    break;
+            }
+        }
+    }
+
+    public function logoutUser() {
+        unset($_SESSION['user']);
+        echo "<script type='text/javascript'>alert('You logged out');</script>";
+        return 'view/product.php';
     }
 }

@@ -46,7 +46,7 @@
                             <a href="?login"><button class="btn btn-danger">Login</button></a>
                             <a href="?register"><button class="btn btn-primary">Register</button></a>
                         <?php } else { ?>
-                            <a href="?logout"><button class="btn btn-danger">Logout</button></a>
+                            <a href="?action=logout"><button class="btn btn-danger">Logout</button></a>
                             <a href="?dashboard"><button class="btn btn-primary">Dashboard</button></a>
                         <?php } ?>
                         <!-- If we require Shopping-Cart -->
