@@ -32,7 +32,7 @@ function component($id, $img, $name, $description, $universe, $category, $condit
                     <div class='col text-center cardCondition'><p class='$conditionClass'>$condition</p></div>
                 </div> 
                 <div class='row'>
-                
+                <input name='productId' value='$id' class='productId'>
     ";
     echo $element;
 }
