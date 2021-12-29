@@ -93,6 +93,6 @@ UNLOCK TABLES;
 --
 LOCK TABLES `PRODUCT` WRITE;
 /*!40000 ALTER TABLE `PRODUCT` DISABLE KEYS */;
-INSERT INTO `PRODUCT` VALUES (1,'Charmander card','used','ability to blaze','50',1,'https://i.ebayimg.com/images/g/f-wAAOSwIFJe5G25/s-l1600.jpg',1,'2021-12-26',1,1),(2,'Aang avatar state','new','Aang in avatar state, vinyl figure','90',1,'https://static.lacitedesnuages.be/97151-large_default/avatar-the-last-airbender-pop-animation-aang-all-elements-oversized-vinyl-figure-15cm-n1000.jpg',2,'2021-12-13',7,6);
+INSERT INTO `PRODUCT` VALUES (1,'Charmander card','used','ability to blaze','50',1,'https://i.ebayimg.com/images/g/f-wAAOSwIFJe5G25/s-l1600.jpg',1,'2021-12-26',1,1),(2,'Aang avatar state','new','Aang in avatar state, vinyl figure','90',1,'https://static.lacitedesnuages.be/97151-large_default/avatar-the-last-airbender-pop-animation-aang-all-elements-oversized-vinyl-figure-15cm-n1000.jpg',2,'2021-12-13',6,7);
 /*!40000 ALTER TABLE `PRODUCT` ENABLE KEYS */;
 UNLOCK TABLES;

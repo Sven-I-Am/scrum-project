@@ -85,14 +85,32 @@ body{
 
 .productDetails {
     margin-top: 5px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .cardUniverse p{
-    font-size: 12px;
-    color: white;
-    font-weight: bold;
-    background: #EC1D24;
+    background: #CC0000;
     border-radius: 5px;
+    color: white;
+}
+.cardCategory p{
+    background: #042C3B;
+    border-radius: 5px;
+    color: white;
+}
+.cardCondition p{
+    border-radius: 5px;
+    color: #0f0f0f;
+}
+.cardConditionNew {
+    background: #F9A602;
+}
+.cardConditionGood {
+    background: #BEC2CB;
+}
+.cardConditionUsed {
+    background: #B08D57;
 }
 
 
