@@ -16,6 +16,7 @@ require 'loader/ProductLoader.php';
 //include all your controllers here
 require 'controller/HomepageController.php';
 require 'controller/LoginController.php';
+require 'controller/RegisterController.php';
 //include all helper files here
 require 'view/component.php';
 
@@ -24,6 +25,10 @@ require 'view/component.php';
 if (isset($_GET['login']))
 {
     $controller = new LoginController();
+}
+elseif (isset($_GET['register']))
+{
+    $controller = new RegisterController();
 }
 else
 {
