@@ -44,6 +44,13 @@ class UserController
                         require 'view/dashboard.php';
                     }
                     break;
+                case 'addProduct':
+                    if(isset($POST)){
+                        require 'view/dashboard.php';
+                    } else{
+                        require 'view/addProduct.php';
+                    }
+                    break;
                 case 'productChange':
                     if(isset($POST['update'])){
                         require $this->updateProduct($POST['productId']);
@@ -175,7 +182,7 @@ class UserController
         $product = ProductLoader::readOneProduct($this->db, intval($id));
         if ($product->getUserId()===$user->getId()){
             ProductLoader::deleteProduct($this->db, intval($id));
-            $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
+            $_SESSION['userProducts'] = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             return 'view/dashboard.php';
         } else {
             echo '<script type="text/javascript">alert("You do not have access to this item")</script>';

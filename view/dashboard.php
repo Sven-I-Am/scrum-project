@@ -12,7 +12,6 @@
             <button type="submit" name="showAllProducts" class="btn btn-outline-dark">All products</button>
             <button type="submit" name="showUnsoldProducts" class="btn btn-outline-dark">Products for sale</button>
             <button type="submit" name="showSoldProducts" class="btn btn-outline-dark">Sold products</button>
-            <button type="submit" name="addProduct" class="btn btn-outline-dark">Add product</button>
     </form>
 </div>
 
@@ -42,6 +41,13 @@
                 }
             } else { ?>
                 <h3>You have no products for sale, <a href="?action=addProduct">add one now!</a></h3>
+            <?php } ?>
+            <?php if(!isset($_POST['showSoldProducts'])){ ?>
+            <div class="productCard border border-dark border-4 d-flex align-items-center justify-content-center">
+                <form method="post" action="?user&action=addProduct">
+                    <button type="submit" name="addProduct" class="btn btn-outline-dark">Add product</button>
+                </form>
+            </div>
             <?php } ?>
         </div>
     </div>
