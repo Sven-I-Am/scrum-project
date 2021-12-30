@@ -36,8 +36,8 @@
                     </div>
                     <div class="row form-group">
                         <div class="col">
-                            <label for="pName">Name <p class="formFinePrint text-muted">(max 50 characters)</p></label>
-                            <input id="pName" type="text" name="name" placeholder="productName" class="form-control  <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>">
+                            <label for="pName">Name <p class="formFinePrint text-muted">(max 25 characters)</p></label>
+                            <input id="pName" maxlength="25" type="text" name="name" placeholder="productName" class="form-control  <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $name_err; ?></span>
                         </div>
                         <div class="col">
