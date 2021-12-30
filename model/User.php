@@ -72,7 +72,7 @@ class User
         $PDO->query('UPDATE USER SET online = true WHERE userid = ' . $id);
     }
 
-    public function setOffline(PDO $PDO, int $id): bool
+    public function setOffline(PDO $PDO, int $id)
     {
         $PDO->query('UPDATE USER SET online = false WHERE userid = ' . $id);
     }

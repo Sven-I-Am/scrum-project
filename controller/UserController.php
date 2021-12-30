@@ -141,6 +141,7 @@ class UserController
     }
 
     public function logoutUser() {
+        $_SESSION['user']->setOffline($this->db, $_SESSION['user']->getId());
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You logged out');</script>";
         return 'view/product.php';
