@@ -36,24 +36,24 @@
                     </div>
                     <div class="row form-group">
                         <div class="col">
-                            <label for="pName">Name <p class="formFinePrint text-muted">(max 25 characters)</p></label>
+                            <label for="pName">Name <span class="formFinePrint text-muted">(max 25 characters)</span></label>
                             <input id="pName" maxlength="25" type="text" name="name" placeholder="productName" class="form-control  <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $name_err; ?></span>
                         </div>
                         <div class="col">
-                            <label for="pPrice">Price <p class="formFinePrint text-muted">(without currency symbol)</p></label>
+                            <label for="pPrice">Price <span class="formFinePrint text-muted">(without currency symbol)</span></label>
                             <input id="pPrice" type="text" name="price" placeholder="9,99" class="form-control  <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $price_err; ?></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Description <p class="formFinePrint text-muted">(max 200 characters)</p></label>
-                        <textarea maxlength="200" name="description" placeholder="write a short description" class="form-control  <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"></textarea>
+                        <label for="pDescription">Description <span class="formFinePrint text-muted">(max 200 characters)</span></label>
+                        <textarea id="pDescription" maxlength="200" name="description" placeholder="write a short description" class="form-control  <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"></textarea>
                         <span class="invalid-feedback"><?php echo $description_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <label>Image url <p class="formFinePrint text-muted">(You can host your images with an outside provider such as dropbox)</p></label>
-                        <input type="text" name="url" placeholder="https://www.dropbox.com/..." class="form-control  <?php echo (!empty($url_err)) ? 'is-invalid' : ''; ?>">
+                        <label for="pUrl">Image url <span class="formFinePrint text-muted">(You can host your images with an outside provider such as dropbox)</span></label>
+                        <input id="pUrl" type="text" name="url" placeholder="https://www.dropbox.com/..." class="form-control  <?php echo (!empty($url_err)) ? 'is-invalid' : ''; ?>">
                         <span class="invalid-feedback"><?php echo $url_err; ?></span>
                     </div>
 

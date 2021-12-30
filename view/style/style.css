@@ -181,6 +181,7 @@ body{
     background-color: white;
 }
 .formFinePrint {
+    display: block;
     font-size: 75%;
 }
 
