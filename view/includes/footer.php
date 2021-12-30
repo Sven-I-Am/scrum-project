@@ -1,12 +1,12 @@
     </main>
-        <footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3">
+        <footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto bg-dark">
             <div class="col d-flex align-items-center justify-content-center">
-                <div class="text-muted text-center footername ">Copyright © 2021-2022 Pokeball Inc. All Rights Reserved.</div>
+                <div class="text-center">Copyright © 2021-2022 Pokeball Inc. All Rights Reserved.</div>
             </div>
             <ul class="nav col list-unstyled d-flex m-auto footerlogo align-items-center justify-content-center">
-                <li class="ms-2 "><a class="text-muted f-logo" href="http://twitter.com"><img src=".\assets\images\twitter.png" alt=""></a></li>
-                <li class="ms-2 "><a class="text-muted f-logo" href="http://instagram.com"><img src=".\assets\images\instagram.png" alt=""></a></li>
-                <li class="ms-2 "><a class="text-muted f-logo" href="http://facebook.com"><img src=".\assets\images\facebook.png" alt=""></a></li>
+                <li class="ms-2 "><a class="f-logo" href="http://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a></li>
+                <li class="ms-2 "><a class="f-logo" href="http://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                <li class="ms-2 "><a class="f-logo" href="http://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a></li>
             </ul>
         </footer>
 

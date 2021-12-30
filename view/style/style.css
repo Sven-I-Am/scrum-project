@@ -90,7 +90,7 @@ body{
 
 .productDetails {
     margin-top: 5px;
-    font-size: 50%;
+    font-size: 45%;
     font-weight: bold;
 }
 
@@ -189,27 +189,15 @@ body{
 }
 
 /* footer setting */
-
-.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: fit-content;
+.footer {
+    color: #BEC2CB;
     font-size: 70%;
-    color:black;
 }
-
 .f-logo{
-    padding: 5px;
-    font-size: 200%;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    text-decoration: none;
-    margin: 3px 1px;
+    color: #BEC2CB;
+    font-size: 120%;
+    margin-left: 5px;
 }
-
 .f-logo:hover {
     opacity: 0.7;
 }
