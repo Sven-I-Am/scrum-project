@@ -5,7 +5,9 @@
     <p>You can also delete your account, but beware that this action can not be undone!</p>
 </div>
 <div class='row title'>
-    <a href="?user&action=dashboard"><button type="button" class="btn btn-primary my-4">Go to products</button></a>
+    <form method="post" action="?user&action=dashboard">
+        <button type="submit" class="btn btn-primary my-4">Go to products</button>
+    </form>
 </div>
 <div class='row dashFilter'>
     <form method="post">

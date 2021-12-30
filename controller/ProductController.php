@@ -16,9 +16,8 @@ class ProductController
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
 
-        if(!isset($GET['action'])){
-            require 'view/product.php';
-        }
+        require 'view/product.php';
+
     }
 
 

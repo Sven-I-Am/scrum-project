@@ -5,7 +5,9 @@
     <p>You can also delete products here, but beware that this action can not be undone!</p>
 </div>
     <div class='row title'>
-        <a href="?user&action=dashboard&account"><button type="button" class="btn btn-primary my-4">Go to account settings</button></a>
+        <form method="post" action="?user&action=dashboard&account">
+            <button type="submit" class="btn btn-primary my-4">Go to account settings</button>
+        </form>
     </div>
 <div class='row dashFilter'>
     <form method="post" action="?user&action=dashboard">
@@ -21,7 +23,7 @@
             <?php
             if(!empty($userProducts)){
             foreach ($userProducts as $product) { ?>
-            <form method='post' action="?action=productChange" class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
+            <form method='post' action="?user&action=productChange" class='productCard p-2 mx-2 my-4 border border-4 border-dark'>
                 <?php
                 component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition());
                 ?>

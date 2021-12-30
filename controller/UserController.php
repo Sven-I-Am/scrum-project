@@ -37,7 +37,11 @@ class UserController
                     break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
-                        require 'view/account.php';
+                        if(isset($_POST['deleteAccount'])){
+                            $this->deleteUser();
+                        } else {
+                            require 'view/account.php';
+                        }
                     } else {
                         $userProducts = $this->doAction($POST);
                         require 'view/dashboard.php';
@@ -168,6 +172,16 @@ class UserController
         require 'view/product.php';
     }
 
+    public function deleteUser(){
+        UserLoader::deleteUser($this->db, $_SESSION['user']);
+        unset($_SESSION['user']);
+        echo "<script type='text/javascript'>alert('You deleted your account');</script>";
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        $products = ProductLoader::readAllProducts($this->db);
+        require 'view/product.php';
+    }
+
     public function doAction($POST): array
     {
         if (isset($POST['showSoldProducts'])){
@@ -221,10 +235,7 @@ class UserController
                 $url_err = $POST['url'] . "  is not a valid URL";
                 $error = true;
             } else {
-                echo $POST['url'];
-                echo '<br>';
                 $url = Sanitize::sanitizeInput($POST['url']);
-                echo $url;
                 $newProduct->setImage($url);
             }
         }

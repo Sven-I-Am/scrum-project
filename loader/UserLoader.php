@@ -41,4 +41,9 @@ class UserLoader
         $handler = $PDO->query('SELECT * FROM USER WHERE email = "'. $email . '"');
         return $handler->fetchAll();
     }
+    public static function deleteUser(PDO $PDO, User $user)
+    {
+        $PDO->query('DELETE FROM PRODUCT WHERE userid = '. $user->getId());
+        $PDO->query('DELETE FROM USER WHERE userid = '. $user->getId());
+    }
 }
