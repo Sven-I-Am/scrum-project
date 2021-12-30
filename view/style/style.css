@@ -175,13 +175,17 @@ body{
     text-align:right;
 }
 
-/* register form */
-
-
-/* login setting */
+/* form setting */
 .wrapper{
     border: 2px solid black;
     background-color: white;
+}
+
+/* product dashboard */
+
+.dashFilter {
+    width: fit-content;
+    margin: auto;
 }
 
 /* footer setting */

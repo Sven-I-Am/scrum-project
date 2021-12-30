@@ -38,7 +38,11 @@ class UserController
                     require $this->logoutUser();
                     break;
                 case 'dashboard':
-                    require 'view/dashboard.php';
+                    if (isset($_GET['account'])) {
+                        require 'view/account.php';
+                    } else {
+                        require 'view/dashboard.php';
+                    }
                     break;
             }
         }

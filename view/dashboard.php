@@ -1,18 +1,19 @@
 <?php require 'includes/header.php';?>
-<div class="row details">
-    <div class="col">
-        <a href="#" class="product-info"><h5 >Sale Product</h5></a>
-        <a href="#" class="product-info"><h5>Sold Product</h5></a>
-        <a href="#" class="product-info"><h5>Add more items</h5></a>
-    </div>
-    <div class="col">
-        <h2 class="title">Product Details</h2>
-    </div>
-    <div class="col">
-        <a href="#" class="items"><h5>Delete Account</h5></a>
-        <a href="#" class="items"><h5>Change Password</h5></a>
-    </div>
+<div class ='row title'>
+    <h2>Hello <?php echo $user->getUserName(); ?></h2>
 </div>
+    <div class='row title'>
+        <a href="?user&action=dashboard&account"><button type="button" class="btn btn-primary my-4">Go to account settings</button></a>
+    </div>
+<div class='row dashFilter'>
+    <form method="post" action="#">
+            <button type="submit" value="showAllProducts" class="btn btn-outline-dark">All products</button>
+            <button type="submit" value="showSaleProducts" class="btn btn-outline-dark">Products for sale</button>
+            <button type="submit" value="showSoldProducts" class="btn btn-outline-dark">Sold products</button>
+            <button type="submit" value="addProduct" class="btn btn-outline-dark">Add product</button>
+    </form>
+</div>
+
 <!-- show only products of logged-in user -->
     <div class="container my-4">
         <div class="row row-cols-1 row-cols-md-4 g-4 ">
