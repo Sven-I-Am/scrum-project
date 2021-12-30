@@ -17,7 +17,6 @@ class UserController
         $products = ProductLoader::readAllProducts($this->db);
         if(isset($_SESSION['user'])){
             $user = $_SESSION['user'];
-            $userProducts = Productloader::readUserProducts($this->db, $user->getId());
         }
 
         if(!isset($GET['action'])){
@@ -41,7 +40,15 @@ class UserController
                     if (isset($_GET['account'])) {
                         require 'view/account.php';
                     } else {
+                        $userProducts = $this->doAction($POST);
                         require 'view/dashboard.php';
+                    }
+                    break;
+                case 'productChange':
+                    if(isset($POST['update'])){
+                        require $this->updateProduct($POST['productId']);
+                    } elseif(isset($POST['delete'])) {
+                        require $this->deleteProduct($POST['productId']);
                     }
                     break;
             }
@@ -149,5 +156,31 @@ class UserController
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You logged out');</script>";
         return 'view/product.php';
+    }
+
+    public function doAction($POST): array
+    {
+        if (isset($POST['showSoldProducts'])){
+            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'sold');
+        } elseif (isset($POST['showUnsoldProducts'])) {
+            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'unsold');
+        } else {
+            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'all');
+        }
+    }
+
+    public function deleteProduct($id): string
+    {
+        $user = $_SESSION['user'];
+        $product = ProductLoader::readOneProduct($this->db, intval($id));
+        if ($product->getUserId()===$user->getId()){
+            ProductLoader::deleteProduct($this->db, intval($id));
+            $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
+            return 'view/dashboard.php';
+        } else {
+            echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
+            return 'view/product.php';
+        }
+
     }
 }
