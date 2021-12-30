@@ -45,9 +45,13 @@ class UserController
                     }
                     break;
                 case 'addProduct':
-                    if(isset($POST)){
+                    if(isset($POST['save'])){
+                        $userProducts = $this->doAction($POST);
                         require 'view/dashboard.php';
-                    } else{
+                    } elseif(isset($POST['cancel'])) {
+                        $userProducts = $this->doAction($POST);
+                        require 'view/dashboard.php';
+                    }else {
                         require 'view/addProduct.php';
                     }
                     break;
