@@ -182,43 +182,52 @@ class UserController
     public function createProduct($POST)
     {
         $error = false;
-        $response =[];
         $universe = $POST['universe'];
         $category = $POST['category'];
         $condition = $POST['condition'];
-        $name = $price = $description = $url = "";
+        $newProduct = new Product(0, '', $condition, '', 0,false, '',$_SESSION['user']->getId(),'1984-01-01', intval($category), intval($universe));
 
         if (empty($POST['name'])){
             $name_err = "A name is required!";
             $error = true;
         } else {
             $name = Sanitize::sanitizeInput($POST['name']);
+            $newProduct->setName($name);
         }
         if (empty($POST['price'])){
             $price_err = "A price is required!";
             $error = true;
         } else {
-            $price = Sanitize::sanitizeInput($POST['price']);
+            if(!preg_match("/^[+-]?([0-9]*[.])?[0-9]+$/",$POST['price'])){
+                $price_err = "Invalid price, use format 00.00";
+                $error = true;
+            } else {
+                $price = floatval(str_replace(",", ".", Sanitize::sanitizeInput($POST['price'])));
+                $newProduct->setPrice($price);
+            }
         }
         if (empty($POST['description'])){
             $description_err = "A description is required!";
             $error = true;
         } else {
             $description = Sanitize::sanitizeInput($POST['description']);
+            $newProduct->setDescription($description);
         }
         if (empty($POST['url'])){
             $url_err = 'url is required';
             $error = true;
         } else {
             if(!filter_var($POST['url'], FILTER_VALIDATE_URL)){
-                $url_err = $url . "  is not a valid URL";
+                $url_err = $POST['url'] . "  is not a valid URL";
                 $error = true;
             } else {
                 $url = Sanitize::sanitizeInput($POST['url']);
+                $newProduct->setImage($url);
             }
         }
         if (!$error){
-            $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
+            ProductLoader::createProduct($this->db, $newProduct);
+            $userProducts = Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             require 'view/dashboard.php';

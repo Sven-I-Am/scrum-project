@@ -45,4 +45,7 @@ class ProductLoader
         return $productsArray;
     }
 
+    public static function createProduct(PDO $PDO, Product $product){
+        echo 'ok';
+    }
 }
