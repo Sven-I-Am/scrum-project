@@ -46,6 +46,22 @@ class ProductLoader
     }
 
     public static function createProduct(PDO $PDO, Product $product){
-        echo 'ok';
+        $name ='"' . $product->getName() . '"';
+        $condition ='"' .  $product->getCondition() . '"';
+        $description ='"' .  $product->getDescription() . '"';
+        $price = $product->getPrice();
+        if($product->getSold()){
+            $sold = 1;
+        } else {
+            $sold = 0;
+        }
+        $image ='"' .  $product->getImage() . '"';
+        $userId = $product->getUserId();
+        $sellDate ='"' .  $product->getSellDate() . '"';
+        $categoryId = $product->getCategoryId();
+        $universeId = $product->getUniverseId();
+
+
+        $PDO->query('INSERT INTO PRODUCT(name, `condition`, description, price, sold, image, userid, selldate, categoryid, uid) VALUES ('. $name .','. $condition .','. $description .','. $price .','. $sold .','. $image .','. $userId .','. $sellDate .','. $categoryId .',' . $universeId .')');
     }
 }

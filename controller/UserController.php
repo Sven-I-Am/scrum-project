@@ -221,7 +221,10 @@ class UserController
                 $url_err = $POST['url'] . "  is not a valid URL";
                 $error = true;
             } else {
+                echo $POST['url'];
+                echo '<br>';
                 $url = Sanitize::sanitizeInput($POST['url']);
+                echo $url;
                 $newProduct->setImage($url);
             }
         }

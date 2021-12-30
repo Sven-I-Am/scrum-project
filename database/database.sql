@@ -50,7 +50,7 @@ CREATE TABLE `PRODUCT` (
                            `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                            `price` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                            `sold` tinyint(1) DEFAULT NULL,
-                           `image` text NOT NULL,
+                           `image` varchar(1000) NOT NULL,
                            `userid` int DEFAULT NULL,
                            `selldate` date NOT NULL,
                            `categoryid` int DEFAULT NULL,
