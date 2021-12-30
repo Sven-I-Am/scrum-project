@@ -46,8 +46,7 @@ class UserController
                     break;
                 case 'addProduct':
                     if(isset($POST['save'])){
-                        $userProducts = $this->doAction($POST);
-                        require 'view/dashboard.php';
+                        require $this->createProduct($POST);
                     } elseif(isset($POST['cancel'])) {
                         $userProducts = $this->doAction($POST);
                         require 'view/dashboard.php';
@@ -68,7 +67,6 @@ class UserController
 
     public function registerUser($POST): string
     {
-
         $userName = $email = $password = "";
         if ($POST['password'] === $POST['passwordRepeat']){
             $newUser = new User(0, '', '', '');
@@ -177,6 +175,51 @@ class UserController
             return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'unsold');
         } else {
             return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'all');
+        }
+    }
+
+    public function createProduct($POST): string
+    {
+        $error = false;
+        $response =[];
+        $universe = $POST['universe'];
+        $category = $POST['category'];
+        $condition = $POST['condition'];
+        $name = $price = $description = $url = "";
+
+        if (empty($POST['name'])){
+            $name_err = "A name is required!";
+            $error = true;
+        } else {
+            $name = Sanitize::sanitizeInput($POST['name']);
+        }
+        if (empty($POST['price'])){
+            $price_err = "A price is required!";
+            $error = true;
+        } else {
+            $price = Sanitize::sanitizeInput($POST['price']);
+        }
+        if (empty($POST['description'])){
+            $description_err = "A description is required!";
+            $error = true;
+        } else {
+            $description = Sanitize::sanitizeInput($POST['description']);
+        }
+        if (empty($POST['url'])){
+            $url_err = 'url is required';
+            $error = true;
+        } else {
+            if(!filter_var($POST['url'], FILTER_VALIDATE_URL)){
+                $url_err = $url . "  is not a valid URL";
+                $error = true;
+            } else {
+                $url = Sanitize::sanitizeInput($POST['url']);
+            }
+        }
+        if (!$error){
+            return 'view/dashboard.php';
+        } else {
+            return 'view/addProduct.php';
         }
     }
 

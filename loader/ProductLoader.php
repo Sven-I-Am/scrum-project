@@ -21,11 +21,8 @@ class ProductLoader
     }
 
     public static function deleteProduct(PDO $PDO, int $id){
-
         $PDO->query("DELETE FROM PRODUCT WHERE id = $id");
-
     }
-
 
     public static function readUserProducts(PDO $PDO, int $id, string $filter): array
     {

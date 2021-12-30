@@ -1,6 +1,6 @@
 <?php require 'includes/header.php';?>
 <div class ='row title'>
-    <h2>Hello <?php echo $user->getUserName(); ?></h2>
+    <h2>Hello <?php echo $_SESSION['user']->getUserName(); ?></h2>
     <p>This is your product dashboard, you can change postings, add postings and filter between sold and for sale.</p>
     <p>You can also delete products here, but beware that this action can not be undone!</p>
 </div>
