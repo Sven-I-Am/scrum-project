@@ -19,13 +19,16 @@ class UserLoader
     }
 
     //Read One User
-    public static function readOne(PDO $PDO, User $checkUser){
+    public static function readOne(PDO $PDO, User $checkUser): User | string
+    {
         $userName ='"' . $checkUser->getUserName() . '"';
         $password =$checkUser->getPassword();
         $handler = $PDO->query('SELECT * FROM USER WHERE username = '. $userName);
         $response = $handler->fetchAll();
-        if(password_verify($password, $response[0]['password'])){
-            return new User($response[0]['userid'], $response[0]['username'], $response[0]['email'], $response[0]['password']);
+        $user = new User($response[0]['userid'], $response[0]['username'], $response[0]['email'], $response[0]['password']);
+        if(password_verify($password, $response[0]['password']) && $user->checkOnline($PDO,$user->getId())==0){
+            $user->setOnline($PDO, $user->getId());
+            return $user;
         } else {
             return "The combination username & password is invalid, please check your input";
         }
@@ -38,5 +41,4 @@ class UserLoader
         $handler = $PDO->query('SELECT * FROM USER WHERE email = "'. $email . '"');
         return $handler->fetchAll();
     }
-
 }

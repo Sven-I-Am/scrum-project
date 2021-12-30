@@ -59,4 +59,21 @@ class User
     {
         $this->password = $data;
     }
+
+    public function checkOnline(PDO $PDO, int $id): string
+    {
+        $handler = $PDO->query('SELECT online FROM USER WHERE userid = ' . $id);
+        $response = $handler->fetchAll();
+        return $response[0]['online'];
+    }
+
+    public function setOnline(PDO $PDO, int $id)
+    {
+        $PDO->query('UPDATE USER SET online = true WHERE userid = ' . $id);
+    }
+
+    public function setOffline(PDO $PDO, int $id): bool
+    {
+        $PDO->query('UPDATE USER SET online = false WHERE userid = ' . $id);
+    }
 }
