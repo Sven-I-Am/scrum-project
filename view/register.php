@@ -1,5 +1,6 @@
-<?php require 'includes/header.php'?>
+<?php require 'includes/header.php';?>
     <div class="row col d-inline-flex justify-content-center align-items-center m-auto py-5 text-center">
+
         <div class="row">
             <h2>Sign Up</h2>
             <p>Please fill in this form to create an account</p>

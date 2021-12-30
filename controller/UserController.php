@@ -22,19 +22,18 @@ class UserController
         if(!isset($GET['action'])){
             require 'view/login.php';
         } else {
-            $error = "";
             switch ($GET['action']) {
                 case 'register':
                     require 'view/register.php';
                     break;
                 case 'registerUser':
-                    require $this->registerUser($POST);
+                    $this->registerUser($POST);
                     break;
                 case 'login':
-                    require $this->loginUser($POST);
+                    $this->loginUser($POST);
                     break;
                 case 'logout':
-                    require $this->logoutUser();
+                    $this->logoutUser();
                     break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
@@ -46,7 +45,7 @@ class UserController
                     break;
                 case 'addProduct':
                     if(isset($POST['save'])){
-                        require $this->createProduct($POST);
+                        $this->createProduct($POST);
                     } elseif(isset($POST['cancel'])) {
                         $userProducts = $this->doAction($POST);
                         require 'view/dashboard.php';
@@ -56,18 +55,17 @@ class UserController
                     break;
                 case 'productChange':
                     if(isset($POST['update'])){
-                        require $this->updateProduct($POST['productId']);
+                        echo 'test';
+                        //require $this->updateProduct($POST['productId']);
                     } elseif(isset($POST['delete'])) {
-                        require $this->deleteProduct($POST['productId']);
+                        $this->deleteProduct($POST['productId']);
                     }
                     break;
             }
         }
     }
 
-    public function registerUser($POST): string
-    {
-        $userName = $email = $password = "";
+    public function registerUser($POST) {
         if ($POST['password'] === $POST['passwordRepeat']){
             $newUser = new User(0, '', '', '');
             $error = false;
@@ -76,7 +74,6 @@ class UserController
                 $username_err = "Name is required";
                 $error = true;
             } else {
-                $userName = Sanitize::sanitizeInput($POST["userName"]);
                 // check if name only contains letters and whitespace
                 if (!preg_match("/^[a-zA-Z0-9]*$/",$POST["userName"])) {
                     $username_err = "Username can only have letters and numbers";
@@ -99,7 +96,6 @@ class UserController
                 $error = true;
             } else {
                 $email = Sanitize::sanitizeInput($POST["email"]);
-
                 // check if e-mail address is well-formed
                 if (!filter_var($POST["email"], FILTER_VALIDATE_EMAIL)) {
                     $email_err = "Invalid email format";
@@ -131,20 +127,19 @@ class UserController
                 }
             }
             if($error === false){
-                $user = UserLoader::createUser($this->db, $newUser);
+                UserLoader::createUser($this->db, $newUser);
                 echo "<script type='text/javascript'>alert('You are registered. Please login to get access to all functionalities');</script>";
-
-                return 'view/login.php';
+                require 'view/login.php';
             }else {
-                return 'view/register.php';
+                require 'view/register.php';
             }
         } else {
             $passwordRepeat_err = "Your passwords do not match, please try again.";
-            return 'view/register.php';
+            require 'view/register.php';
         }
     }
 
-    public function loginUser($POST): string
+    public function loginUser($POST)
     {
         $userName = Sanitize::sanitizeInput($POST['userName']);
         $password = Sanitize::sanitizeInput($POST['password']);
@@ -153,10 +148,13 @@ class UserController
         if (gettype($response) === 'object'){
             $_SESSION['user'] = $response;
             $_POST=[];
-            return 'view/dashboard.php';
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
+            require 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
-            return 'view/login.php';
+            require 'view/login.php';
         }
     }
 
@@ -164,7 +162,10 @@ class UserController
         $_SESSION['user']->setOffline($this->db, $_SESSION['user']->getId());
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You logged out');</script>";
-        return 'view/product.php';
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        $products = ProductLoader::readAllProducts($this->db);
+        require 'view/product.php';
     }
 
     public function doAction($POST): array
@@ -178,7 +179,7 @@ class UserController
         }
     }
 
-    public function createProduct($POST): string
+    public function createProduct($POST)
     {
         $error = false;
         $response =[];
@@ -217,23 +218,33 @@ class UserController
             }
         }
         if (!$error){
-            return 'view/dashboard.php';
+            $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            require 'view/dashboard.php';
         } else {
-            return 'view/addProduct.php';
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            require 'view/addProduct.php';
         }
     }
 
-    public function deleteProduct($id): string
+    public function deleteProduct($id)
     {
         $user = $_SESSION['user'];
         $product = ProductLoader::readOneProduct($this->db, intval($id));
         if ($product->getUserId()===$user->getId()){
             ProductLoader::deleteProduct($this->db, intval($id));
-            $_SESSION['userProducts'] = Productloader::readUserProducts($this->db, $user->getId(), 'all');
-            return 'view/dashboard.php';
+            $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            require 'view/dashboard.php';
         } else {
             echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
-            return 'view/product.php';
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            $products = ProductLoader::readAllProducts($this->db);
+            require 'view/product.php';
         }
 
     }
