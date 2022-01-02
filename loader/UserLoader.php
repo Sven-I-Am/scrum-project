@@ -13,10 +13,10 @@ class UserLoader
 
         $stmt = $PDO->prepare('INSERT INTO USER(username, email, password) VALUES(:userName,:email, :password)');
         $stmt->execute([':userName' => $userName, ':email' => $email, ':password' => $password]);
-        $stmt = null;
-        $handler = $PDO->query('SELECT * FROM USER WHERE email = "' . $email . '"');
-        $user = $handler->fetchAll();
-        return new User($user[0]['userid'], $user[0]['username'], $user[0]['email'], $user[0]['password']);
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch();
+        return new User($user['userid'], $user['username'], $user['email'], $user['password']);
     }
 
     //Read One User
