@@ -8,7 +8,7 @@
 }
 body{
     overflow-x: hidden;
-    background-color: bisque;
+    background-image: linear-gradient(#bfc4e4 30%,#d1b9fd 70%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,6 +16,10 @@ body{
 }
 
 /* Header setting */
+
+.find {
+    cursor: pointer;
+}
 
 .label{
     width: 50px;
@@ -43,6 +47,13 @@ body{
 
 header .bi {
     font-size: 150%;
+}
+
+header button:hover{
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    background-image: linear-gradient(#bfc4e4 30%,#8e5ee7 70%);
+    color: black;
 }
 
 /* product card */

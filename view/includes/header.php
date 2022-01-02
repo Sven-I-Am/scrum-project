@@ -27,13 +27,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <form class="collapse navbar-collapse d-flex">
-                        <select>
+                        <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="category">
                         <option value="0" selected>All categories</option>
                         <?php forEach($categories as $category) {?>
                             <option value="<?php echo $category["id"]; ?>"><?php echo $category["name"]; ?></option>
                         <?php } ?>
                         </select>
-                        <select class="nav-item dropdown mx-2" aria-label="Default select example" name="universe">
+                        <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="universe">
                             <option value="0" selected>All universes</option>
                             <?php forEach($universes as $universe) {?>
                                 <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
