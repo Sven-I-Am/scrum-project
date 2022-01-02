@@ -12,8 +12,7 @@ class Checks
                 return "Username can only have letters and numbers";
             } else {
                 $uniqueResponse = UserLoader::uniqueUser($PDO, $userName);
-                if (count($uniqueResponse) !== 0) {
-                    var_dump($uniqueResponse);
+                if ($uniqueResponse) {
                     return "This username is already in use, please choose another one";
                 } else {
                     return '';
@@ -33,7 +32,7 @@ class Checks
                 //changes here
                 $uniqueTest = Sanitize::sanitizeInput($email);
                 $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
-                if (count($uniqueResponse) !== 0) {
+                if ($uniqueResponse) {
                     return "An account is already registered to this email address!";
                 } else {
                     return '';

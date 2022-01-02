@@ -2,8 +2,6 @@
 
 class UserLoader
 {
-
-    //create CRUD functionalities
     //Create new user
     public static function createUser(PDO $PDO, User $newUser): User
     {
@@ -18,15 +16,17 @@ class UserLoader
         $user = $stmt->fetch();
         return new User($user['userid'], $user['username'], $user['email'], $user['password']);
     }
-
-    //Read One User
+    //Read one user aka login
     public static function readOne(PDO $PDO, User $checkUser): User | string
     {
-        $userName ='"' . $checkUser->getUserName() . '"';
-        $password =$checkUser->getPassword();
-        $handler = $PDO->query('SELECT * FROM USER WHERE username = '. $userName);
-        $response = $handler->fetchAll();
-        $user = new User($response[0]['userid'], $response[0]['username'], $response[0]['email'], $response[0]['password']);
+        $userName = $checkUser->getUserName();
+        $password = $checkUser->getPassword();
+
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE username = :userName');
+        $stmt->execute([':userName'=> $userName]);
+        $response = $stmt->fetch();
+
+        $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
         if(password_verify($password, $response[0]['password']) && $user->checkOnline($PDO,$user->getId())==0){
             $user->setOnline($PDO, $user->getId());
             return $user;
@@ -34,14 +34,19 @@ class UserLoader
             return "The combination username & password is invalid, please check your input";
         }
     }
+    //check for unique username
     public static function uniqueUser(PDO $PDO, string $userName){
-        $handler = $PDO->query('SELECT * FROM USER WHERE username = "'. $userName . '"');
-        return $handler->fetchAll();
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE username = :userName');
+        $stmt->execute([':userName' => $userName]);
+        return $stmt->fetch();
     }
+    //check for unique email address
     public static function uniqueEmail(PDO $PDO, string $email){
-        $handler = $PDO->query('SELECT * FROM USER WHERE email = "'. $email . '"');
-        return $handler->fetchAll();
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch();
     }
+    //Update user information
     public static function updateUser(PDO $PDO, User $oldUser, User $newUser): User
     {
         $userid = '"' . $oldUser->getId() . '"';
@@ -53,6 +58,7 @@ class UserLoader
         $updatedUser = $handler->fetchAll();
         return new User($updatedUser[0]['userid'], $updatedUser[0]['username'], $updatedUser[0]['email'], $updatedUser[0]['password']);
     }
+    //Delete user account
     public static function deleteUser(PDO $PDO, User $user)
     {
         $PDO->query('DELETE FROM PRODUCT WHERE userid = '. $user->getId());

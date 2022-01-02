@@ -63,8 +63,8 @@ class User
     public function checkOnline(PDO $PDO, int $id): string
     {
         $handler = $PDO->query('SELECT online FROM USER WHERE userid = ' . $id);
-        $response = $handler->fetchAll();
-        return $response[0]['online'];
+        $response = $handler->fetch();
+        return $response['online'];
     }
 
     public function setOnline(PDO $PDO, int $id)
