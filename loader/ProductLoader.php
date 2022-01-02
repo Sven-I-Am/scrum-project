@@ -48,16 +48,17 @@ class ProductLoader
     {
         switch ($filter){
             case 'all':
-                $handler = $PDO->query("SELECT * FROM PRODUCT WHERE userid = " . $id);
+                $stmt = $PDO->prepare("SELECT * FROM PRODUCT WHERE userid = :id");
                 break;
             case 'unsold':
-                $handler = $PDO->query("SELECT * FROM PRODUCT WHERE userid = " . $id . " AND sold = false");
+                $stmt = $PDO->prepare("SELECT * FROM PRODUCT WHERE userid = :id AND sold = false");
                 break;
             case 'sold':
-                $handler = $PDO->query("SELECT * FROM PRODUCT WHERE userid = " . $id . " AND sold = true");
+                $stmt = $PDO->prepare("SELECT * FROM PRODUCT WHERE userid = :id AND sold = true");
                 break;
         }
-        $products = $handler->fetchAll();
+        $stmt->execute([':id' => $id]);
+        $products = $stmt->fetchAll();
         $productsArray = [];
         foreach($products as $product){
             array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
