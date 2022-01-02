@@ -63,7 +63,9 @@ class UserLoader
     //Delete user account
     public static function deleteUser(PDO $PDO, User $user)
     {
-        $PDO->query('DELETE FROM PRODUCT WHERE userid = '. $user->getId());
-        $PDO->query('DELETE FROM USER WHERE userid = '. $user->getId());
+        $stmt = $PDO->prepare('DELETE FROM PRODUCT WHERE userid = :id');
+        $stmt->execute([':id' => $user->getId()]);
+        $stmt = $PDO->prepare('DELETE FROM USER WHERE userid = :id');
+        $stmt->execute([':id' => $user->getId()]);
     }
 }
