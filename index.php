@@ -16,7 +16,7 @@ require 'loader/FilterLoader.php';
 require 'loader/ProductLoader.php';
 require 'loader/UserLoader.php';
 //include all your controllers here
-require 'controller/ProductController.php';
+require 'controller/HomepageController.php';
 require 'controller/UserController.php';
 //include all helper files here
 require 'helper/component.php';
@@ -32,7 +32,7 @@ if (isset($_GET['user']))
 }
 else
 {
-    $controller = new ProductController();
+    $controller = new HomepageController();
 }
 
 $controller->render($_GET, $_POST);

@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-class ProductController
+class HomepageController
 {
     private Connection $db;
     //create a new connection based on the database value.
@@ -19,8 +17,4 @@ class ProductController
         require 'view/homepage.php';
 
     }
-
-
-
-
 }
