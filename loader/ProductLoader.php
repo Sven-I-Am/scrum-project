@@ -38,6 +38,21 @@ class ProductLoader
         $product = $stmt->fetch();
         return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
+    //Update product
+    public static function updateProduct(PDO $PDO, Product $product){
+        $id = $product->getId();
+        $name = $product->getName();
+        $condition = $product->getCondition();
+        $description = $product->getDescription();
+        $price = $product->getPrice();
+        $image = $product->getImage();
+        $categoryId = $product->getCategoryId();
+        $universeId = $product->getUniverseId();
+
+        $stmt = $PDO->prepare('UPDATE PRODUCT SET name = :name, `condition` = :condition, description = :description, price = :price, image = :image, categoryid = :catId, uid = :uid WHERE id = :id');
+        $stmt->execute([':name' => $name, ':condition' => $condition, 'description' => $description, 'price' => $price, ':image' => $image, ':catId' => $categoryId, ':uid' => $universeId, ':id' => $id]);
+        $stmt = null;
+    }
     //Delete product based on id
     public static function deleteProduct(PDO $PDO, int $id){
         $stmt = $PDO->prepare("DELETE FROM PRODUCT WHERE id = :id");

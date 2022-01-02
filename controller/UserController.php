@@ -52,7 +52,7 @@ class UserController
                     break;
                 case 'addProduct':
                     if(isset($POST['save'])){
-                        $this->createProduct($POST, $user);
+                        $this->writeProduct($POST, $user);
                     } elseif(isset($POST['cancel'])) {
                         $userProducts = $this->doAction($POST, $user);
                         require 'view/dashboard.php';
@@ -62,11 +62,14 @@ class UserController
                     break;
                 case 'productChange':
                     if(isset($POST['update'])){
-                        echo 'test';
-                        //require $this->updateProduct($POST['productId']);
+                        $product = ProductLoader::readOneProduct($this->db, intval($POST['productId']));
+                        require 'view/updateProductForm.php';
                     } elseif(isset($POST['delete'])) {
                         $this->deleteProduct($POST['productId'], $user);
                     }
+                    break;
+                case 'updateProduct':
+                    $this->writeProduct($POST, $user);
                     break;
             }
         }
@@ -205,7 +208,7 @@ class UserController
         }
     }
 
-    public function createProduct($POST, $user)
+    public function writeProduct($POST, $user)
     {
         $error = false;
         $universe = $POST['universe'];
@@ -252,7 +255,12 @@ class UserController
             }
         }
         if (!$error){
-            ProductLoader::createProduct($this->db, $newProduct);
+            if($_GET['action']==='addProduct'){
+                ProductLoader::createProduct($this->db, $newProduct);
+            } else {
+                $newProduct->setId(intval($POST['productId']));
+                ProductLoader::updateProduct($this->db, $newProduct);
+            }
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
@@ -260,7 +268,11 @@ class UserController
         } else {
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
-            require 'view/addProduct.php';
+            if($_GET['action']==='addProduct'){
+                require 'view/addProduct.php';
+            } else {
+                require 'view/updateProductForm.php';
+            }
         }
     }
 

@@ -34,6 +34,10 @@ class Product {
         return $this->id;
     }
 
+    public function setId($id){
+        $this->id = $id;
+    }
+
     // get and set product name
     public function getName(){
         return $this->name;
