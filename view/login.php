@@ -8,7 +8,7 @@
     <form action="?user&action=login" method="post">
         <div class="form-group">
             <label>Username
-            <input type="text" name="userName" class="form-control" placeholder="username">
+            <input type="text" name="userName" class="form-control" placeholder="username" value="<?php if(isset($_POST['userName'])){echo $_POST['userName'];} ?>">
             </label>
         </div>
         <div class="form-group">
