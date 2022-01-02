@@ -41,9 +41,7 @@
             </form>
             <?php
                 }
-            } else { ?>
-                <h3>You have no products for sale, <a href="?action=addProduct">add one now!</a></h3>
-            <?php } ?>
+            }?>
             <?php if(!isset($_POST['showSoldProducts'])){ ?>
             <div class="productCard border border-dark border-4 d-flex align-items-center justify-content-center">
                 <form method="post" action="?user&action=addProduct">

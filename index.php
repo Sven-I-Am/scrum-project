@@ -21,6 +21,7 @@ require 'controller/UserController.php';
 //include all helper files here
 require 'view/component.php';
 require 'helper/Sanitize.php';
+require 'helper/Checks.php';
 
 session_start();
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller

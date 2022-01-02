@@ -47,6 +47,9 @@ class UserController
                         require 'view/dashboard.php';
                     }
                     break;
+                case'updateUser':
+                    $this->updateUser($POST);
+                    break;
                 case 'addProduct':
                     if(isset($POST['save'])){
                         $this->createProduct($POST);
@@ -74,62 +77,30 @@ class UserController
             $newUser = new User(0, '', '', '');
             $error = false;
             //check username validation
-            if (empty($POST["userName"])) {
-                $username_err = "Name is required";
+            $userNameCheck = Checks::checkUserName($this->db, $POST['userName']);
+            if (!empty($userNameCheck)){
+                $userName_err = $userNameCheck;
                 $error = true;
             } else {
-                // check if name only contains letters and whitespace
-                if (!preg_match("/^[a-zA-Z0-9]*$/",$POST["userName"])) {
-                    $username_err = "Username can only have letters and numbers";
-                    $error = true;
-                } else {
-                    //changes here
-                    $uniqueTest = Sanitize::sanitizeInput($POST["userName"]);
-                    $uniqueResponse = UserLoader::uniqueUser($this->db, $uniqueTest);
-                    if (count($uniqueResponse) !== 0) {
-                        $error = true;
-                        $username_err = "This username is already in use, please choose another one";
-                    } else {
-                        $newUser->setUserName(Sanitize::sanitizeInput($POST["userName"]));
-                    }
-                }
+                $newUser->setUserName(Sanitize::sanitizeInput($POST["userName"]));
             }
             //check email validation
-            if (empty($POST['email'])){
-                $email_err = "Email is required";
+            $emailCheck = Checks::checkEmail($this->db, $POST['email']);
+            if (!empty($emailCheck)){
+                $email_err = $emailCheck;
                 $error = true;
             } else {
-                $email = Sanitize::sanitizeInput($POST["email"]);
-                // check if e-mail address is well-formed
-                if (!filter_var($POST["email"], FILTER_VALIDATE_EMAIL)) {
-                    $email_err = "Invalid email format";
-                    $error = true;
-                } else {
-                    //changes here
-                    $uniqueTest = Sanitize::sanitizeInput($POST["email"]);
-                    $uniqueResponse = UserLoader::uniqueEmail($this->db, $uniqueTest);
-                    if (count($uniqueResponse) !== 0) {
-                        $error = true;
-                        $email_err = "You are already registered with this Email!";
-                    } else {
-                        $newUser->setEmail(Sanitize::sanitizeInput($POST["email"]));
-                    }
-                }
+                $newUser->setEmail(Sanitize::sanitizeInput($POST["email"]));
             }
             //check password validation
-            if (empty($POST['password'])){
-                $password_err = "Password is required";
+            $passwordCheck = Checks::checkPassword($POST['password']);
+            if (!empty($passwordCheck)){
+                $password_err = $passwordCheck;
                 $error = true;
             } else {
-                $password = Sanitize::sanitizeInput($POST["password"]);
-
-                if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $POST['password'])) {
-                    $password_err = "Password should be the combination of letters and numbers and maximum 8 characters long";
-                    $error = true;
-                } else{
-                    $newUser->setPassword(Sanitize::sanitizeInput($POST['password']));
-                }
+                $newUser->setPassword(Sanitize::sanitizeInput($POST["password"]));
             }
+            //create user in db
             if($error === false){
                 UserLoader::createUser($this->db, $newUser);
                 echo "<script type='text/javascript'>alert('You are registered. Please login to get access to all functionalities');</script>";
@@ -141,6 +112,13 @@ class UserController
             $passwordRepeat_err = "Your passwords do not match, please try again.";
             require 'view/register.php';
         }
+    }
+
+    public function updateUser($POST)
+    {
+        $userName = Sanitize::sanitizeInput($POST['userName']);
+        $email = Sanitize::sanitizeInput($POST['email']);
+        $password = Sanitize::sanitizeInput($POST['password']);
     }
 
     public function loginUser($POST)
@@ -272,3 +250,4 @@ class UserController
 
     }
 }
+
