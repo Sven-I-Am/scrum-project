@@ -33,13 +33,15 @@ class ProductLoader
     //Read one product by id
     public static function readOneProduct(PDO $PDO, int $id): Product
     {
-        $handler = $PDO->query("SELECT * FROM PRODUCT WHERE id = " . $id);
-        $product = $handler->fetch();
+        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        $product = $stmt->fetch();
         return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
     //Delete product based on id
     public static function deleteProduct(PDO $PDO, int $id){
-        $PDO->query("DELETE FROM PRODUCT WHERE id = $id");
+        $stmt = $PDO->prepare("DELETE FROM PRODUCT WHERE id = :id");
+        $stmt->execute([':id'=>$id]);
     }
 
     public static function readUserProducts(PDO $PDO, int $id, string $filter): array
