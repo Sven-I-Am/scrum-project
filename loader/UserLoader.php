@@ -14,6 +14,7 @@ class UserLoader
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch();
+        $stmt = null;
         return new User($user['userid'], $user['username'], $user['email'], $user['password']);
     }
     //Read one user aka login
@@ -25,7 +26,7 @@ class UserLoader
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE username = :userName');
         $stmt->execute([':userName'=> $userName]);
         $response = $stmt->fetch();
-
+        $stmt = null;
         $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
         if(password_verify($password, $response['password']) && $user->checkOnline($PDO,$user->getId())==0){
             $user->setOnline($PDO, $user->getId());
@@ -38,13 +39,17 @@ class UserLoader
     public static function uniqueUser(PDO $PDO, string $userName){
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE username = :userName');
         $stmt->execute([':userName' => $userName]);
-        return $stmt->fetch();
+        $return = $stmt->fetch();
+        $stmt = null;
+        return $return;
     }
     //check for unique email address
     public static function uniqueEmail(PDO $PDO, string $email){
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
         $stmt->execute([':email' => $email]);
-        return $stmt->fetch();
+        $return = $stmt->fetch();
+        $stmt = null;
+        return $return;
     }
     //Update user information
     public static function updateUser(PDO $PDO, User $oldUser, User $newUser): User
@@ -58,6 +63,7 @@ class UserLoader
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE userid = :id');
         $stmt->execute([':id' => $id]);
         $updatedUser = $stmt->fetch();
+        $stmt = null;
         return new User($updatedUser['userid'], $updatedUser['username'], $updatedUser['email'], $updatedUser['password']);
     }
     //Delete user account
@@ -67,5 +73,6 @@ class UserLoader
         $stmt->execute([':id' => $user->getId()]);
         $stmt = $PDO->prepare('DELETE FROM USER WHERE userid = :id');
         $stmt->execute([':id' => $user->getId()]);
+        $stmt = null;
     }
 }

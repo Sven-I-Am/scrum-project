@@ -2,6 +2,24 @@
 
 class ProductLoader
 {
+    //Create new product
+    public static function createProduct(PDO $PDO, Product $product){
+        $name = $product->getName();
+        $condition = $product->getCondition();
+        $description = $product->getDescription();
+        $price = $product->getPrice();
+        $sold = 0;
+        $image = $product->getImage();
+        $userId = $product->getUserId();
+        $sellDate = $product->getSellDate();
+        $categoryId = $product->getCategoryId();
+        $universeId = $product->getUniverseId();
+
+        $stmt = $PDO->prepare('INSERT INTO PRODUCT(name, `condition`, description, price, sold, image,userid, selldate, categoryid, uid) VALUES(:name, :condition, :description, :price, :sold, :image, :userId, :sellDate, :categoryId, :universeId)');
+        $stmt->execute([':name' => $name, ':condition' =>$condition, ':description' =>$description, ':price' => $price, ':sold' => $sold, ':image' => $image, ':userId' => $userId, ':sellDate' => $sellDate, ':categoryId' => $categoryId, ':universeId' => $universeId]);
+        $stmt = null;
+    }
+    //Read all products
     public static function readAllProducts(PDO $PDO): array
     {
         $handler = $PDO->query("SELECT * FROM PRODUCT");
@@ -12,14 +30,14 @@ class ProductLoader
         }
         return $productsArray;
     }
-
+    //Read one product by id
     public static function readOneProduct(PDO $PDO, int $id): Product
     {
         $handler = $PDO->query("SELECT * FROM PRODUCT WHERE id = " . $id);
-        $product = $handler->fetchAll();
-        return new Product($product[0]['id'], $product[0]['name'], $product[0]['condition'], $product[0]['description'], $product[0]['price'], $product[0]['sold'], $product[0]['image'], $product[0]['userid'], $product[0]['selldate'], $product[0]['categoryid'], $product[0]['uid']);
+        $product = $handler->fetch();
+        return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
-
+    //Delete product based on id
     public static function deleteProduct(PDO $PDO, int $id){
         $PDO->query("DELETE FROM PRODUCT WHERE id = $id");
     }
@@ -45,23 +63,5 @@ class ProductLoader
         return $productsArray;
     }
 
-    public static function createProduct(PDO $PDO, Product $product){
-        $name ='"' . $product->getName() . '"';
-        $condition ='"' .  $product->getCondition() . '"';
-        $description ='"' .  $product->getDescription() . '"';
-        $price = $product->getPrice();
-        if($product->getSold()){
-            $sold = 1;
-        } else {
-            $sold = 0;
-        }
-        $image ='"' .  $product->getImage() . '"';
-        $userId = $product->getUserId();
-        $sellDate ='"' .  $product->getSellDate() . '"';
-        $categoryId = $product->getCategoryId();
-        $universeId = $product->getUniverseId();
 
-
-        $PDO->query('INSERT INTO PRODUCT(name, `condition`, description, price, sold, image, userid, selldate, categoryid, uid) VALUES ('. $name .','. $condition .','. $description .','. $price .','. $sold .','. $image .','. $userId .','. $sellDate .','. $categoryId .',' . $universeId .')');
-    }
 }
