@@ -34,7 +34,7 @@ class Checks
                 $uniqueTest = Sanitize::sanitizeInput($email);
                 $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
                 if (count($uniqueResponse) !== 0) {
-                    return "You are already registered with this Email!";
+                    return "An account is already registered to this email address!";
                 } else {
                     return '';
                 }

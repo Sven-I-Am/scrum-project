@@ -33,28 +33,28 @@ class UserController
                     $this->loginUser($POST);
                     break;
                 case 'logout':
-                    $this->logoutUser();
+                    $this->logoutUser($user);
                     break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
                         if(isset($_POST['deleteAccount'])){
-                            $this->deleteUser();
+                            $this->deleteUser($user);
                         } else {
                             require 'view/account.php';
                         }
                     } else {
-                        $userProducts = $this->doAction($POST);
+                        $userProducts = $this->doAction($POST, $user);
                         require 'view/dashboard.php';
                     }
                     break;
                 case'updateUser':
-                    $this->updateUser($POST);
+                    $this->updateUser($POST, $user);
                     break;
                 case 'addProduct':
                     if(isset($POST['save'])){
-                        $this->createProduct($POST);
+                        $this->createProduct($POST, $user);
                     } elseif(isset($POST['cancel'])) {
-                        $userProducts = $this->doAction($POST);
+                        $userProducts = $this->doAction($POST, $user);
                         require 'view/dashboard.php';
                     }else {
                         require 'view/addProduct.php';
@@ -65,7 +65,7 @@ class UserController
                         echo 'test';
                         //require $this->updateProduct($POST['productId']);
                     } elseif(isset($POST['delete'])) {
-                        $this->deleteProduct($POST['productId']);
+                        $this->deleteProduct($POST['productId'], $user);
                     }
                     break;
             }
@@ -101,7 +101,7 @@ class UserController
                 $newUser->setPassword(Sanitize::sanitizeInput($POST["password"]));
             }
             //create user in db
-            if($error === false){
+            if(!$error){
                 UserLoader::createUser($this->db, $newUser);
                 echo "<script type='text/javascript'>alert('You are registered. Please login to get access to all functionalities');</script>";
                 require 'view/login.php';
@@ -114,11 +114,45 @@ class UserController
         }
     }
 
-    public function updateUser($POST)
+    public function updateUser($POST, $user)
     {
-        $userName = Sanitize::sanitizeInput($POST['userName']);
-        $email = Sanitize::sanitizeInput($POST['email']);
-        $password = Sanitize::sanitizeInput($POST['password']);
+        $userName = $POST['userName'];
+        $email = $POST['email'];
+        $password = $POST['password'];
+        if (password_verify($password, $user->getPassword())){
+            $newUser = new User(0, $userName, $email, '');
+            $error = false;
+            //check username validation
+            if ($user->getUserName() !== $POST['userName']){
+                $userNameCheck = Checks::checkUserName($this->db, $POST['userName']);
+                if (!empty($userNameCheck)){
+                    $userName_err = $userNameCheck;
+                    $error = true;
+                } else {
+                    $newUser->setUserName(Sanitize::sanitizeInput($POST["userName"]));
+                }
+            }
+            if ($user->getEmail() !== $POST['email']){
+                $emailCheck = Checks::checkEmail($this->db, $POST['email']);
+                if (!empty($emailCheck)){
+                    $email_err = $emailCheck;
+                    $error = true;
+                } else {
+                    $newUser->setEmail(Sanitize::sanitizeInput($POST["email"]));
+                }
+            }
+            if(!$error){
+                $_SESSION['user'] = UserLoader::updateUser($this->db, $user, $newUser);
+                echo "<script type='text/javascript'>alert('Your account information has been updated.');</script>";
+                require 'view/dashboard.php';
+            }else {
+                require 'view/account.php';
+            }
+        } else {
+            $password_err = 'Invalid password';
+            require 'view/account.php';
+        }
+
     }
 
     public function loginUser($POST)
@@ -140,8 +174,8 @@ class UserController
         }
     }
 
-    public function logoutUser() {
-        $_SESSION['user']->setOffline($this->db, $_SESSION['user']->getId());
+    public function logoutUser($user) {
+        $user->setOffline($this->db, $user->getId());
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You logged out');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
@@ -150,8 +184,8 @@ class UserController
         require 'view/product.php';
     }
 
-    public function deleteUser(){
-        UserLoader::deleteUser($this->db, $_SESSION['user']);
+    public function deleteUser($user){
+        UserLoader::deleteUser($this->db, $user);
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You deleted your account');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
@@ -160,24 +194,24 @@ class UserController
         require 'view/product.php';
     }
 
-    public function doAction($POST): array
+    public function doAction($POST,$user): array
     {
         if (isset($POST['showSoldProducts'])){
-            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'sold');
+            return Productloader::readUserProducts($this->db, $user->getId(), 'sold');
         } elseif (isset($POST['showUnsoldProducts'])) {
-            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'unsold');
+            return Productloader::readUserProducts($this->db, $user->getId(), 'unsold');
         } else {
-            return Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'all');
+            return Productloader::readUserProducts($this->db, $user->getId(), 'all');
         }
     }
 
-    public function createProduct($POST)
+    public function createProduct($POST, $user)
     {
         $error = false;
         $universe = $POST['universe'];
         $category = $POST['category'];
         $condition = $POST['condition'];
-        $newProduct = new Product(0, '', $condition, '', 0,false, '',$_SESSION['user']->getId(),'1984-01-01', intval($category), intval($universe));
+        $newProduct = new Product(0, '', $condition, '', 0,false, '',$user->getId(),'1984-01-01', intval($category), intval($universe));
 
         if (empty($POST['name'])){
             $name_err = "A name is required!";
@@ -219,7 +253,7 @@ class UserController
         }
         if (!$error){
             ProductLoader::createProduct($this->db, $newProduct);
-            $userProducts = Productloader::readUserProducts($this->db, $_SESSION['user']->getId(), 'all');
+            $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             require 'view/dashboard.php';
@@ -230,9 +264,8 @@ class UserController
         }
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct($id, $user)
     {
-        $user = $_SESSION['user'];
         $product = ProductLoader::readOneProduct($this->db, intval($id));
         if ($product->getUserId()===$user->getId()){
             ProductLoader::deleteProduct($this->db, intval($id));

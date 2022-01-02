@@ -18,8 +18,8 @@
     <form method="post" action="?user&action=updateUser">
         <div class="form-group">
             <label>Username
-                <input type="text" name="userName" placeholder="username" class="form-control  <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $_SESSION['user']->getUserName(); ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <input type="text" name="userName" placeholder="username" class="form-control  <?php echo (!empty($userName_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $_SESSION['user']->getUserName(); ?>">
+                <span class="invalid-feedback"><?php echo $userName_err; ?></span>
             </label>
         </div>
         <div class="form-group">

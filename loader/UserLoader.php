@@ -41,6 +41,17 @@ class UserLoader
         $handler = $PDO->query('SELECT * FROM USER WHERE email = "'. $email . '"');
         return $handler->fetchAll();
     }
+    public static function updateUser(PDO $PDO, User $oldUser, User $newUser): User
+    {
+        $userid = '"' . $oldUser->getId() . '"';
+        $userName = '"' . $newUser->getUserName() . '"';
+        $email = '"' . $newUser->getEmail() . '"';
+
+        $PDO->query('UPDATE USER SET username = ' . $userName . ', email = ' . $email . ' WHERE userid = ' . $userid);
+        $handler = $PDO->query('SELECT * FROM USER WHERE userid = ' . $userid);
+        $updatedUser = $handler->fetchAll();
+        return new User($updatedUser[0]['userid'], $updatedUser[0]['username'], $updatedUser[0]['email'], $updatedUser[0]['password']);
+    }
     public static function deleteUser(PDO $PDO, User $user)
     {
         $PDO->query('DELETE FROM PRODUCT WHERE userid = '. $user->getId());
