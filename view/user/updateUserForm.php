@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php require './view/includes/header.php';?>
 <div class ='row title'>
     <h2>Hello <?php echo $user->getUserName(); ?></h2>
     <p>This is your account dashboard, you can change your username and email from here. Just change the values in the form below.</p>
@@ -40,4 +40,4 @@
     </form>
 </div>
 
-<?php require 'includes/footer.php' ?>
+<?php require './view/includes/footer.php' ?>

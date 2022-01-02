@@ -20,11 +20,11 @@ class UserController
         }
 
         if(!isset($GET['action'])){
-            require 'view/login.php';
+            require 'view/user/loginForm.php';
         } else {
             switch ($GET['action']) {
                 case 'register':
-                    require 'view/register.php';
+                    require 'view/user/registerForm.php';
                     break;
                 case 'registerUser':
                     $this->registerUser($POST);
@@ -40,7 +40,7 @@ class UserController
                         if(isset($_POST['deleteAccount'])){
                             $this->deleteUser($user);
                         } else {
-                            require 'view/account.php';
+                            require 'view/user/updateUserForm.php';
                         }
                     } else {
                         $userProducts = $this->doAction($POST, $user);
@@ -57,13 +57,13 @@ class UserController
                         $userProducts = $this->doAction($POST, $user);
                         require 'view/dashboard.php';
                     }else {
-                        require 'view/addProduct.php';
+                        require 'view/product/addProductForm.php';
                     }
                     break;
                 case 'productChange':
                     if(isset($POST['update'])){
                         $product = ProductLoader::readOneProduct($this->db, intval($POST['productId']));
-                        require 'view/updateProductForm.php';
+                        require 'view/product/updateProductForm.php';
                     } elseif(isset($POST['delete'])) {
                         $this->deleteProduct($POST['productId'], $user);
                     }
@@ -107,13 +107,13 @@ class UserController
             if(!$error){
                 UserLoader::createUser($this->db, $newUser);
                 echo "<script type='text/javascript'>alert('You are registered. Please login to get access to all functionalities');</script>";
-                require 'view/login.php';
+                require 'view/user/loginForm.php';
             }else {
-                require 'view/register.php';
+                require 'view/user/registerForm.php';
             }
         } else {
             $passwordRepeat_err = "Your passwords do not match, please try again.";
-            require 'view/register.php';
+            require 'view/user/registerForm.php';
         }
     }
 
@@ -149,11 +149,11 @@ class UserController
                 echo "<script type='text/javascript'>alert('Your account information has been updated.');</script>";
                 require 'view/dashboard.php';
             }else {
-                require 'view/account.php';
+                require 'view/user/updateUserForm.php';
             }
         } else {
             $password_err = 'Invalid password';
-            require 'view/account.php';
+            require 'view/user/updateUserForm.php';
         }
 
     }
@@ -173,7 +173,7 @@ class UserController
             require 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
-            require 'view/login.php';
+            require 'view/user/loginForm.php';
         }
     }
 
@@ -269,9 +269,9 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             if($_GET['action']==='addProduct'){
-                require 'view/addProduct.php';
+                require 'view/product/addProductForm.php';
             } else {
-                require 'view/updateProductForm.php';
+                require 'view/product/updateProductForm.php';
             }
         }
     }

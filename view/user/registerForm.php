@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php require './view/includes/header.php';?>
     <div class="row col d-inline-flex justify-content-center align-items-center m-auto py-5 text-center">
 
         <div class="row">
@@ -38,4 +38,4 @@
         </form>
     </div>
 
-<?php require 'includes/footer.php'?>
+<?php require './view/includes/footer.php' ?>

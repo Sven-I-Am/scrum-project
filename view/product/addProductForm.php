@@ -1,4 +1,4 @@
-<?php require 'includes/header.php';?>
+<?php require './view/includes/header.php';?>
     <div class="row col d-inline-flex justify-content-center align-items-center m-auto py-3 text-center">
         <div class="row">
             <h2>Add product</h2>
@@ -66,4 +66,4 @@
             <div class="col"></div>
         </div>
     </div>
-<?php require 'includes/footer.php';?>
+<?php require './view/includes/footer.php';?>

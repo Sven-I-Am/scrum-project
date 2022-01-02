@@ -19,7 +19,7 @@ require 'loader/UserLoader.php';
 require 'controller/ProductController.php';
 require 'controller/UserController.php';
 //include all helper files here
-require 'view/component.php';
+require 'helper/component.php';
 require 'helper/Sanitize.php';
 require 'helper/Checks.php';
 
@@ -38,7 +38,7 @@ else
 $controller->render($_GET, $_POST);
 
 //remove below before full deployment
-whatIsHappening();
+//whatIsHappening();
 function whatIsHappening()
 {
     echo '<h2>$_GET</h2>';
