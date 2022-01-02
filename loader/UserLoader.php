@@ -27,14 +27,20 @@ class UserLoader
         $stmt->execute([':userName'=> $userName]);
         $response = $stmt->fetch();
         $stmt = null;
-        $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
-        if(password_verify($password, $response['password']) && $user->checkOnline($PDO,$user->getId())==0){
-            $user->setOnline($PDO, $user->getId());
-            return $user;
+        if ($response){
+            $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
+            if(password_verify($password, $response['password']) && $user->checkOnline($PDO,$user->getId())==0){
+                $user->setOnline($PDO, $user->getId());
+                $return = $user;
+            } else {
+                $return = "The combination username & password is invalid, please check your input";
+            }
         } else {
-            return "The combination username & password is invalid, please check your input";
+            $return = "The combination username & password is invalid, please check your input";
         }
+        return $return;
     }
+
     //check for unique username
     public static function uniqueUser(PDO $PDO, string $userName){
         $stmt = $PDO->prepare('SELECT * FROM USER WHERE username = :userName');

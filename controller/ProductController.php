@@ -16,7 +16,7 @@ class ProductController
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
 
-        require 'view/product.php';
+        require 'view/homepage.php';
 
     }
 

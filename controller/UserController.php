@@ -184,7 +184,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        require 'view/product.php';
+        require 'view/homepage.php';
     }
 
     public function deleteUser($user){
@@ -194,7 +194,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        require 'view/product.php';
+        require 'view/homepage.php';
     }
 
     public function doAction($POST,$user): array
@@ -290,7 +290,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
-            require 'view/product.php';
+            require 'view/homepage.php';
         }
 
     }
