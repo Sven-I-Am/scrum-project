@@ -14,7 +14,15 @@ class HomepageController
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
 
-        require 'view/homepage.php';
+        if(!isset($GET['action'])) {
+            require 'view/homepage.php';
+        } else {
+            switch ($GET['action']){
+                case 'terms':
+                    require 'view/terms.php';
+                    break;
+            }
+        }
 
     }
 }

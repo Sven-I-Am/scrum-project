@@ -3,6 +3,9 @@
             <div class="col d-flex align-items-center justify-content-center">
                 <div class="text-center">Copyright © 2021-2022 Pokeball Inc. All Rights Reserved.</div>
             </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <a href="?action=terms" class="text-center">Terms</a>
+            </div>
             <ul class="nav col list-unstyled d-flex m-auto footerlogo align-items-center justify-content-center">
                 <li class="ms-2 "><a class="f-logo" href="http://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a></li>
                 <li class="ms-2 "><a class="f-logo" href="http://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a></li>

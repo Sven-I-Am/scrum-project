@@ -224,3 +224,26 @@ header button:hover{
 .f-logo:hover {
     opacity: 0.7;
 }
+
+/* terms */
+
+.terms-text {
+    width: 80%;
+    margin: 150px auto;
+    background-color: #e1dddedd;
+    color: #3c3c3c;
+    border-radius: 15px;
+    padding: 1%;
+    text-align: left;
+}
+
+.terms-title {
+    text-align: center;
+}
+.terms-text p{
+    font-size: 16px;
+    line-height: 1.5;
+}
+.terms-text h5{
+    font-size: 20px;
+}
