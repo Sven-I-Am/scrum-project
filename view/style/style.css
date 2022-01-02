@@ -41,6 +41,10 @@ body{
     font-weight: bold;
 }
 
+header .bi {
+    font-size: 150%;
+}
+
 /* product card */
 
 .productCard {

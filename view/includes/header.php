@@ -50,8 +50,14 @@
                             <a href="?user&action=logout"><button class="btn btn-danger">Logout</button></a>
                             <a href="?user&action=dashboard"><button class="btn btn-primary">Dashboard</button></a>
                         <?php } ?>
+                    </div>
+                    <div>
                         <!-- If we require Shopping-Cart -->
-                         <img src=".\assets\logo\cart.png" alt="">
+                        <?php if(!isset($_SESSION['cart'])){ ?>
+                            <a href="#"><i class="bi bi-cart"></i></a>
+                        <?php }else{?>
+                            <a href="#"><i class="bi bi-cart-fill"></i></a>
+                        <?php }?>
                     </div>
                 </div>
             </div>
