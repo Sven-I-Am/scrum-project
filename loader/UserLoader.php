@@ -27,7 +27,7 @@ class UserLoader
         $response = $stmt->fetch();
 
         $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
-        if(password_verify($password, $response[0]['password']) && $user->checkOnline($PDO,$user->getId())==0){
+        if(password_verify($password, $response['password']) && $user->checkOnline($PDO,$user->getId())==0){
             $user->setOnline($PDO, $user->getId());
             return $user;
         } else {
@@ -49,14 +49,16 @@ class UserLoader
     //Update user information
     public static function updateUser(PDO $PDO, User $oldUser, User $newUser): User
     {
-        $userid = '"' . $oldUser->getId() . '"';
-        $userName = '"' . $newUser->getUserName() . '"';
-        $email = '"' . $newUser->getEmail() . '"';
+        $id = $oldUser->getId();
+        $userName = $newUser->getUserName();
+        $email = $newUser->getEmail();
 
-        $PDO->query('UPDATE USER SET username = ' . $userName . ', email = ' . $email . ' WHERE userid = ' . $userid);
-        $handler = $PDO->query('SELECT * FROM USER WHERE userid = ' . $userid);
-        $updatedUser = $handler->fetchAll();
-        return new User($updatedUser[0]['userid'], $updatedUser[0]['username'], $updatedUser[0]['email'], $updatedUser[0]['password']);
+        $stmt = $PDO->prepare('UPDATE USER SET username = :userName, email = :email WHERE userid = :id');
+        $stmt->execute([':userName' => $userName, ':email' => $email, ':id' => $id]);
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE userid = :id');
+        $stmt->execute([':id' => $id]);
+        $updatedUser = $stmt->fetch();
+        return new User($updatedUser['userid'], $updatedUser['username'], $updatedUser['email'], $updatedUser['password']);
     }
     //Delete user account
     public static function deleteUser(PDO $PDO, User $user)
