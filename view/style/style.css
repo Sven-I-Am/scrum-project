@@ -49,6 +49,10 @@ header .bi {
     font-size: 150%;
 }
 
+header{
+    font-size: 100%;
+}
+
 header button:hover{
     letter-spacing: 0.5px;
     font-weight: bold;
@@ -246,4 +250,36 @@ header button:hover{
 }
 .terms-text h5{
     font-size: 20px;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: 1400px) {
+    body{
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    body{
+        font-size: 18px;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    body{
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 0.7rem;
+    }
 }
