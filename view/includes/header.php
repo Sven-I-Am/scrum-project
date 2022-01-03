@@ -54,7 +54,7 @@
                     <div>
                         <!-- If we require Shopping-Cart -->
                         <?php if(!isset($_SESSION['cart'])){ ?>
-                            <a href="#"><i class="bi bi-cart"></i></a>
+                            <a href=".\view\cart.php"><i class="bi bi-cart"></i></a>
                         <?php }else{?>
                             <a href="#"><i class="bi bi-cart-fill"></i></a>
                         <?php }?>
