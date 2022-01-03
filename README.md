@@ -239,5 +239,6 @@ objectives they will be moved up into the timeline section and ticked off using 
 1. clone this repository to your local environment directory
 2. git checkout to the development branch
 3. follow the instructions in the .env.config file
-4. open the index.php on your local apache server
-5. Make sure to create a new branch of the development branch before you start working on a new feature/issue/bugfix
+4. run the `./database/database.sql` to create the database locally
+5. open the index.php on your local apache server
+6. Make sure to create a new branch of the development branch before you start working on a new feature/issue/bugfix
