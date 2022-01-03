@@ -1,5 +1,7 @@
 
 <?php require 'includes/header.php';?>
+<!-- Local CSS link -->
+<link rel="stylesheet" href="../view/style/style.css">
 
  <div class="Cart-Container"></div>
  <div class="Header">
