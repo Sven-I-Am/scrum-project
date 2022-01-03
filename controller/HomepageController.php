@@ -19,19 +19,28 @@ class HomepageController
         } else {
             switch ($GET['action']){
                 case 'buy':
+                    $this->productCart($POST);
                     require 'view/homepage.php';
-                    if(isset($_POST['btnBuy'])){
-                        echo "ola";
-                        $date = new DateTime();
-                        $id = $_POST['btnBuy'];
-                    
-                        var_dump("controller: ",date_format($date, 'Y-m-d'));
-                    
-                        ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'));
-                    }
                     break;
             }
         }
+
+    }
+
+    public function productCart($POST){
+
+        var_dump($POST['productId']);
+        $date = new DateTime();
+        $id = $POST['productId'];      
+                      
+        ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'));
+
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart'] = [];
+        }            
+        
+
+        array_push($_SESSION['cart'], ProductLoader::readOneProduct($this->db, $id));              
 
     }
 }
