@@ -18,8 +18,17 @@ class HomepageController
             require 'view/homepage.php';
         } else {
             switch ($GET['action']){
-                case 'terms':
-                    require 'view/terms.php';
+                case 'buy':
+                    require 'view/homepage.php';
+                    if(isset($_POST['btnBuy'])){
+                        echo "ola";
+                        $date = new DateTime();
+                        $id = $_POST['btnBuy'];
+                    
+                        var_dump("controller: ",date_format($date, 'Y-m-d'));
+                    
+                        ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'));
+                    }
                     break;
             }
         }
@@ -27,18 +36,3 @@ class HomepageController
     }
 }
 
-/* code to set sold status
-
-if(isset($_POST['buy'])){
-            echo "ola";
-            $date = new DateTime();
-            $id = $_POST['buy'];
-
-            var_dump("controller: ",date_format($date, 'Y-m-d'));
-
-            ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'));
-        }
-
-        require 'View/product.php';
-
-*/
