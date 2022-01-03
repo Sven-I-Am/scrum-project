@@ -45,9 +45,9 @@ DROP TABLE IF EXISTS `PRODUCT`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `PRODUCT` (
                            `id` int NOT NULL AUTO_INCREMENT,
-                           `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                           `name` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                            `condition` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-                           `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+                           `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                            `price` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                            `sold` tinyint(1) DEFAULT NULL,
                            `image` varchar(1000) NOT NULL,
