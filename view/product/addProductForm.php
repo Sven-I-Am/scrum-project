@@ -5,7 +5,7 @@
             <p>Please fill in this form to add a product</p>
         </div>
         <div class="row">
-            <div class="col"></div>
+            <div class="col-2"></div>
             <div class="col">
                 <form action="?user&action=addProduct" method="post">
                     <div class="row form-group">
@@ -35,15 +35,20 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col">
+                        <div class="col-5">
                             <label for="pName">Name <span class="formFinePrint text-muted">(max 25 characters)</span></label>
                             <input id="pName" maxlength="25" type="text" name="name" placeholder="productName" class="form-control  <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $name_err; ?></span>
                         </div>
-                        <div class="col">
+                        <div class="col-5">
                             <label for="pPrice">Price <span class="formFinePrint text-muted">(without currency symbol)</span></label>
                             <input id="pPrice" type="text" name="price" placeholder="9,99" class="form-control  <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $price_err; ?></span>
+                        </div>
+                        <div class="col-2">
+                            <label for="nrOfProds">Amount <span class="formFinePrint text-muted">(max 5)</span></label>
+                            <input id="nrOfProds" type="number" min="1" max="5" name="nrOf" class="form-control  <?php echo (!empty($nr_err)) ? 'is-invalid' : ''; ?>">
+                            <span class="invalid-feedback"><?php echo $nr_err; ?></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +68,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col"></div>
+            <div class="col-2"></div>
         </div>
     </div>
 <?php require './view/includes/footer.php';?>
