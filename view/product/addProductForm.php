@@ -42,12 +42,12 @@
                         </div>
                         <div class="col-5">
                             <label for="pPrice">Price <span class="formFinePrint text-muted">(without currency symbol)</span></label>
-                            <input id="pPrice" type="text" name="price" placeholder="9,99" class="form-control  <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
+                            <input id="pPrice" type="text" name="price" placeholder="9.99" class="form-control  <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $price_err; ?></span>
                         </div>
                         <div class="col-2">
                             <label for="nrOfProds">Amount <span class="formFinePrint text-muted">(max 5)</span></label>
-                            <input id="nrOfProds" type="number" min="1" max="5" name="nrOf" class="form-control  <?php echo (!empty($nr_err)) ? 'is-invalid' : ''; ?>">
+                            <input id="nrOfProds" type="number" min="1" max="5" placeholder="1" name="nrOf" class="form-control  <?php echo (!empty($nr_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $nr_err; ?></span>
                         </div>
                     </div>

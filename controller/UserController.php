@@ -216,6 +216,17 @@ class UserController
         $condition = $POST['condition'];
         $newProduct = new Product(0, '', $condition, '', 0,false, '',$user->getId(),'1984-01-01', intval($category), intval($universe));
 
+        if(empty($POST['nrOf'])){
+            $nr_err = "Specify the amount of products you wish to sell!";
+            $error = true;
+        } else {
+            if ($POST['nrOf'] < 1 || $POST['nrOf'] > 5) {
+                $nr_err = "Enter a number between 1 and 5!";
+                $error = true;
+            }else{
+                $nrOf = Sanitize::sanitizeInput($POST['nrOf']);
+            }
+        }
         if (empty($POST['name'])){
             $name_err = "A name is required!";
             $error = true;
@@ -256,7 +267,9 @@ class UserController
         }
         if (!$error){
             if($_GET['action']==='addProduct'){
-                ProductLoader::createProduct($this->db, $newProduct);
+                for ($i = 0; $i < $nrOf; $i++){
+                    ProductLoader::createProduct($this->db, $newProduct);
+                }
             } else {
                 $newProduct->setId(intval($POST['productId']));
                 ProductLoader::updateProduct($this->db, $newProduct);
