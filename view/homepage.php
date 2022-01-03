@@ -11,7 +11,7 @@
                             component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition());
                             var_dump($product->getId());
                         ?>
-                                <button type='submit' class='btn btn-outline-primary cardBtn' name="btnBuy" value="<?php echo $product->getId(); ?>">
+                                <button type='submit' class='btn btn-outline-primary cardBtn'>
                                     <p class='productPrice'><?php echo $product->getPrice(); ?> &euro;</p>
                                     <p class='productBuy'>Buy</p>
                                 </button>
