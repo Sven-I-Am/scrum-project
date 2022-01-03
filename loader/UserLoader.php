@@ -18,7 +18,7 @@ class UserLoader
         return new User($user['userid'], $user['username'], $user['email'], $user['password']);
     }
     //Read one user aka login
-    public static function readOne(PDO $PDO, User $checkUser): User | string
+    public static function readOne(PDO $PDO, User $checkUser) 
     {
         $userName = $checkUser->getUserName();
         $password = $checkUser->getPassword();
