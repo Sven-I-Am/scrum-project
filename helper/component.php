@@ -28,8 +28,8 @@ function component($id, $img, $name, $description, $universe, $category, $condit
                 </div>
                 <div class='row productDetails'>
                     <div class='col text-center cardUniverse'><p>$universe</p></div>
-                    <div class='col text-center cardCategory'><p>$category</p></div>
-                    <div class='col text-center cardCondition'><p class='$conditionClass'>$condition</p></div>
+                    <div class='col text-center cardCategory'><a href='?home&action=$category'><p>$category</p></a></div>
+                    <div class='col text-center cardCondition'><a href='?home&action=$condition'><p class='$conditionClass'>$condition</p></a></div>
                 </div> 
                 <div class='row'>
                 <input name='productId' value='$id' class='productId'>
