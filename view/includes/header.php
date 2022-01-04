@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <!-- Local CSS link -->
-    <link rel="stylesheet" href=".\view\style\style.css">
+    <link rel="stylesheet" href="./view/style/style.css">
     <title>Gbay Ecommerce website</title>
 </head>
 <body>
@@ -56,7 +56,7 @@
                     <div>
                         <!-- If we require Shopping-Cart -->
                         <?php if(!isset($_SESSION['cart'])){ ?>
-                            <a href="#"><i class="bi bi-cart"></i></a>
+                            <a href="?action=cart"><i class="bi bi-cart"></i></a>
                         <?php }else{?>
                             <a href="#"><i class="bi bi-cart-fill"></i></a>
                         <?php }?>

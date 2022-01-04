@@ -65,6 +65,7 @@ CREATE TABLE `PRODUCT` (
   CONSTRAINT `PRODUCT_FK` FOREIGN KEY (`userid`) REFERENCES `USER` (`userid`),
   CONSTRAINT `PRODUCT_FK_1` FOREIGN KEY (`categoryid`) REFERENCES `CATEGORY` (`id`),
   CONSTRAINT `PRODUCT_FK_2` FOREIGN KEY (`uid`) REFERENCES `Universe` (`id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -89,6 +90,7 @@ CREATE TABLE `Universe` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,6 +116,7 @@ CREATE TABLE `USER` (
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `online` tinyint DEFAULT '0',
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -125,7 +128,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES (1,'xedxx','zenixeee@gmail.com','$2y$10$vmt7J5l7CHJbVhAcvC7ZhOrMRpnVQjUAtD55JxAJpnxM51Esb0ZHC',0),(2,'xedxx','zenixeee@gmail.com','$2y$10$fq2Ksing3I5SvI6RY8l5oOc.bRphnbaoqydyED3QFwzOJMXRfnq2q',0),(3,'zain','zenimtiaz@gmail.com','$2y$10$vDMNJOz2muCtPiZGaLseGOnAJOgP9WpQusn4HPI2iGqN.KOZZ924O',0),(4,'test','zenixeee@gmail.com','$2y$10$xe6avbQEjKz1ZabmyWnyDe1yT1q0B1bQx5Fdvf4AmrB4ZBJO4I7EG',0),(5,'barabara','barabara@gmail.com','$2y$10$/6tt2fkukOySxfpKjsVBI.y6/F4OcH3wqKjBeI.j1CmEaOeG4U0se',0),(10,'se','zenixeee@gmail.com','$2y$10$zajC8yZTlw0.wfM4fJ6Y4Oifd9v4o7eN6hCj9Guf.3BIG9wLvt.fu',0),(11,'se','zenixeee@gmail.com','$2y$10$I664MMo.F847KzHgVdxLHuEtFIGYny7mq8G7IBvSLmLx9XW7Q1376',0),(12,'xexx','zenixeee@gmail.com','$2y$10$aN27DmzYmPD0PgxbkeAKN.v.D7SHaiLH5BciPIXTpK3oxoe87/yBW',0),(24,'zaini','zain@gmail.com','$2y$10$GbI0PwLyaRjy3LYljcVms..wniTaqBukrSXXACv6W4aiICXd18VZm',0),(25,'ira','iarakhan@gmail.com','$2y$10$Aeybd6SxPZEt.wFKU6H0ue/j1lpcPP/jxBON5bJBY/ZbykwVVQyVu',0),(26,'ayat','ayat@gmail.com','$2y$10$FGeOR5tRFLljoxZaCLLYvOFFw1JKmgsgDiZ9d7ik4NQQ7BfV.9lxm',0),(27,'rawsh','rawsh@gmail.com','$2y$10$owI5xWWJXSMqyGZwDvm4c.tRCIuQTF5WmonlNWB1eBG1je0kriNE6',0);
+INSERT INTO `USER` VALUES (1,'xedxx','zenixeee@gmail.com','$2y$10$vmt7J5l7CHJbVhAcvC7ZhOrMRpnVQjUAtD55JxAJpnxM51Esb0ZHC', null,0),(2,'xedxx','zenixeee@gmail.com','$2y$10$fq2Ksing3I5SvI6RY8l5oOc.bRphnbaoqydyED3QFwzOJMXRfnq2q',null,0),(3,'zain','zenimtiaz@gmail.com','$2y$10$vDMNJOz2muCtPiZGaLseGOnAJOgP9WpQusn4HPI2iGqN.KOZZ924O', null,0),(4,'test','zenixeee@gmail.com','$2y$10$xe6avbQEjKz1ZabmyWnyDe1yT1q0B1bQx5Fdvf4AmrB4ZBJO4I7EG', null,0),(5,'barabara','barabara@gmail.com','$2y$10$/6tt2fkukOySxfpKjsVBI.y6/F4OcH3wqKjBeI.j1CmEaOeG4U0se', null,0);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,5 +144,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
 
 -- Dump completed on 2022-01-03 11:43:19

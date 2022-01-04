@@ -20,10 +20,12 @@ class HomepageController
                 case 'terms':
                     require 'view/terms.php';
                     break;
-                    case 'search':
-                        $this->search($POST);
-                        break;
-    
+                case 'search':
+                    $this->search($POST);
+                    break;
+                case 'cart':
+                    require 'view/cart.php';
+                    break;
             }
         }
 
