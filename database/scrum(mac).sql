@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `CATEGORY`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `CATEGORY` (
-                            `id` int NOT NULL AUTO_INCREMENT,
-                            `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -47,24 +47,25 @@ DROP TABLE IF EXISTS `PRODUCT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `PRODUCT` (
-                           `id` int NOT NULL AUTO_INCREMENT,
-                           `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                           `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                           `price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                           `sold` tinyint(1) DEFAULT NULL,
-                           `image` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                           `userid` int DEFAULT NULL,
-                           `selldate` date NOT NULL,
-                           `categoryid` int DEFAULT NULL,
-                           `uid` int DEFAULT NULL,
-                           `condition` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                           PRIMARY KEY (`id`),
-                           KEY `PRODUCT_FK` (`userid`),
-                           KEY `PRODUCT_FK_1` (`categoryid`),
-                           KEY `PRODUCT_FK_2` (`uid`),
-                           CONSTRAINT `PRODUCT_FK` FOREIGN KEY (`userid`) REFERENCES `USER` (`userid`),
-                           CONSTRAINT `PRODUCT_FK_1` FOREIGN KEY (`categoryid`) REFERENCES `CATEGORY` (`id`),
-                           CONSTRAINT `PRODUCT_FK_2` FOREIGN KEY (`uid`) REFERENCES `Universe` (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `sold` tinyint(1) DEFAULT NULL,
+  `image` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `userid` int DEFAULT NULL,
+  `selldate` date NOT NULL,
+  `categoryid` int DEFAULT NULL,
+  `uid` int DEFAULT NULL,
+  `condition` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `PRODUCT_FK` (`userid`),
+  KEY `PRODUCT_FK_1` (`categoryid`),
+  KEY `PRODUCT_FK_2` (`uid`),
+  CONSTRAINT `PRODUCT_FK` FOREIGN KEY (`userid`) REFERENCES `USER` (`userid`),
+  CONSTRAINT `PRODUCT_FK_1` FOREIGN KEY (`categoryid`) REFERENCES `CATEGORY` (`id`),
+  CONSTRAINT `PRODUCT_FK_2` FOREIGN KEY (`uid`) REFERENCES `Universe` (`id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,9 +87,10 @@ DROP TABLE IF EXISTS `Universe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Universe` (
-                            `id` int NOT NULL AUTO_INCREMENT,
-                            `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,13 +112,13 @@ DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `USER` (
-                        `userid` int NOT NULL AUTO_INCREMENT,
-                        `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                        `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                        `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-                        `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-                        `online` tinyint DEFAULT '0',
-                        PRIMARY KEY (`userid`)
+  `userid` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `online` tinyint DEFAULT '0',
+  PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,5 +144,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
 
 -- Dump completed on 2022-01-03 11:43:19

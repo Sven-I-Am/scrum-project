@@ -1,5 +1,4 @@
 <?php
-
 class HomepageController
 {
     private Connection $db;
@@ -21,14 +20,26 @@ class HomepageController
                 case 'terms':
                     require 'view/terms.php';
                     break;
+                case 'search':
+                    $this->search($POST);
+                    break;
                 case 'cart':
-                        require 'view/cart.php';
-                        break;
+                    require 'view/cart.php';
+                    break;
             }
         }
 
     }
-}
+    public function search($POST) {
+      $products = ProductLoader::readAllProductByName($this->db,$POST);
+      $categories = FilterLoader::getAllCategories($this->db);
+      $universes = FilterLoader::getAllUniverses($this->db);
+
+      require 'view/homepage.php';
+
+          }
+}        
+
 
 /* code to set sold status
 

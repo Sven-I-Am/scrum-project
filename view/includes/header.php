@@ -26,7 +26,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="collapse navbar-collapse d-flex">
+                    <form class="collapse navbar-collapse d-flex" action='?home&action=search' method = "post">
                         <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="category">
                         <option value="0" selected>All categories</option>
                         <?php forEach($categories as $category) {?>
@@ -39,9 +39,11 @@
                                 <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
                             <?php } ?>
                         </select>
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" name ="search" placeholder="Search" aria-label="Search">
+
+                        <button class="btn btn-outline-success" name = "submit" type="submit">Search</button>
                     </form>
+
                     <div class="mr-2">
                         <?php if(!isset($_SESSION['user'])) { ?>
                             <a href="?user"><button class="btn btn-danger">Login</button></a>
