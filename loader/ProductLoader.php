@@ -38,6 +38,42 @@ class ProductLoader
         $product = $stmt->fetch();
         return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
+
+    public static function readAllProductByCondition(PDO $PDO, $condition)
+    {
+        $productsArray = [];
+        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE `condition` = :condition AND sold = 0');
+        $stmt->execute([':condition' => $condition]);
+        $products = $stmt->fetchAll();        
+
+        foreach($products as $product){
+            array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        }
+
+        return $productsArray;      
+
+    }
+
+    public static function readAllProductByCategory(PDO $PDO, $condition)
+    {
+        $productsArray = [];
+        $data = $PDO->prepare('SELECT * FROM CATEGORY WHERE name = :condition');
+        $data->execute([':name' => $condition]);
+        $category = $data->fetch();
+
+        var_dump($category);
+        // $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE `condition` = :condition AND sold = 0');
+        // $stmt->execute([':condition' => $condition]);
+        // $products = $stmt->fetchAll();        
+
+        // foreach($products as $product){
+        //     array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        // }
+
+        // return $productsArray;      
+
+    }
+
     //Update product
     public static function updateProduct(PDO $PDO, Product $product){
         $id = $product->getId();
@@ -81,8 +117,7 @@ class ProductLoader
         return $productsArray;
     }
 
-    /* code for product set sold */
-
+    /* code for product set soldStatus */
     public static function updateSoldStatus(PDO $PDO, $id, $date, $status){
         var_dump("loader: ", $date);
         $PDO->query("UPDATE PRODUCT SET sold = '$status', selldate = '$date' WHERE id = $id");
