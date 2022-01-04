@@ -58,6 +58,23 @@ class ProductLoader
         $stmt = $PDO->prepare("DELETE FROM PRODUCT WHERE id = :id");
         $stmt->execute([':id'=>$id]);
     }
+    public static function readAllProductByName(PDO $PDO, string $name ){
+        $sql = "SELECT * FROM PRODUCT WHERE name LIKE '%strt%' or description LIKE '%str%'";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['name' => '%' . $inpText . '%']);
+        $result = $stmt->fetchAll();
+    
+        if ($result) {
+          foreach ($result as $row) {
+            echo $row['name'];
+            
+          }
+        } else {
+          echo 'No Record';
+        }
+
+
+    }
 
     public static function readUserProducts(PDO $PDO, int $id, string $filter): array
     {
