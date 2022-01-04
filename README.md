@@ -52,15 +52,15 @@ We're building a project from start to finish using SCRUM principles.
 <!--Adjust the content of this table per exercise
 Logos are added on a project basis, I have them stored in a separate folder locally, ready for copying-->
 
-|                   |                                                |                                              |                                                  |
-|-------------------|------------------------------------------------|----------------------------------------------|--------------------------------------------------|
-| Operating systems | ![windows10](./assets/readme/windows-logo.png) | ![macOS](./assets/readme/macOS-logo.png)     | ![Ubuntu](./assets/readme/ubuntu-logo.png)       |
-| Editors           | ![VSCode](./assets/readme/vscode-logo.png)     | ![phpStorm](assets/readme/phpstorm-logo.png) |                                                  |
-| DBMS              | ![dataGrip](assets/readme/datagrip-logo.png)   | ![dBeaver](assets/readme/dbeaver-logo.png)   | ![heidisql](assets/readme/heidsql-logo.png)      |
-| Front End         | ![html](./assets/readme/html-logo.png)         | ![css](./assets/readme/css-logo.png)         | ![bootstrap](./assets/readme/bootstrap-logo.png) |
-| Back End          | ![php](./assets/readme/php-logo.png)           | ![mySQL](./assets/readme/mysql-logo.png)     |
-| Server            | ![Linux](./assets/readme/linux-logo.png)       | ![Apache](./assets/readme/apache-logo.png)   |
-| Version control   | ![git](./assets/readme/git-logo.png)           | ![github](./assets/readme/github-logo.png)   |
+|                   |                                                |                                                |                                                  |
+|-------------------|------------------------------------------------|------------------------------------------------|--------------------------------------------------|
+| Operating systems | ![windows10](./assets/readme/windows-logo.png) | ![macOS](./assets/readme/macOS-logo.png)       | ![Ubuntu](./assets/readme/ubuntu-logo.png)       |
+| Editors           | ![VSCode](./assets/readme/vscode-logo.png)     | ![phpStorm](./assets/readme/phpstorm-logo.png) |                                                  |
+| DBMS              | ![dataGrip](./assets/readme/datagrip-logo.png) | ![dBeaver](./assets/readme/dbeaver-logo.png)   | ![heidisql](./assets/readme/heidisql-logo.png)   |
+| Front End         | ![html](./assets/readme/html-logo.png)         | ![css](./assets/readme/css-logo.png)           | ![bootstrap](./assets/readme/bootstrap-logo.png) |
+| Back End          | ![php](./assets/readme/php-logo.png)           | ![mySQL](./assets/readme/mysql-logo.png)       |
+| Server            | ![Linux](./assets/readme/linux-logo.png)       | ![Apache](./assets/readme/apache-logo.png)     |
+| Version control   | ![git](./assets/readme/git-logo.png)           | ![github](./assets/readme/github-logo.png)     |
 
 ## 5. Timeline
 
