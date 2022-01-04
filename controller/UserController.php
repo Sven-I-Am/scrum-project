@@ -35,6 +35,13 @@ class UserController
                 case 'logout':
                     $this->logoutUser($user);
                     break;
+                case 'askReset':
+                    if(!isset($_POST['email'])){
+                        require 'view/user/askReset.php';
+                    } else {
+                        $this->askReset($POST);
+                    }
+                    break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
                         if(isset($_POST['deleteAccount'])){
@@ -191,6 +198,14 @@ class UserController
         UserLoader::deleteUser($this->db, $user);
         unset($_SESSION['user']);
         echo "<script type='text/javascript'>alert('You deleted your account');</script>";
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        $products = ProductLoader::readAllProducts($this->db);
+        require 'view/homepage.php';
+    }
+
+    public function askReset($POST){
+        echo "<script type='text/javascript'>alert('You asked for a password reset');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);

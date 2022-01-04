@@ -20,6 +20,7 @@
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
         <p>Don't have an account? <a href="?user&action=register">Sign up now</a>.</p>
+        <p>Forgot your username or password? <a href="?user&action=askReset">Click here to reset</a>.</p>
     </form>
 </div>
 <?php require './view/includes/footer.php' ?>

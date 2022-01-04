@@ -33,6 +33,7 @@ CREATE TABLE `USER` (
                         `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
                         `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
                         `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+                        `token` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
                         `online` tinyint(1) DEFAULT 0,
                         PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
