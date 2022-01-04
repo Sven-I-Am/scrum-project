@@ -83,9 +83,9 @@ class ProductLoader
 
     /* code for product set sold */
 
-    public static function updateSoldStatus(PDO $PDO, $id, $date){
+    public static function updateSoldStatus(PDO $PDO, $id, $date, $status){
         var_dump("loader: ", $date);
-        $PDO->query("UPDATE PRODUCT SET sold = 1, selldate = '$date' WHERE id = $id");
+        $PDO->query("UPDATE PRODUCT SET sold = '$status', selldate = '$date' WHERE id = $id");
     }
 }
 
