@@ -240,9 +240,8 @@ class UserController
                     ';
                 $headers[] = 'MIME-Version: 1.0';
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = 'From: Gbay Password Reset <noreply@gbay.com>';
+                $headers[] = 'From: me <sven.vander.mierde@gmail.com>';
                 mail($to, $subject, $message, implode("\r\n", $headers));
-                echo "<script type='text/javascript'>alert('userid = $id, token = $strToken, email = $email, userName = $userName');</script>";
             }
         }
 
@@ -359,12 +358,14 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/homepage.php';
         }
 
