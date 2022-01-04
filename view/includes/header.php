@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-    <!-- Local CSS link
-    <link rel="stylesheet" href="./view/style/style.css"> -->
+    <!-- Local CSS link -->
+    <link rel="stylesheet" href="./view/style/style.css">
     <title>Gbay Ecommerce website</title>
 </head>
 <body>
