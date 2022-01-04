@@ -50,7 +50,7 @@ class Checks
         if (empty($password)){
             return "Password is required";
         } else {
-            if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+            if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,999}$/', $password)) {
                 return "Password should be the combination of letters and numbers and at least 8 characters long";
             } else{
                 return '';

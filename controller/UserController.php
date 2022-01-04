@@ -215,8 +215,8 @@ class UserController
             $email = Sanitize::sanitizeInput($POST['email']);
             $response = UserLoader::setToken($this->db, $strToken, $email);
             if(!empty($response)){
-                $token = $response['token'];
                 $userName = $response['userName'];
+                $id = $response['id'];
                 $to = $email;
                 $subject = 'GBay - Password reset requested';
                 $message = '
@@ -227,7 +227,8 @@ class UserController
                     <body>
                     <p>Dear $userName,</p>
                       <p>A password reset was requested for your Gbay account. <br>
-                      <a href="https://becode.local/?$token">Click here to reset your password!</a></p>
+                      <a href="https://becode.local/?user&uAuth=$id">Click here to reset your password!</a></p>
+                      <p>Enter the following code to authenticate your reset: <strong>$strToken</strong></p>
                       <p>If you didn\'t request this action, you can disregard this message.</p>
                       <p>Kind regards,</p>
                       <p>The Gbay team</p>
@@ -238,9 +239,7 @@ class UserController
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
                 $headers[] = 'From: Gbay Password Reset <noreply@gbay.com>';
                 mail($to, $subject, $message, implode("\r\n", $headers));
-                echo "<script type='text/javascript'>alert('email found');</script>";
-            } else {
-                echo "<script type='text/javascript'>alert('email not found');</script>";
+                echo "<script type='text/javascript'>alert('userid = $id, token = $strToken, email = $email, userName = $userName');</script>";
             }
         }
 
@@ -248,6 +247,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
+            header("location: http://becode.local/");
             require 'view/homepage.php';
         } else {
             require 'view/user/askReset.php';
