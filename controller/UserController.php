@@ -177,6 +177,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
@@ -191,6 +192,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        header("location: http://becode.local/");
         require 'view/homepage.php';
     }
 
@@ -201,6 +203,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        header("location: http://becode.local/");
         require 'view/homepage.php';
     }
 
@@ -335,6 +338,7 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             $categories = FilterLoader::getAllCategories($this->db);
