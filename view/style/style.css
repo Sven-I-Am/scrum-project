@@ -8,7 +8,8 @@
 }
 body{
     overflow-x: hidden;
-    background-image: linear-gradient(#bfc4e4 30%,#d1b9fd 70%);
+    /* background-image: linear-gradient(#bfc4e4 30%,#d1b9fd 70%); */
+    background-color: #cbc9c9;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,6 +20,10 @@ body{
 
 .find {
     cursor: pointer;
+    border: 4px solid rgb(240, 240, 240);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+
 }
 
 .label{
@@ -51,13 +56,18 @@ header .bi {
 
 header{
     font-size: 100%;
+
+}
+span{
+    border: 2px solid #e2e2e8 !important;;
+
 }
 
 header button:hover{
     letter-spacing: 0.5px;
     font-weight: bold;
-    background-image: linear-gradient(#bfc4e4 30%,#8e5ee7 70%);
-    color: black;
+    background-image: linear-gradient(#5f71ea 10%,#1d43a5 70%);
+    color: rgb(0, 0, 0);
 }
 
 /* product card */
@@ -65,8 +75,9 @@ header button:hover{
 .productCard {
     width: 300px;
     height: 400px;
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 2px;
+    border: 2px solid #e2e2e8 !important;;
 }
 
 .cardContent {
@@ -126,6 +137,7 @@ header button:hover{
 
 .cardCategory p{
     background: #042C3B;
+    
     border-radius: 5px;
     color: white;
 }
@@ -225,8 +237,8 @@ table.test{
 
 /* form setting */
 .wrapper{
-    border: 2px solid black;
-    background-color: white;
+    border: 1px solid rgb(31, 6, 42);
+    background-color: rgb(167, 123, 123);
 }
 .formFinePrint {
     display: block;
