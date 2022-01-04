@@ -44,7 +44,6 @@ class HomepageController
 
       require 'view/homepage.php';
 
-          }
     }        
 
     public function filterProducts($GET){
