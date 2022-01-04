@@ -1,6 +1,11 @@
 <?php require 'includes/header.php';?>
 
 <div class="container my-4">
+    <?php if(!empty($buy_err)){ ?>
+        <div class="row border-danger border-4 text-center text-danger">
+            <?php echo $buy_err; ?>
+        </div>
+    <?php } ?>
         <div class="row row-cols-1 row-cols-md-4 g-4 ">
 
             <?php

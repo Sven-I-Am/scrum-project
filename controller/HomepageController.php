@@ -19,7 +19,7 @@ class HomepageController
             switch ($GET['action']){
                 case 'buy':
                     $this->productCart($POST);
-                    require 'view/homepage.php';
+
                     break;
                 case 'terms':
                     require 'view/terms.php';
@@ -32,6 +32,9 @@ class HomepageController
                     break;
                 case 'cart':
                     require 'view/cart.php';
+                    break;
+                case 'cancelPurchase':
+                    $this->cancelPurchase($POST);
                     break;
             }
         }
@@ -64,20 +67,38 @@ class HomepageController
     }
 
     public function productCart($POST){
+        $id = $POST['productId'];
+        $product = ProductLoader::readOneProduct($this->db, $id);
+        if (!$product->getSold()){
+            $date = new DateTime();
+            $status = 1;
+            ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'), $status);
+//        unset($_SESSION['cart']);
+            if(!isset($_SESSION['cart'])){
+                $_SESSION['cart'] = [];
+            }
+            array_push($_SESSION['cart'], ProductLoader::readOneProduct($this->db, $id));
+        } else {
+            echo "<script type='text/javascript'>alert('Sorry, this product has already been sold!');</script>";
+        }
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        $products = ProductLoader::readAllProducts($this->db);
+        require 'view/homepage.php';
+    }
 
-        $date = new DateTime();
-        $id = $POST['productId'];   
-        $status = 1;   
-                      
-        ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'), $status);
-
-        unset($_SESSION['cart']);
-
-        if(!isset($_SESSION['cart'])){
-            $_SESSION['cart'] = [];
-        }            
-        
-        array_push($_SESSION['cart'], ProductLoader::readOneProduct($this->db, $id));              
+    public function cancelPurchase($POST){
+        foreach ($_SESSION['cart'] as $key=>$product){
+            if($product->getId() == $POST['productId']){
+                array_splice($_SESSION['cart'], $key, 1);
+            }
+        }
+        $date = '1984-01-01';
+        $id = $POST['productId'];
+        $status = 0;
+        ProductLoader::updateSoldStatus($this->db, $id, $date, $status);
+        header("location: http://becode.local/?action=cart");
+        require 'view/cart.php';
     }
 }
 

@@ -188,7 +188,16 @@ class UserController
     public function logoutUser($user) {
         $user->setOffline($this->db, $user->getId());
         unset($_SESSION['user']);
-        unset($_SESSION['cart']);
+        if(isset($_SESSION['cart'])){
+            $cartProducts = $_SESSION['cart'];
+            foreach ($cartProducts as $product){
+                $date = '1984-01-01';
+                $id = $product->getId();
+                $status = 0;
+                ProductLoader::updateSoldStatus($this->db, $id, $date, $status);
+            }
+            unset($_SESSION['cart']);
+        }
         echo "<script type='text/javascript'>alert('You logged out');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);

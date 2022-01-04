@@ -55,10 +55,10 @@
                     </div>
                     <div>
                         <!-- If we require Shopping-Cart -->
-                        <?php if(!isset($_SESSION['cart'])){ ?>
+                        <?php if(empty($_SESSION['cart'])){ ?>
                             <a href="?action=cart"><i class="bi bi-cart"></i></a>
                         <?php }else{?>
-                            <a href="#"><i class="bi bi-cart-fill"></i></a>
+                            <a href="?action=cart"><i class="bi bi-cart-fill"></i></a>
                         <?php }?>
                     </div>
                 </div>

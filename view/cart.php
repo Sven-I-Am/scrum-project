@@ -16,12 +16,14 @@
   
   <tbody>
 <!-- info come from database goes here  -->
+<?php foreach ($_SESSION['cart'] as $product) { ?>
     <tr>
-    <td>Pokemon</td>
-      <td>its a soft toy</td>
-      <td>99.99</td>
-      <td><button type="submit" class="btn btn-outline-primary btn-sm">Cancel</button></td>
+        <td><?php echo $product->getName(); ?></td>
+        <td><?php echo $product->getDescription(); ?></td>
+        <td><?php echo $product->getPrice(); ?> &euro;</td>
+        <td><form method="post" action="?action=cancelPurchase"><button name="productId" type="submit" class="btn btn-outline-primary btn-sm" value="<?php echo $product->getId(); ?>">Cancel</button></form></td>
     </tr>
+<?php } ?>
 </tbody>
 </table>
 </div>
