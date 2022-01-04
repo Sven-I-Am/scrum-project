@@ -21,6 +21,9 @@ class HomepageController
                 case 'terms':
                     require 'view/terms.php';
                     break;
+                case 'cart':
+                        require 'view/cart.php';
+                        break;
             }
         }
 

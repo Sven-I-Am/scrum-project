@@ -172,42 +172,28 @@ header button:hover{
 
 
 /* Cart setting */
-
-
-
-.cartBody{
-margin-top: 100px;
-}
 table{
-    width:50%;   
+    width:100%;   
+    margin-left: 5px;
 }
 table.test{
-    width: 50%;
-    margin-left: 5px;
-    
+    width: 80%;
+    margin-left: 5%; 
+    margin-top:5%;    
 }
 .cart{
-    margin-left: 10%;
     margin-top: 5%;
+    text-align: center;
+}
+.cart1{
+    margin-top: 5%;
+    text-align: center;
 }
 .checkout{
-    width: 50%;
-    margin-right:-5px;
+    width: 80%;
+    margin-top:5%; 
 }
-.column {
-    float: left;
-    /* width: 50%; */
-    padding:10px;
-    /* height: 300px; Should be removed. Only for demonstration */
-  }
   
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
 
 /* Dashboard setting */
 
