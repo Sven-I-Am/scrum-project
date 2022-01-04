@@ -21,11 +21,34 @@ class HomepageController
                 case 'terms':
                     require 'view/terms.php';
                     break;
+                    case 'search':
+                        $this->search($POST);
+
+                        break;
+    
             }
         }
 
     }
+    public function search($POST) {
+        if (isset($_POST['submit'])) {
+            $inpText = $_POST['search'];
+            $sql = 'SELECT name FROM PRODUCT WHERE name LIKE :name';
+            $stmt = $PDO->prepare($sql);
+            $stmt->execute(['name' => '%' . $inpText . '%']);
+            $result = $stmt->fetchAll();
+        
+            if ($result) {
+              foreach ($result as $row) {
+                echo '<a href="#" class="list-group-item list-group-item-action border-1">' . $row['name'] . '</a>';
+              }
+            } else {
+              echo 'No Record';
+            }
+          }
+        }        
 }
+
 
 /* code to set sold status
 

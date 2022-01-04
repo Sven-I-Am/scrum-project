@@ -26,7 +26,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="collapse navbar-collapse d-flex" action ="helper/details.php" method = "post">
+                    <form class="collapse navbar-collapse d-flex" action ="?action=search" method = "post">
                         <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="category">
                         <option value="0" selected>All categories</option>
                         <?php forEach($categories as $category) {?>

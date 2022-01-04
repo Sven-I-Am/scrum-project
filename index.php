@@ -22,8 +22,6 @@ require 'controller/UserController.php';
 require 'helper/component.php';
 require 'helper/Sanitize.php';
 require 'helper/Checks.php';
-require 'helper/details.php';
-require 'helper/action.php';
 
 
 
