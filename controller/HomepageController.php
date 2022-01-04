@@ -31,6 +31,10 @@ class HomepageController
             if(in_array($GET['action'], $categoryName)){
                 $products = ProductLoader::readAllProductByCategory($this->db, $GET['action']);
                 require 'view/homepage.php';
+            }
+            if(in_array($GET['action'], $universeName)){
+                $products = ProductLoader::readAllProductByUniverse($this->db, $GET['action']);
+                require 'view/homepage.php';
             }else{
                 switch ($GET['action']){
                     case 'buy':
