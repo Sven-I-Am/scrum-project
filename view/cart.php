@@ -1,7 +1,4 @@
-<!-- Local CSS link -->
-<link rel="stylesheet" href="../view/style/style.css">
 <?php require 'includes/header.php';?>
-
 
 <div class="row">
 <div class="col">
@@ -23,7 +20,7 @@
     <td>Pokemon</td>
       <td>its a soft toy</td>
       <td>99.99</td>
-      <td><button type="submit" class="btn btn-outline-primary  btn-sm">Cancel</button></td>
+      <td><button type="submit" class="btn btn-outline-primary btn-sm">Cancel</button></td>
     </tr>
 </tbody>
 </table>
