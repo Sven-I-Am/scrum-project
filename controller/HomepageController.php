@@ -28,12 +28,15 @@ class HomepageController
         }
 
     }
-    public static function search($POST) {
-        if (isset($_POST['submit'])) {
-            $inpText = $_POST['search'];
+    public function search($POST) {
+      $products = ProductLoader::readAllProductByName($this->db,$POST);
+      $categories = FilterLoader::getAllCategories($this->db);
+      $universes = FilterLoader::getAllUniverses($this->db);
+
+      require 'view/homepage.php';
+
           }
-        }        
-}
+}        
 
 
 /* code to set sold status
