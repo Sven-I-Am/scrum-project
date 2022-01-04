@@ -75,6 +75,27 @@ class ProductLoader
 
     }
 
+    public static function readAllProductByUniverse(PDO $PDO, $universeName)
+    {
+        $productsArray = [];
+
+        $data = $PDO->prepare('SELECT * FROM UNIVERSE WHERE name = :name');
+        $data->execute([':name' => $universeName]);
+        $universe = $data->fetch();
+        $id = intval($universe['id']);
+
+        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE uid = :uid AND sold = 0');
+        $stmt->execute([':uid' => $id]);
+        $products = $stmt->fetchAll();        
+
+        foreach($products as $product){
+            array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        }
+
+        return $productsArray;      
+
+    }
+
     //Update product
     public static function updateProduct(PDO $PDO, Product $product){
         $id = $product->getId();
@@ -120,7 +141,6 @@ class ProductLoader
 
     /* code for product set soldStatus */
     public static function updateSoldStatus(PDO $PDO, $id, $date, $status){
-        var_dump("loader: ", $date);
         $PDO->query("UPDATE PRODUCT SET sold = '$status', selldate = '$date' WHERE id = $id");
     }
 }
