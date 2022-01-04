@@ -13,28 +13,45 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        $categoryName = [];
+        $universeName = [];
+        
+        foreach($universes as $universe){
+            array_push($universeName, $universe['name']);
+        }
+
+        foreach($categories as $category){
+            array_push($categoryName, $category['name']);
+        }
 
         if(!isset($GET['action'])) {
             require 'view/homepage.php';
-        } else {
-            switch ($GET['action']){
-                case 'buy':
-                    $this->productCart($POST);
-                    require 'view/homepage.php';
-                    break;
-                case 'new':
-                    $products = ProductLoader::readAllProductByCondition($this->db, "new");
-                    require 'view/homepage.php';
-                    break;
-                case 'good':
-                    $products = ProductLoader::readAllProductByCondition($this->db, "good");
-                    require 'view/homepage.php';
-                    break;
-                case 'used':
-                    $products = ProductLoader::readAllProductByCondition($this->db, "used");
-                    require 'view/homepage.php';
-                    break;
+        }else {
+
+            if(in_array($GET['action'], $categoryName)){
+                $products = ProductLoader::readAllProductByCategory($this->db, $GET['action']);
+                require 'view/homepage.php';
+            }else{
+                switch ($GET['action']){
+                    case 'buy':
+                        $this->productCart($POST);
+                        require 'view/homepage.php';
+                        break;
+                    case 'new':
+                        $products = ProductLoader::readAllProductByCondition($this->db, "new");
+                        require 'view/homepage.php';
+                        break;
+                    case 'good':
+                        $products = ProductLoader::readAllProductByCondition($this->db, "good");
+                        require 'view/homepage.php';
+                        break;
+                    case 'used':
+                        $products = ProductLoader::readAllProductByCondition($this->db, "used");
+                        require 'view/homepage.php';
+                        break;
+                }
             }
+            
         }
 
     }
