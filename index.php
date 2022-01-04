@@ -23,6 +23,8 @@ require 'helper/component.php';
 require 'helper/Sanitize.php';
 require 'helper/Checks.php';
 
+
+
 session_start();
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!

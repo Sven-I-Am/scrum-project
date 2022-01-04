@@ -156,6 +156,42 @@ Logos are added on a project basis, I have them stored in a separate folder loca
         - Made sure the $user object gets saved in a $_SESSION variable once a user logs in
         - Wrote the logout functionality (unset $_SESSION variable)
         - Wrote the go-to dash functionality
+- Day 7 (:date: 28/12/2021)
+  - Once again there was a short stand-up meeting in the morning.
+    - some conflict arose caused by misunderstandings and the language barrier (these got resolved before the end of the day)
+  - Barbara:
+    - worked on the integration of the product related code into the main project code
+  - Neha:
+    - continued fine tuning the styling
+    - worked on the user dashboard
+    - added a dropdown for universe to the header
+  - Zain:
+    - finished work on the user related forms (remembering the data when the form reloads after a failed attempt)
+    - finished work on the updateUser functionality
+    - wrote the terms of use for the project
+  - Sven:
+    - wrote methods to call all universes and all categories out of the database (to populate the dropdowns)
+    - fixed merge issues where needed
+    - tried to help others if questions arose
+- **days off between day 7 and day 8**
+  - Sven refactored all the written code into a working product where all available functionality works as needed
+  - This took 3 full days and about 70 commits
+- Day 8 (:date:03/01/2022)
+  - first project day of 2022 started once again with a standup meeting where Sven updated the group on the refactored code.
+  - After making sure the refactorbranch was as up to date as could be (adding some code into comments for later use), the refactor branch was merged into main
+  - All branches outside of main were pruned and a new development branch was started out of the main
+  - The group went over the tickets and started working in their new branches:
+  - Barbara:
+    - worked on adding functionality to the 'buy' button
+  - Neha:
+    - had a cevora meeting before lunch
+  - Zain:
+    - had to rewrite the .sql file to work on her MacOs environment
+    - ran into issues with return type declarations because she is using an older version of php
+      - for now she will remove return type declarations if they cause issues, untill she can update to php 8.0 or up
+  - Sven:
+    - added the option to sell multiple items of the same product at once
+    - updated the readme
 
 ## 6. What I learned from this exercise
 
@@ -189,6 +225,7 @@ objectives they will be moved up into the timeline section and ticked off using 
         - Delete product :heavy_check_mark:
         - Change product :heavy_check_mark:
         - Add product :heavy_check_mark:
+          - can add multiple of the same product at once :heavy_check_mark:
     - Checkout
         - Buyer has to provide valid email so seller can contact them
         - seller gets email with buyer info to contact
@@ -202,5 +239,6 @@ objectives they will be moved up into the timeline section and ticked off using 
 1. clone this repository to your local environment directory
 2. git checkout to the development branch
 3. follow the instructions in the .env.config file
-4. open the index.php on your local apache server
-5. Make sure to create a new branch of the development branch before you start working on a new feature/issue/bugfix
+4. run the `./database/database.sql` to create the database locally
+5. open the index.php on your local apache server
+6. Make sure to create a new branch of the development branch before you start working on a new feature/issue/bugfix

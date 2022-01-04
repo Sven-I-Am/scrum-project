@@ -30,13 +30,18 @@ class Checks
                 return "Invalid email format";
             } else {
                 //changes here
-                $uniqueTest = Sanitize::sanitizeInput($email);
-                $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
-                if ($uniqueResponse) {
-                    return "An account is already registered to this email address!";
+                if ($_GET['action']!=='askReset'){
+                    $uniqueTest = Sanitize::sanitizeInput($email);
+                    $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
+                    if ($uniqueResponse) {
+                        return "An account is already registered to this email address!";
+                    } else {
+                        return '';
+                    }
                 } else {
                     return '';
                 }
+
             }
         }
     }
@@ -45,7 +50,7 @@ class Checks
         if (empty($password)){
             return "Password is required";
         } else {
-            if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+            if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,999}$/', $password)) {
                 return "Password should be the combination of letters and numbers and at least 8 characters long";
             } else{
                 return '';
