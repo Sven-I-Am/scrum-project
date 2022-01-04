@@ -29,19 +29,19 @@ class HomepageController
 
     public function productCart($POST){
 
-        var_dump($POST['productId']);
         $date = new DateTime();
         $id = $POST['productId'];   
         $status = 1;   
                       
         ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'), $status);
 
+        unset($_SESSION['cart']);
+
         if(!isset($_SESSION['cart'])){
             $_SESSION['cart'] = [];
         }            
         
         array_push($_SESSION['cart'], ProductLoader::readOneProduct($this->db, $id));              
-
     }
 }
 
