@@ -205,11 +205,25 @@ class UserController
     }
 
     public function askReset($POST){
-        echo "<script type='text/javascript'>alert('You asked for a password reset');</script>";
-        $categories = FilterLoader::getAllCategories($this->db);
-        $universes = FilterLoader::getAllUniverses($this->db);
-        $products = ProductLoader::readAllProducts($this->db);
-        require 'view/homepage.php';
+        $error = false;
+        $emailCheck = Checks::checkEmail($this->db, $POST['email']);
+        if (!empty($emailCheck)){
+            $email_err = $emailCheck;
+            $error = true;
+        } else {
+            echo "<script type='text/javascript'>alert('Valid email address.');</script>";
+        }
+
+        if(!$error){
+            echo "<script type='text/javascript'>alert('An email was sent.');</script>";
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            $products = ProductLoader::readAllProducts($this->db);
+            require 'view/homepage.php';
+        } else {
+            require 'view/user/askReset.php';
+        }
+
     }
 
     public function doAction($POST,$user): array

@@ -9,7 +9,8 @@
     <form action="?user&action=askReset" method="post">
         <div class="form-group">
             <label>Email
-                <input type="text" name="email" class="form-control" placeholder="example@domain.com">
+                <input type="email" name="email" placeholder="name@gmail.com" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php if(isset($_POST['userName'])){echo $_POST['email'];} ?>">
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </label>
         </div>
         <div class="form-group">
