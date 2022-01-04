@@ -211,11 +211,17 @@ class UserController
             $email_err = $emailCheck;
             $error = true;
         } else {
-            echo "<script type='text/javascript'>alert('Valid email address.');</script>";
+            $strToken = rand(999, 99999);
+            $email = Sanitize::sanitizeInput($POST['email']);
+            $token = UserLoader::setToken($this->db, $strToken, $email);
+            if(!empty($token)){
+                echo "<script type='text/javascript'>alert('email found');</script>";
+            } else {
+                echo "<script type='text/javascript'>alert('email not found');</script>";
+            }
         }
 
         if(!$error){
-            echo "<script type='text/javascript'>alert('An email was sent.');</script>";
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);

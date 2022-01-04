@@ -30,13 +30,18 @@ class Checks
                 return "Invalid email format";
             } else {
                 //changes here
-                $uniqueTest = Sanitize::sanitizeInput($email);
-                $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
-                if ($uniqueResponse) {
-                    return "An account is already registered to this email address!";
+                if ($_GET['action']!=='askReset'){
+                    $uniqueTest = Sanitize::sanitizeInput($email);
+                    $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
+                    if ($uniqueResponse) {
+                        return "An account is already registered to this email address!";
+                    } else {
+                        return '';
+                    }
                 } else {
                     return '';
                 }
+
             }
         }
     }

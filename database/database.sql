@@ -87,7 +87,7 @@ UNLOCK TABLES;
 --
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES (1,'test1','zenixeee@gmail.com','$2y$10$vmt7J5l7CHJbVhAcvC7ZhOrMRpnVQjUAtD55JxAJpnxM51Esb0ZHC',false),(2,'test2','zenixeee@gmail.com','$2y$10$fq2Ksing3I5SvI6RY8l5oOc.bRphnbaoqydyED3QFwzOJMXRfnq2q', false),(3,'test3','zenimtiaz@gmail.com','$2y$10$vDMNJOz2muCtPiZGaLseGOnAJOgP9WpQusn4HPI2iGqN.KOZZ924O', false),(4,'test4','zenixeee@gmail.com','$2y$10$xe6avbQEjKz1ZabmyWnyDe1yT1q0B1bQx5Fdvf4AmrB4ZBJO4I7EG', false),(5,'test5','barabara@gmail.com','$2y$10$/6tt2fkukOySxfpKjsVBI.y6/F4OcH3wqKjBeI.j1CmEaOeG4U0se', false);
+INSERT INTO `USER` VALUES (1,'test1','zenixeee@gmail.com','$2y$10$vmt7J5l7CHJbVhAcvC7ZhOrMRpnVQjUAtD55JxAJpnxM51Esb0ZHC', null,false),(2,'test2','zenixeee@gmail.com','$2y$10$fq2Ksing3I5SvI6RY8l5oOc.bRphnbaoqydyED3QFwzOJMXRfnq2q', null, false),(3,'test3','zenimtiaz@gmail.com','$2y$10$vDMNJOz2muCtPiZGaLseGOnAJOgP9WpQusn4HPI2iGqN.KOZZ924O', null, false),(4,'test4','zenixeee@gmail.com','$2y$10$xe6avbQEjKz1ZabmyWnyDe1yT1q0B1bQx5Fdvf4AmrB4ZBJO4I7EG', null, false),(5,'test5','barabara@gmail.com','$2y$10$/6tt2fkukOySxfpKjsVBI.y6/F4OcH3wqKjBeI.j1CmEaOeG4U0se', null, false);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 --
