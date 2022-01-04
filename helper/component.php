@@ -1,6 +1,6 @@
 <?php
 
-function component($id, $img, $name, $description, $universe, $category, $condition){
+function component($id, $img, $name, $description, $universe, $category, $condition, $uid, $catId){
 
     switch($condition){
         case 'new':
@@ -27,9 +27,9 @@ function component($id, $img, $name, $description, $universe, $category, $condit
                     </div>
                 </div>
                 <div class='row productDetails'>
-                    <div class='col text-center cardUniverse'><p>$universe</p></div>
-                    <div class='col text-center cardCategory'><p>$category</p></div>
-                    <div class='col text-center cardCondition'><p class='$conditionClass'>$condition</p></div>
+                    <div class='col text-center cardUniverse'><a class='badgeLink' href='?action=filter&u=$uid'><p>$universe</p></a></div>
+                    <div class='col text-center cardCategory'><a class='badgeLink' href='?action=filter&cat=$catId'><p>$category</p></a></div>
+                    <div class='col text-center cardCondition'><a class='badgeLink' href='?action=filter&cond=$condition'><p class='$conditionClass'>$condition</p></a></div>
                 </div> 
                 <div class='row'>
                 <input name='productId' value='$id' class='productId'>

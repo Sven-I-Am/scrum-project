@@ -188,6 +188,7 @@ class UserController
     public function logoutUser($user) {
         $user->setOffline($this->db, $user->getId());
         unset($_SESSION['user']);
+        unset($_SESSION['cart']);
         echo "<script type='text/javascript'>alert('You logged out');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);

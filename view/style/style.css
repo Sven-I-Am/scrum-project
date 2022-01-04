@@ -113,6 +113,11 @@ header button:hover{
     font-weight: bold;
 }
 
+.badgeLink,
+.badgeLink:hover {
+    text-decoration: none;
+}
+
 .cardUniverse p{
     background: #CC0000;
     border-radius: 5px;
@@ -179,7 +184,7 @@ table{
 table.test{
     width: 80%;
     margin-left: 5%; 
-    margin-top:5%;    
+    margin-top:5%;   
 }
 .cart{
     margin-top: 5%;
@@ -193,7 +198,6 @@ table.test{
     width: 80%;
     margin-top:5%; 
 }
-  
 
 /* Dashboard setting */
 

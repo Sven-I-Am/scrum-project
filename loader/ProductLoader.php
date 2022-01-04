@@ -38,6 +38,63 @@ class ProductLoader
         $product = $stmt->fetch();
         return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
+
+    public static function readAllProductByCondition(PDO $PDO, $condition)
+    {
+        $productsArray = [];
+        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE `condition` = :condition AND sold = 0');
+        $stmt->execute([':condition' => $condition]);
+        $products = $stmt->fetchAll();        
+
+        foreach($products as $product){
+            array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        }
+
+        return $productsArray;      
+
+    }
+
+    public static function readAllProductByCategory(PDO $PDO, $categoryName)
+    {
+        $productsArray = [];
+
+        $data = $PDO->prepare('SELECT * FROM CATEGORY WHERE name = :name');
+        $data->execute([':name' => $categoryName]);
+        $category = $data->fetch();
+        $id = intval($category['id']);
+
+        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE categoryid = :catId AND sold = 0');
+        $stmt->execute([':catId' => $id]);
+        $products = $stmt->fetchAll();        
+
+        foreach($products as $product){
+            array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        }
+
+        return $productsArray;      
+
+    }
+
+    public static function filterProducts(PDO $PDO, array $filter)
+    {
+        $productsArray=[];
+        if(!empty($filter['universe'])){
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE uid = :uid AND sold = 0');
+            $stmt->execute([':uid' => $filter['universe']]);
+        } elseif(!empty($filter['category'])) {
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE categoryid = :cat AND sold = 0');
+            $stmt->execute([':cat' => $filter['category']]);
+        } elseif(!empty($filter['condition'])) {
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE `condition` = :cond AND sold = 0');
+            $stmt->execute([':cond' => $filter['condition']]);
+        }
+        $products = $stmt->fetchAll();
+        foreach($products as $product){
+            array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
+        }
+        return $productsArray;
+    }
+
     //Update product
     public static function updateProduct(PDO $PDO, Product $product){
         $id = $product->getId();
@@ -94,14 +151,12 @@ class ProductLoader
         return $productsArray;
     }
 
-
+    /* code for product set soldStatus */
+    public static function updateSoldStatus(PDO $PDO, $id, $date, $status){
+        $PDO->query("UPDATE PRODUCT SET sold = '$status', selldate = '$date' WHERE id = $id");
+    }
 }
 
-/* code for product set sold
 
- public static function updateSoldStatus(PDO $PDO, $id, $date){
-        var_dump("loader: ", $date);
-        $PDO->query("UPDATE PRODUCT SET sold = 1, selldate = '$date' WHERE id = $id");
-    }
+    
 
-*/

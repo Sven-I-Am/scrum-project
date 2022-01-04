@@ -17,8 +17,15 @@ class HomepageController
             require 'view/homepage.php';
         } else {
             switch ($GET['action']){
+                case 'buy':
+                    $this->productCart($POST);
+                    require 'view/homepage.php';
+                    break;
                 case 'terms':
                     require 'view/terms.php';
+                    break;
+                case 'filter':
+                    $this->filterProducts($GET);
                     break;
                 case 'search':
                     $this->search($POST);
@@ -28,8 +35,8 @@ class HomepageController
                     break;
             }
         }
-
     }
+  
     public function search($POST) {
       $products = ProductLoader::readAllProductByName($this->db,$POST);
       $categories = FilterLoader::getAllCategories($this->db);
@@ -38,21 +45,40 @@ class HomepageController
       require 'view/homepage.php';
 
           }
-}        
+    }        
 
-
-/* code to set sold status
-
-if(isset($_POST['buy'])){
-            echo "ola";
-            $date = new DateTime();
-            $id = $_POST['buy'];
-
-            var_dump("controller: ",date_format($date, 'Y-m-d'));
-
-            ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'));
+    public function filterProducts($GET){
+        $filter = ['universe' => '', 'category' => '', 'condition' => ''];
+        if(isset($GET['u'])){
+            $filter['universe'] = Sanitize::sanitizeInput($GET['u']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
+        }elseif(isset($GET['cat'])){
+            $filter['category'] = Sanitize::sanitizeInput($GET['cat']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
+        } elseif(isset($GET['cond'])){
+            $filter['condition'] = Sanitize::sanitizeInput($GET['cond']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
         }
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        require 'view/homepage.php';
+    }
 
-        require 'View/product.php';
+    public function productCart($POST){
 
-*/
+        $date = new DateTime();
+        $id = $POST['productId'];   
+        $status = 1;   
+                      
+        ProductLoader::updateSoldStatus($this->db, $id, date_format($date, 'Y-m-d'), $status);
+
+        unset($_SESSION['cart']);
+
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart'] = [];
+        }            
+        
+        array_push($_SESSION['cart'], ProductLoader::readOneProduct($this->db, $id));              
+    }
+}
+
