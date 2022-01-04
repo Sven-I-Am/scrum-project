@@ -13,51 +13,43 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        $categoryName = [];
-        $universeName = [];
-        
-        foreach($universes as $universe){
-            array_push($universeName, $universe['name']);
-        }
-
-        foreach($categories as $category){
-            array_push($categoryName, $category['name']);
-        }
 
         if(!isset($GET['action'])) {
             require 'view/homepage.php';
-        }else {
-
-            if(in_array($GET['action'], $categoryName)){
-                $products = ProductLoader::readAllProductByCategory($this->db, $GET['action']);
-                require 'view/homepage.php';
+        } else {
+            switch ($GET['action']){
+                case 'buy':
+                    $this->productCart($POST);
+                    require 'view/homepage.php';
+                    break;
+                case 'terms':
+                    require 'view/terms.php';
+                    break;
+                case 'cart':
+                    require 'view/cart.php';
+                    break;
+                case 'filter':
+                    $this->filterProducts($GET);
+                    break;
             }
-            if(in_array($GET['action'], $universeName)){
-                $products = ProductLoader::readAllProductByUniverse($this->db, $GET['action']);
-                require 'view/homepage.php';
-            }else{
-                switch ($GET['action']){
-                    case 'buy':
-                        $this->productCart($POST);
-                        require 'view/homepage.php';
-                        break;
-                    case 'new':
-                        $products = ProductLoader::readAllProductByCondition($this->db, "new");
-                        require 'view/homepage.php';
-                        break;
-                    case 'good':
-                        $products = ProductLoader::readAllProductByCondition($this->db, "good");
-                        require 'view/homepage.php';
-                        break;
-                    case 'used':
-                        $products = ProductLoader::readAllProductByCondition($this->db, "used");
-                        require 'view/homepage.php';
-                        break;
-                }
-            }
-            
         }
+    }
 
+    public function filterProducts($GET){
+        $filter = ['universe' => '', 'category' => '', 'condition' => ''];
+        if(isset($GET['u'])){
+            $filter['universe'] = Sanitize::sanitizeInput($GET['u']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
+        }elseif(isset($GET['cat'])){
+            $filter['category'] = Sanitize::sanitizeInput($GET['cat']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
+        } elseif(isset($GET['cond'])){
+            $filter['condition'] = Sanitize::sanitizeInput($GET['cond']);
+            $products = ProductLoader::filterProducts($this->db, $filter);
+        }
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
+        require 'view/homepage.php';
     }
 
     public function productCart($POST){

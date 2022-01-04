@@ -8,7 +8,7 @@
             ?>
                     <form method='post' class='productCard p-2 mx-2 my-4 border border-4 border-dark' action="?home&action=buy">
                         <?php
-                            component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition());
+                            component($product->getId(), $product->getImage(), $product->getName(), $product->getDescription(), $universes[$product->getUniverseId()-1]['name'], $categories[$product->getCategoryId()-1]['name'], $product->getCondition(), $product->getUniverseId(), $product->getCategoryId());
                         ?>
                                 <button type='submit' class='btn btn-outline-primary cardBtn'>
                                     <p class='productPrice'><?php echo $product->getPrice(); ?> &euro;</p>

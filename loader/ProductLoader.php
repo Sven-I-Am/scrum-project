@@ -75,25 +75,24 @@ class ProductLoader
 
     }
 
-    public static function readAllProductByUniverse(PDO $PDO, $universeName)
+    public static function filterProducts(PDO $PDO, array $filter)
     {
-        $productsArray = [];
-
-        $data = $PDO->prepare('SELECT * FROM UNIVERSE WHERE name = :name');
-        $data->execute([':name' => $universeName]);
-        $universe = $data->fetch();
-        $id = intval($universe['id']);
-
-        $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE uid = :uid AND sold = 0');
-        $stmt->execute([':uid' => $id]);
-        $products = $stmt->fetchAll();        
-
+        $productsArray=[];
+        if(!empty($filter['universe'])){
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE uid = :uid AND sold = 0');
+            $stmt->execute([':uid' => $filter['universe']]);
+        } elseif(!empty($filter['category'])) {
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE categoryid = :cat AND sold = 0');
+            $stmt->execute([':cat' => $filter['category']]);
+        } elseif(!empty($filter['condition'])) {
+            $stmt = $PDO->prepare('SELECT * FROM PRODUCT WHERE `condition` = :cond AND sold = 0');
+            $stmt->execute([':cond' => $filter['condition']]);
+        }
+        $products = $stmt->fetchAll();
         foreach($products as $product){
             array_push($productsArray, new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']));
         }
-
-        return $productsArray;      
-
+        return $productsArray;
     }
 
     //Update product

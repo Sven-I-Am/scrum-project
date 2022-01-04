@@ -113,6 +113,11 @@ header button:hover{
     font-weight: bold;
 }
 
+.badgeLink,
+.badgeLink:hover {
+    text-decoration: none;
+}
+
 .cardUniverse p{
     background: #CC0000;
     border-radius: 5px;
@@ -170,6 +175,31 @@ header button:hover{
     display: inline-block;
 }
 
+
+/* Cart setting */
+table{
+    width:100%;
+    margin-left: 5px;
+}
+table.test{
+    width: 80%;
+    margin-left: 5%;
+    margin-top:5%;
+}
+.cart{
+    margin-top: 5%;
+    text-align: center;
+}
+.cart1{
+    margin-top: 5%;
+    text-align: center;
+}
+.checkout{
+    width: 80%;
+    margin-top:5%;
+}
+
+
 /* Dashboard setting */
 
 .dashboard{
@@ -201,7 +231,7 @@ header button:hover{
 }
 .formFinePrint {
     display: block;
-    font-size: 75%;
+    font-size: 60%;
 }
 
 /* product dashboard */
