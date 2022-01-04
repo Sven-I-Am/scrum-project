@@ -35,6 +35,13 @@ class UserController
                 case 'logout':
                     $this->logoutUser($user);
                     break;
+                case 'askReset':
+                    if(!isset($_POST['email'])){
+                        require 'view/user/askReset.php';
+                    } else {
+                        $this->askReset($POST);
+                    }
+                    break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
                         if(isset($_POST['deleteAccount'])){
@@ -170,6 +177,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
@@ -184,6 +192,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        header("location: http://becode.local/");
         require 'view/homepage.php';
     }
 
@@ -194,7 +203,58 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        header("location: http://becode.local/");
         require 'view/homepage.php';
+    }
+
+    public function askReset($POST){
+        $error = false;
+        $emailCheck = Checks::checkEmail($this->db, $POST['email']);
+        if (!empty($emailCheck)){
+            $email_err = $emailCheck;
+            $error = true;
+        } else {
+            $strToken = rand(999, 99999);
+            $email = Sanitize::sanitizeInput($POST['email']);
+            $response = UserLoader::setToken($this->db, $strToken, $email);
+            if(!empty($response)){
+                $userName = $response['userName'];
+                $id = $response['id'];
+                $to = $email;
+                $subject = 'GBay - Password reset requested';
+                $message = '
+                    <html>
+                    <head>
+                      <title>A password reset was requested</title>
+                    </head>
+                    <body>
+                    <p>Dear $userName,</p>
+                      <p>A password reset was requested for your Gbay account. <br>
+                      <a href="https://becode.local/?user&uAuth=$id">Click here to reset your password!</a></p>
+                      <p>Enter the following code to authenticate your reset: <strong>$strToken</strong></p>
+                      <p>If you didn\'t request this action, you can disregard this message.</p>
+                      <p>Kind regards,</p>
+                      <p>The Gbay team</p>
+                    </body>
+                    </html>
+                    ';
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                $headers[] = 'From: me <sven.vander.mierde@gmail.com>';
+                mail($to, $subject, $message, implode("\r\n", $headers));
+            }
+        }
+
+        if(!$error){
+            $categories = FilterLoader::getAllCategories($this->db);
+            $universes = FilterLoader::getAllUniverses($this->db);
+            $products = ProductLoader::readAllProducts($this->db);
+            header("location: http://becode.local/");
+            require 'view/homepage.php';
+        } else {
+            require 'view/user/askReset.php';
+        }
+
     }
 
     public function doAction($POST,$user): array
@@ -277,6 +337,7 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             $categories = FilterLoader::getAllCategories($this->db);
@@ -297,12 +358,14 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
+            header("location: http://becode.local/?user&action=dashboard");
             require 'view/homepage.php';
         }
 
