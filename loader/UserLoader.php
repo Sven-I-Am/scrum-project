@@ -73,13 +73,6 @@ class UserLoader
         return new User($updatedUser['userid'], $updatedUser['username'], $updatedUser['email'], $updatedUser['password']);
     }
     //Delete user account
-    public static function deleteUser(PDO $PDO, User $user)
-    {
-        $stmt = $PDO->prepare('DELETE FROM PRODUCT WHERE userid = :id');
-        $stmt->execute([':id' => $user->getId()]);
-        $stmt = $PDO->prepare('DELETE FROM USER WHERE userid = :id');
-        $stmt->execute([':id' => $user->getId()]);
-        $stmt = null;
-    }
+
    
 }
