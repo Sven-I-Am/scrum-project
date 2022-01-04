@@ -183,15 +183,51 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - The group went over the tickets and started working in their new branches:
   - Barbara:
     - worked on adding functionality to the 'buy' button
+    - cevora after lunch
   - Neha:
     - had a cevora meeting before lunch
+    - after lunch, worked on the cart and checkout views
   - Zain:
     - had to rewrite the .sql file to work on her MacOs environment
     - ran into issues with return type declarations because she is using an older version of php
       - for now she will remove return type declarations if they cause issues, untill she can update to php 8.0 or up
+    - cevora after lunch
   - Sven:
     - added the option to sell multiple items of the same product at once
     - updated the readme
+    - fixed minor responsive styling issues
+    - cevora after lunch
+- day9 (:date: 04/01/2022)
+  - a quick standup meeting in the morning got everyone up to date on the project status and we startedwork on our respective tickets:
+  - Barbara:
+    - finished the 'buy-button' functionality
+    - made the badges on the product card into links that filter by universe, category or condition
+  - Neha:
+    - finished work on the cart/checkout view
+      - we decided that having the cart overview and the checkout form in the same view made mostsense for this project
+  - Zain:
+    - continued work on the search bar
+      - by the end of the day, the search functionality works with typed terms
+      - adding the category and universe filters tomorrow
+  - Sven:
+    - worked on the password reset funcitonality
+    - since the PHP mail() delivery can get delayed quite a bit the following got done by the end of the day:
+      - a form where the user has to enter a valid email addres,
+      - the email addres gets checked and sanitized
+      - if the email address is in the database:
+        - a token gets generated
+        - the token gets hashed into the db row of that user
+        - an email gets composed that contains the unhashed token and a link to the resetPasswordForm
+        - in this form the user has to enter their email, the token they received in that email inbox, a new password and the repeated new password
+      - as of :clock6: 6:30PM Sven still hasn't received an email with the reset link/token, so no further work was done today (last time I used this method, the first message took 8 hours to get passed the Gmail greylist)
+    - Barbara mentioned errors when doing page refreshes on certain pages (after a POST request was handled for example), Sven fixed some of them by using the `header()`
+    - Did all merges of stable branches
+    - Fixed merge conflicts
+    - Refactored the filterBy... code before merging that branch
+    - wrote the code to populate the cart view
+    - made the cancel button work
+    - logging out a user now automatically resets whatever is in their carts (any product in cart is reset to not sold in db)
+    - updated this readme
 
 ## 6. What I learned from this exercise
 
@@ -209,14 +245,16 @@ objectives they will be moved up into the timeline section and ticked off using 
 - A Minimal Viable Product based on client briefings:
     - A database or api to store the products and users in :heavy_check_mark:
     - Product overview
-        - When product gets added to cart/bought set it to sold to prevent double buys
-        - If the buy gets canceled, sold can be reset to false
+        - When product gets added to cart/bought set it to sold to prevent double buys :heavy_check_mark:
+        - If the buy gets canceled, sold can be reset to false :heavy_check_mark:
     - Searchbar
         - with selection of type to limit the query
         - with selection of universe to limit the query
-        - query for typed searches
+        - query for typed searches :heavy_check_mark:
     - Login (mandatory for sellers) :heavy_check_mark:
+    - Reset password functionality
     - Logout :heavy_check_mark:
+      - also removes all products in cart and resets them to not sold in the database :heavy_check_mark:
     - User dashboard
         - Product overview for logged-in user :heavy_check_mark:
         - Delete account :heavy_check_mark:
