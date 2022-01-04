@@ -22,6 +22,18 @@ class HomepageController
                     $this->productCart($POST);
                     require 'view/homepage.php';
                     break;
+                case 'new':
+                    $products = ProductLoader::readAllProductByCondition($this->db, "new");
+                    require 'view/homepage.php';
+                    break;
+                case 'good':
+                    $products = ProductLoader::readAllProductByCondition($this->db, "good");
+                    require 'view/homepage.php';
+                    break;
+                case 'used':
+                    $products = ProductLoader::readAllProductByCondition($this->db, "used");
+                    require 'view/homepage.php';
+                    break;
             }
         }
 
