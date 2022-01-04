@@ -82,17 +82,18 @@ class UserLoader
         $stmt = null;
     }
 
-    public static function setToken(PDO $PDO, int $str, string $email): string
+    public static function setToken(PDO $PDO, int $str, string $email): array
     {
         $token = password_hash($str, PASSWORD_DEFAULT);
-        $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
+        $stmt = $PDO->prepare('SELECT username FROM USER WHERE email = :email');
         $stmt->execute([':email' => $email]);
         if($stmt->fetch()){
+            $userName = $stmt->fetch();
             $stmt = $PDO->prepare('UPDATE USER SET token = :token WHERE email = :email');
             $stmt->execute([':token' => $token, ':email' => $email]);
-            return $token;
+            return ['token' => $token, 'userName' => $userName];
         } else {
-            return '';
+            return [];
         }
     }
 }

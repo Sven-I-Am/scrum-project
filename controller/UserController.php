@@ -213,8 +213,31 @@ class UserController
         } else {
             $strToken = rand(999, 99999);
             $email = Sanitize::sanitizeInput($POST['email']);
-            $token = UserLoader::setToken($this->db, $strToken, $email);
-            if(!empty($token)){
+            $response = UserLoader::setToken($this->db, $strToken, $email);
+            if(!empty($response)){
+                $token = $response['token'];
+                $userName = $response['userName'];
+                $to = $email;
+                $subject = 'GBay - Password reset requested';
+                $message = '
+                    <html>
+                    <head>
+                      <title>A password reset was requested</title>
+                    </head>
+                    <body>
+                    <p>Dear $userName,</p>
+                      <p>A password reset was requested for your Gbay account. <br>
+                      <a href="https://becode.local/?$token">Click here to reset your password!</a></p>
+                      <p>If you didn\'t request this action, you can disregard this message.</p>
+                      <p>Kind regards,</p>
+                      <p>The Gbay team</p>
+                    </body>
+                    </html>
+                    ';
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+                $headers[] = 'From: Gbay Password Reset <noreply@gbay.com>';
+                mail($to, $subject, $message, implode("\r\n", $headers));
                 echo "<script type='text/javascript'>alert('email found');</script>";
             } else {
                 echo "<script type='text/javascript'>alert('email not found');</script>";
