@@ -24,7 +24,8 @@
                     </div>
                     <div class="form-group">
                         <label for="token">Validation code <span class="formFinePrint">(this was sent to your inbox along with this link)</span></label>
-                        <input id="token" type="text" name="token" class="form-control" placeholder="123456" value="<?php if(isset($_POST['token'])){echo $_POST['token'];} ?>">
+                        <input id="token" type="text" name="token" class="form-control <?php echo (!empty($token_err)) ? 'is-invalid' : ''; ?>" placeholder="123456" value="<?php if(isset($_POST['token'])){echo $_POST['token'];} ?>">
+                        <span class="invalid-feedback"><?php echo $token_err; ?></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Save">

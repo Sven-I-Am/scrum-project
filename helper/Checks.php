@@ -57,4 +57,12 @@ class Checks
             }
         }
     }
+    public static function checkToken(int $token): string
+    {
+        if (empty($token)){
+            return 'Please enter a valid token';
+        } else {
+            return '';
+        }
+    }
 }

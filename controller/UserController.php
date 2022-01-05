@@ -299,8 +299,15 @@ class UserController
                 $user->setPassword(Sanitize::sanitizeInput($POST["password"]));
             }
             //check token validation
+            $tokenCheck = Checks::checkToken(intval($POST['token']));
+            if (!empty($tokenCheck)) {
+                $token_err = $tokenCheck;
+                $error = true;
+            } else {
+                $token = Sanitize::sanitizeInput($POST["token"]);
+            }
         } else {
-            $password_err = 'Invalid password';
+            $password_err = "Passwords don't match";
             require 'view/user/updateUserForm.php';
         }
         if(!$error){
