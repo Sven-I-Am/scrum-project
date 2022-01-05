@@ -206,7 +206,6 @@ class UserController
             }
             unset($_SESSION['cart']);
         }
-        echo "<script type='text/javascript'>alert('You logged out');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
@@ -217,7 +216,6 @@ class UserController
     public function deleteUser($user){
         UserLoader::deleteUser($this->db, $user);
         unset($_SESSION['user']);
-        echo "<script type='text/javascript'>alert('You deleted your account');</script>";
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
@@ -304,6 +302,10 @@ class UserController
                 $error = true;
             } else {
                 $token = Sanitize::sanitizeInput($POST["token"]);
+                $token_err = UserLoader::resetPassword($this->db, $user, $token);
+                if (!empty($token_err)){
+                    $error = true;
+                }
             }
         } else {
             $password_err = "Passwords don't match";
@@ -335,17 +337,20 @@ class UserController
         $condition = $POST['condition'];
         $newProduct = new Product(0, '', $condition, '', 0,false, '',$user->getId(),'1984-01-01', intval($category), intval($universe));
 
-        if(empty($POST['nrOf'])){
-            $nr_err = "Specify the amount of products you wish to sell!";
-            $error = true;
-        } else {
-            if ($POST['nrOf'] < 1 || $POST['nrOf'] > 5) {
-                $nr_err = "Enter a number between 1 and 5!";
+        if(isset($POST['nrOf'])){
+            if(empty($POST['nrOf'])){
+                $nr_err = "Specify the amount of products you wish to sell!";
                 $error = true;
-            }else{
-                $nrOf = Sanitize::sanitizeInput($POST['nrOf']);
+            } else {
+                if ($POST['nrOf'] < 1 || $POST['nrOf'] > 5) {
+                    $nr_err = "Enter a number between 1 and 5!";
+                    $error = true;
+                }else{
+                    $nrOf = Sanitize::sanitizeInput($POST['nrOf']);
+                }
             }
         }
+
         if (empty($POST['name'])){
             $name_err = "A name is required!";
             $error = true;
@@ -404,6 +409,7 @@ class UserController
             if($_GET['action']==='addProduct'){
                 require 'view/product/addProductForm.php';
             } else {
+                $product = ProductLoader::readOneProduct($this->db, intval($POST['productId']));
                 require 'view/product/updateProductForm.php';
             }
         }
@@ -420,7 +426,6 @@ class UserController
             header("location: https://gbay-becode.000webhostapp.com/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
-            echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);

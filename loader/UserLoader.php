@@ -18,7 +18,7 @@ class UserLoader
         return new User($user['userid'], $user['username'], $user['email'], $user['password']);
     }
     //Read one user aka login
-    public static function readOne(PDO $PDO, User $checkUser): User | string
+    public static function readOne(PDO $PDO, User $checkUser)
     {
         $userName = $checkUser->getUserName();
         $password = $checkUser->getPassword();
@@ -96,6 +96,28 @@ class UserLoader
             return ['userName' => $userName, 'id' => $id];
         } else {
             return [];
+        }
+    }
+    public static function resetPassword(PDO $PDO, User $user, string $token): string
+    {
+        $stmt = $PDO->prepare('SELECT * FROM USER WHERE email = :email');
+        $stmt->execute([':email' => $user->getEmail()]);
+        $response = $stmt->fetch();
+        $stmt = null;
+        if ($response) {
+            if(password_verify($token, $response['token'])){
+                $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+                $stmt = $PDO->prepare('UPDATE USER SET password = :password WHERE userid = :id');
+                $stmt->execute([':password' => $password, ':id' => $response['userid']]);
+                $stmt = $PDO->prepare('UPDATE USER SET token = null WHERE userid = :id');
+                $stmt->execute([':id' => $response['userid']]);
+                $stmt = null;
+                return '';
+            } else {
+                return 'invalid token';
+            }
+        } else {
+            return '';
         }
     }
 }
