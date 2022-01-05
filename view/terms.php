@@ -1,7 +1,5 @@
 <?php require 'includes/header.php'; ?>
-<style>
 
-</style>
 <div class="container row terms-text">
     <div class="terms-title">
         <h1>Terms of Use ("Terms")</h1>

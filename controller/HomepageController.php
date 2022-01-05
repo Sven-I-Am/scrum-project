@@ -25,10 +25,12 @@ class HomepageController
             switch ($GET['action']){
                 case 'buy':
                     $this->productCart($POST);
-
                     break;
                 case 'terms':
                     require 'view/terms.php';
+                    break;
+                case 'history':
+                    require 'view/history.php';
                     break;
                 case 'filter':
                     $this->filterProducts($GET);
