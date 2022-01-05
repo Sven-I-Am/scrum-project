@@ -1,5 +1,12 @@
 <?php require 'includes/header.php';?>
-
+<?php if (!empty($success_msg)){ ?>
+    <div class="alert alert-success" role="alert">
+        <?php echo $success_msg; ?>
+    </div>
+<?php } else { ?>
+    <div>
+    </div>
+<?php } ?>
 <div class="row">
 <div class="col">
 <h4 class="cart">Your Selected Items</h4>
@@ -16,14 +23,16 @@
   
   <tbody>
 <!-- info come from database goes here  -->
-<?php foreach ($_SESSION['cart'] as $product) { ?>
+<?php if(!empty($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $product) { ?>
+
     <tr>
         <td><?php echo $product->getName(); ?></td>
         <td><?php echo $product->getDescription(); ?></td>
         <td><?php echo $product->getPrice(); ?> &euro;</td>
         <td><form method="post" action="?action=cancelPurchase"><button name="productId" type="submit" class="btn btn-outline-primary btn-sm" value="<?php echo $product->getId(); ?>">Cancel</button></form></td>
     </tr>
-<?php } ?>
+<?php }} ?>
   <tr>
       <td>Total cart value:</td>
       <td></td>

@@ -140,6 +140,15 @@ class ProductLoader
     public static function updateSoldStatus(PDO $PDO, $id, $date, $status){
         $PDO->query("UPDATE PRODUCT SET sold = '$status', selldate = '$date' WHERE id = $id");
     }
+
+    /*get sellerinfo from product in cart*/
+    public static function getUserInfo(PDO $PDO,Product $product): User
+    {
+        $stmt = $PDO->prepare('SELECT * from USER WHERE userid = :id');
+        $stmt->execute([':id' => $product->getUserId()]);
+        $response = $stmt->fetch();
+        return new User(0, $response['username'], $response['email'],'');
+    }
 }
 
 
