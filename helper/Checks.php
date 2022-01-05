@@ -30,7 +30,7 @@ class Checks
                 return "Invalid email format";
             } else {
                 //changes here
-                if ($_GET['action']!=='askReset'){
+                if ($_GET['action']!=='askReset' && $_GET['action']!=='reset'){
                     $uniqueTest = Sanitize::sanitizeInput($email);
                     $uniqueResponse = UserLoader::uniqueEmail($PDO, $uniqueTest);
                     if ($uniqueResponse) {

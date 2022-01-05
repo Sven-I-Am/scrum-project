@@ -20,7 +20,12 @@ class UserController
         }
 
         if(!isset($GET['action'])){
-            require 'view/user/loginForm.php';
+            if(!isset($GET['uAuth'])){
+                require 'view/user/loginForm.php';
+            } else {
+                $id = $GET['uAuth'];
+                require 'view/user/passwordResetForm.php';
+            }
         } else {
             switch ($GET['action']) {
                 case 'register':
@@ -41,6 +46,9 @@ class UserController
                     } else {
                         $this->askReset($POST);
                     }
+                    break;
+                case 'reset':
+                    $this->resetPassword($POST);
                     break;
                 case 'dashboard':
                     if (isset($_GET['account'])) {
@@ -228,30 +236,32 @@ class UserController
             $email = Sanitize::sanitizeInput($POST['email']);
             $response = UserLoader::setToken($this->db, $strToken, $email);
             if(!empty($response)){
+
                 $userName = $response['userName'];
                 $id = $response['id'];
                 $to = $email;
                 $subject = 'GBay - Password reset requested';
-                $message = '
+                $message = "
                     <html>
                     <head>
                       <title>A password reset was requested</title>
                     </head>
                     <body>
-                    <p>Dear $userName,</p>
+                    <p>Dear " . $userName . ",</p>
                       <p>A password reset was requested for your Gbay account. <br>
-                      <a href="https://becode.local/?user&uAuth=$id">Click here to reset your password!</a></p>
-                      <p>Enter the following code to authenticate your reset: <strong>$strToken</strong></p>
-                      <p>If you didn\'t request this action, you can disregard this message.</p>
+                      <a href='http://becode.local/?user&uAuth=" . $id . "'>Click here to reset your password!</a></p>
+                      <p>Enter the following code to authenticate your reset: <strong>" . $strToken . "</strong></p>
+                      <p>If you didn't request this action, you can disregard this message.</p>
                       <p>Kind regards,</p>
                       <p>The Gbay team</p>
                     </body>
                     </html>
-                    ';
+                    ";
                 $headers[] = 'MIME-Version: 1.0';
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
                 $headers[] = 'From: Gbay Team <noreply@gbay.com>';
-                mail($to, $subject, $message, implode("\r\n", $headers));
+//                mail($to, $subject, $message, implode("\r\n", $headers));
+                echo $message;
             }
         }
 
@@ -259,12 +269,45 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
-            header("location: http://becode.local/");
+//            header("location: http://becode.local/");
             require 'view/homepage.php';
         } else {
             require 'view/user/askReset.php';
         }
 
+    }
+
+    public function resetPassword($POST)
+    {
+        $error = false;
+        if ($POST['password'] === $POST['passwordRepeat']) {
+            $user = new User(0, '', '', '');
+            //check email validation
+            $emailCheck = Checks::checkEmail($this->db, $POST['email']);
+            if (!empty($emailCheck)) {
+                $email_err = $emailCheck;
+                $error = true;
+            } else {
+                $user->setEmail(Sanitize::sanitizeInput($POST["email"]));
+            }
+            //check password validation
+            $passwordCheck = Checks::checkPassword($POST['password']);
+            if (!empty($passwordCheck)) {
+                $password_err = $passwordCheck;
+                $error = true;
+            } else {
+                $user->setPassword(Sanitize::sanitizeInput($POST["password"]));
+            }
+            //check token validation
+        } else {
+            $password_err = 'Invalid password';
+            require 'view/user/updateUserForm.php';
+        }
+        if(!$error){
+            require 'view/user/loginForm.php';
+        } else {
+            require 'view/user/passwordResetForm.php';
+        }
     }
 
     public function doAction($POST,$user): array
