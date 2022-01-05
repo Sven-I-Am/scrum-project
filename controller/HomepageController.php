@@ -47,6 +47,9 @@ class HomepageController
                 case 'checkout':
                     $this->checkout($POST);
                     break;
+                case 'historyFilter':
+                    $this->showAveragePrice($POST);
+                    break;
             }
         }
     }
@@ -75,6 +78,19 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         require 'view/homepage.php';
+    }
+
+    public function showAveragePrice($POST){
+        $dates = [];
+        $filter = ['universe' => $POST['universe'], 'category' =>  $POST['category'], 'condition' =>  $POST['condition']];
+
+        for($i = 0; $i < 7; $i++){
+            array_push($dates, date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - $i, date("Y"))));
+        }
+        
+        $data = ProductLoader::XXXXXXX($this->db, $filter, $dates);
+        require 'view/history.php';
+        var_dump("array: ", $dates);
     }
 
     public function productCart($POST){
