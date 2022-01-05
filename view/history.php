@@ -31,12 +31,12 @@
     <table>
         <tr>
             <th class="py-3 border-3 border-dark">Date</th>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 6, date("Y"))); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 5, date("Y"))); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 4, date("Y"))); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 3, date("Y"))); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 2, date("Y"))); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 1, date("Y"))); ?></td>
             <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
         </tr>
         <tr>
