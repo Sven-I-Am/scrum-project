@@ -1,5 +1,9 @@
 # <!-- Exercise title -->
 
+## published site
+
+[https://gbay-becode.000webhostapp.com/](https://gbay-becode.000webhostapp.com/)
+
 ### exercise in week 13 - 15 (20/12/2021 - 07/01/2022)<!-- NR (from date - to date)--> of our BeCode training
 You can find the original exercise readme [by clicking here](https://github.com/becodeorg/ANT-Lamarr-5.34/tree/main/3.The-Mountain/SCRUM)
 
