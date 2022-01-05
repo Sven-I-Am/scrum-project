@@ -81,10 +81,31 @@ class ProductLoader
     }
     //search functionality
     public static function readAllProductByName(PDO $PDO, array $POST){
-        $search ='%'.Sanitize::sanitizeInput($POST['search']).'%';
-        $sql = "SELECT * FROM PRODUCT WHERE name LIKE :search or description LIKE :search";
-        $stmt = $PDO->prepare($sql);
-        $stmt->execute([':search'=>$search]);
+        if($POST['category'] == 0){
+            $catComp = '>';
+            $catId = '0';
+        } else {
+            $catComp = '=';
+            $catId = intval($POST['category']);
+        }
+        if($POST['universe'] == 0){
+            $uComp = '>';
+            $uid = '0';
+        } else {
+            $uComp = '=';
+            $uid = intval($POST['universe']);
+        }
+        if ($POST['search'] === ''){
+            $sql = "SELECT * FROM PRODUCT WHERE categoryid " . $catComp . " :catId AND uid " . $uComp . " :uid";
+            $stmt = $PDO->prepare($sql);
+            $stmt->execute([':catId' => $catId, ':uid'=> $uid]);
+        } else {
+            $search ='%'.Sanitize::sanitizeInput($POST['search']).'%';
+            $sql = "SELECT * FROM PRODUCT WHERE (name LIKE :search or description LIKE :search) AND categoryid " . $catComp . " :catId AND uid " . $uComp . " :uid";
+            $stmt = $PDO->prepare($sql);
+            $stmt->execute([':search'=>$search, ':catId' => $catId, ':uid'=> $uid]);
+        }
+
         $products = $stmt->fetchAll();
         $productsArray = [];
         foreach($products as $product){
