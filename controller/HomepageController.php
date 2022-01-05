@@ -12,6 +12,12 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
+        $total = 0;
+        if(isset($_SESSION['cart'])){
+            foreach ($_SESSION['cart'] as $product) {
+                $total += $product->getPrice();
+            }
+        }
 
         if(!isset($GET['action'])) {
             require 'view/homepage.php';
@@ -35,6 +41,9 @@ class HomepageController
                     break;
                 case 'cancelPurchase':
                     $this->cancelPurchase($POST);
+                    break;
+                case 'checkout':
+                    $this->checkout($POST);
                     break;
             }
         }
@@ -99,6 +108,15 @@ class HomepageController
         ProductLoader::updateSoldStatus($this->db, $id, $date, $status);
         header("location: https://gbay-becode.000webhostapp.com//?action=cart");
         require 'view/cart.php';
+    }
+
+    public function checkout($POST){
+        $buyerEmail = Sanitize::sanitizeInput($POST['email']);
+        $buyerMessage = Sanitize::sanitizeInput($POST['message']);
+        foreach($_SESSION['cart'] as $product){
+
+        }
+        var_dump($_SESSION['cart']);
     }
 }
 
