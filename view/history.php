@@ -26,4 +26,31 @@
             </div>
         </form>
     </div>
+</div>
+<div class="row col d-inline-flex justify-content-center align-items-center m-auto py-3 text-center">
+    <table>
+        <tr>
+            <th class="py-3 border-3 border-dark">Date</th>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+        </tr>
+        <tr>
+            <th class="py-3 border-3 border-dark">Average price</th>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+        </tr>
+
+
+    </table>
+</div>
 <?php require 'includes/footer.php'; ?>
