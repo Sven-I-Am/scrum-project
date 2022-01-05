@@ -60,7 +60,7 @@ class User
         $this->password = $data;
     }
 
-    public function checkOnline(PDO $PDO, int $id): string
+    public function checkOnline(PDO $PDO, int $id): int
     {
         $handler = $PDO->query('SELECT online FROM USER WHERE userid = ' . $id);
         $response = $handler->fetch();
