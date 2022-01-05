@@ -1,7 +1,7 @@
 <?php
 class HomepageController
 {
-    private Connection $db;
+    private $db;
     //create a new connection based on the database value.
     public function __construct(){
         $this->db = new Connection();
@@ -97,7 +97,7 @@ class HomepageController
         $id = $POST['productId'];
         $status = 0;
         ProductLoader::updateSoldStatus($this->db, $id, $date, $status);
-        header("location: http://becode.local/?action=cart");
+        header("location: https://gbay-becode.000webhostapp.com//?action=cart");
         require 'view/cart.php';
     }
 }

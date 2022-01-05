@@ -2,7 +2,7 @@
 
 class FilterLoader
 {
-    private Connection $db;
+    private $db;
     //create a new connection based on the database value.
     public function __construct(){
         $this->db = new Connection();

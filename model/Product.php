@@ -3,17 +3,17 @@
 declare(strict_types=1);
 
 class Product {
-    private int $id;
-    private string $name;
-    private string $condition;
-    private string $description;
-    private float $price;
-    private bool $sold;
-    private string $image;
-    private int $userId;
-    private string $sellDate;
-    private int $categoryId;
-    private int $universeId;
+    private $id;
+    private $name;
+    private $condition;
+    private $description;
+    private $price;
+    private $sold;
+    private $image;
+    private $userId;
+    private $sellDate;
+    private $categoryId;
+    private $universeId;
 
     public function __construct(int $id, string $name, string $condition, string $description, float $price, bool $sold, string $image, int $userId, string $sellDate, int $categoryId, int $universeId){
         $this->id = $id;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 class User
 {
-    private int $userid;
-   private string $username;
-    private string $email;
-    private string $password;
+    private $userid;
+   private $username;
+    private $email;
+    private $password;
 
     public function __construct(int $userid, string $username, string $email, string $password)
     {
@@ -64,7 +64,7 @@ class User
     {
         $handler = $PDO->query('SELECT online FROM USER WHERE userid = ' . $id);
         $response = $handler->fetch();
-        return $response['online'];
+        return intval($response['online']);
     }
 
     public function setOnline(PDO $PDO, int $id)

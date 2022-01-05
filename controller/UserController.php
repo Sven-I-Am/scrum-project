@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class UserController
 {
-    private Connection $db;
+    private $db;
     //create a new connection based on the database value.
     public function __construct(){
         $this->db = new Connection();
@@ -185,7 +185,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $userProducts = Productloader::readUserProducts($this->db, $response->getId(), 'all');
-            header("location: http://becode.local/?user&action=dashboard");
+            header("location: https://gbay-becode.000webhostapp.com/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo "<script type='text/javascript'>alert(' $response ');</script>";
@@ -210,7 +210,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        header("location: http://becode.local/");
+        header("location: https://gbay-becode.000webhostapp.com/");
         require 'view/homepage.php';
     }
 
@@ -221,7 +221,7 @@ class UserController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         $products = ProductLoader::readAllProducts($this->db);
-        header("location: http://becode.local/");
+        header("location: https://gbay-becode.000webhostapp.com/");
         require 'view/homepage.php';
     }
 
@@ -249,7 +249,7 @@ class UserController
                     <body>
                     <p>Dear " . $userName . ",</p>
                       <p>A password reset was requested for your Gbay account. <br>
-                      <a href='http://becode.local/?user&uAuth=" . $id . "'>Click here to reset your password!</a></p>
+                      <a href='https://gbay-becode.000webhostapp.com//?user&uAuth=" . $id . "'>Click here to reset your password!</a></p>
                       <p>Enter the following code to authenticate your reset: <strong>" . $strToken . "</strong></p>
                       <p>If you didn't request this action, you can disregard this message.</p>
                       <p>Kind regards,</p>
@@ -261,7 +261,6 @@ class UserController
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
                 $headers[] = 'From: Gbay Team <noreply@gbay.com>';
                 mail($to, $subject, $message, implode("\r\n", $headers));
-                echo $message;
             }
         }
 
@@ -269,7 +268,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
-//            header("location: http://becode.local/");
+//            header("location: https://gbay-becode.000webhostapp.com//");
             require 'view/homepage.php';
         } else {
             require 'view/user/askReset.php';
@@ -397,7 +396,7 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
-            header("location: http://becode.local/?user&action=dashboard");
+            header("location: https://gbay-becode.000webhostapp.com/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             $categories = FilterLoader::getAllCategories($this->db);
@@ -418,14 +417,14 @@ class UserController
             $userProducts = Productloader::readUserProducts($this->db, $user->getId(), 'all');
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
-            header("location: http://becode.local/?user&action=dashboard");
+            header("location: https://gbay-becode.000webhostapp.com/?user&action=dashboard");
             require 'view/dashboard.php';
         } else {
             echo '<script type="text/javascript">alert("You do not have access to this item")</script>';
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
-            header("location: http://becode.local/?user&action=dashboard");
+            header("location: https://gbay-becode.000webhostapp.com/?user&action=dashboard");
             require 'view/homepage.php';
         }
 
