@@ -8,8 +8,8 @@
 }
 body{
     overflow-x: hidden;
-    /* background-image: linear-gradient(#bfc4e4 30%,#d1b9fd 70%); */
-    background-color: #cbc9c9;
+    background-image: linear-gradient(#757575 30%,#b5b3b6 70%);
+    /* background-color: #cbc9c9; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@ span{
 header button:hover{
     letter-spacing: 0.5px;
     font-weight: bold;
-    background-image: linear-gradient(#5f71ea 10%,#1d43a5 70%);
+    background-image: linear-gradient(#9da9ee 10%,#4d5a7c 70%);
     color: rgb(0, 0, 0);
 }
 
