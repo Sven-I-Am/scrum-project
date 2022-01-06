@@ -71,7 +71,9 @@ header button:hover{
 }
 
 /* product card */
-
+.productdisplay{
+    margin-left:10%;
+}
 .productCard {
     width: 300px;
     height: 400px;
