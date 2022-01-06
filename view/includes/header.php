@@ -17,6 +17,8 @@
 </head>
 <body>
     <header>
+  <!-- navigation bar starts here  -->
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand mx-2 logoname" href="?home">
@@ -29,12 +31,18 @@
                     <form class="collapse navbar-collapse d-flex" action='?home&action=search' method = "post">
                         <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="category">
                         <option value="0" selected>All categories</option>
+
+                        <!-- access category type from category table in database -->
+
                         <?php forEach($categories as $category) {?>
                             <option value="<?php echo $category["id"]; ?>"><?php echo $category["name"]; ?></option>
                         <?php } ?>
                         </select>
                         <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="universe">
                             <option value="0" selected>All universes</option>
+
+                        <!-- access universe type from universe table in database -->
+
                             <?php forEach($universes as $universe) {?>
                                 <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
                             <?php } ?>
@@ -44,7 +52,10 @@
                         <button class="btn btn-outline-success" name = "submit" type="submit">Search</button>
                     </form>
 
+
                     <div class="mr-2">
+            <!-- if user session is not set make it login button else make it logout  -->
+                        
                         <?php if(!isset($_SESSION['user'])) { ?>
                             <a href="?user"><button class="btn btn-danger">Login</button></a>
                             <a href="?user&action=register"><button class="btn btn-primary">Register</button></a>
@@ -54,7 +65,7 @@
                         <?php } ?>
                     </div>
                     <div>
-                        <!-- If we require Shopping-Cart -->
+                        <!--Shopping-Cart -->
                         <?php if(empty($_SESSION['cart'])){ ?>
                             <a href="?action=cart"><i class="bi bi-cart"></i></a>
                         <?php }else{?>
