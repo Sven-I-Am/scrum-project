@@ -29,7 +29,7 @@ class UserLoader
         $stmt = null;
         if ($response){
             $user = new User($response['userid'], $response['username'], $response['email'], $response['password']);
-            if(password_verify($password, $response['password']) && $user->checkOnline($PDO,$user->getId())==0){
+            if(password_verify($password, $response['password'])){
                 $user->setOnline($PDO, $user->getId());
                 $return = $user;
             } else {

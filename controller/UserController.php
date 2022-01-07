@@ -118,6 +118,10 @@ class UserController
             } else {
                 $newUser->setPassword(Sanitize::sanitizeInput($POST["password"]));
             }
+            if (!isset($POST['terms'])){
+                $terms_err = 'You must agree to our terms of use in order to register';
+                $error= true;
+            }
             //create user in db
             if(!$error){
                 UserLoader::createUser($this->db, $newUser);

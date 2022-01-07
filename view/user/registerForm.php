@@ -31,6 +31,12 @@
                 </label>
             </div>
             <div class="form-group">
+            <input id="terms" type="checkbox" name="terms" class="<?php echo (!empty($terms_err)) ? 'is-invalid' : ''; ?>">
+            <label for="terms">I agree to G-bay's <a href="" target="_blank">Terms of use</a></label>
+            <span class="invalid-feedback"><?php echo $terms_err; ?></span>
+            </div>
+            <div class="form-group">
+
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
