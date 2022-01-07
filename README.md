@@ -287,9 +287,20 @@ code independence because I proposed to me try to apply this concepts while I wa
 > - Used first time tooltip.
 
 **Zain:**
-
+> This project is a best learning experience for me. I've learned a lot of things like:
+> - How to work on scrum framework like managing tickets, sprints, standups etc.
+> - whenever we work on group project I also choose what I am good in like database but this time I choose backend Php using MVC
+> - At first it was quite challenging for me like pick a tickets and work on it and stuck for few hours but when its done its the best feeling you can experience.
+> - Overall it was best team I ever work with(sven, neha , barbara)
 
 **Sven:**
+> This exercise truly challenged me in more ways than one.  
+> Being scrum master on this project meant more than just keeping the conversation going.
+> It also meant managing the tickets, dividing the work if members couldn't find a ticket to work
+> I also had to beware of everyone's level of understanding and make some difficult decisions.
+> For example: abandoning the MEAN stack at the beginning of the project could have turned out 
+> quite differently, but it worked out, because using LAMP meant everyone at least had a basic 
+> understanding of the languages and tools we were using.
 
 ## 7. To Do
 
