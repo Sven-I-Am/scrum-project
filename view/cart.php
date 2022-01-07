@@ -56,7 +56,7 @@
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
   </div>
   <div class="text-center">
-      <span class="formFinePrint">By clicking on the checkout button and thus completing your purchase, you automatically agree to adhere to our <a href="?terms" target="_blank">terms of use.</a></span>
+      <span class="formFinePrint">By clicking on the checkout button and thus completing your purchase, you automatically agree to adhere to our <a href="?action=terms" target="_blank">terms of use.</a></span>
   <button type="submit" class="btn btn-success btn-sm">Checkout</button>
 </div>
 </form>
