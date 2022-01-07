@@ -8,7 +8,7 @@
 }
 body{
     overflow-x: hidden;
-    background-image: linear-gradient(#a8a7a7 30%,#bbb8bb 70%);
+    background-image: linear-gradient(#c7c6c6 30%,#bbb8bb 70%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
