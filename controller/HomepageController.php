@@ -18,7 +18,6 @@ class HomepageController
                 $total += $product->getPrice();
             }
         }
-
         if(!isset($GET['action'])) {
             require 'view/homepage.php';
         } else {
@@ -83,7 +82,6 @@ class HomepageController
     public function showAveragePrice($POST){
         $dates = [];
         $filter = ['universe' => $POST['universe'], 'category' =>  $POST['category'], 'condition' =>  $POST['condition']];
-
         for($i = 0; $i < 7; $i++){
             array_push($dates, date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - $i, date("Y"))));
         }
@@ -92,7 +90,6 @@ class HomepageController
         $categories = FilterLoader::getAllCategories($this->db);
         $universes = FilterLoader::getAllUniverses($this->db);
         require 'view/history.php';
-        var_dump("array: ", $data);
     }
 
     public function productCart($POST){

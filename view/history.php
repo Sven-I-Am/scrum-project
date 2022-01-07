@@ -9,48 +9,53 @@
             <div class="form-group my-3">
             <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="universe">
                 <?php forEach($universes as $universe) {?>
-                    <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
+                    <option value="<?php echo $universe["id"]; ?>" <?php if(isset($_POST['universe']) && $_POST['universe'] == $universe['id']){ echo 'selected'; }?>><?php echo $universe["name"]; ?></option>
                 <?php } ?>
             </select>
             <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="category">
                 <?php forEach($categories as $category) {?>
-                    <option value="<?php echo $category["id"]; ?>"><?php echo $category["name"]; ?></option>
+                    <option value="<?php echo $category["id"]; ?>" <?php if(isset($_POST['category']) && $_POST['category'] == $category['id']){ echo 'selected'; }?>><?php echo $category["name"]; ?></option>
                 <?php } ?>
             </select>
             <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="condition">
-                <option value="new">new</option>
-                <option value="good">good</option>
-                <option value="used">used</option>
+                <option value="new" <?php if(isset($_POST['condition']) && $_POST['condition'] === "new"){ echo 'selected'; }?>>new</option>
+                <option value="good" <?php if(isset($_POST['condition']) && $_POST['condition'] === "good"){ echo 'selected'; }?>>good</option>
+                <option value="used" <?php if(isset($_POST['condition']) && $_POST['condition'] === "used"){ echo 'selected'; }?>>used</option>
             </select>
             <button type="submit" name="showHistory" class="btn btn-success">Show</button>
             </div>
         </form>
     </div>
 </div>
+<?php if(!empty($filter)) {?>
+<div class="row col d-inline-flex justify-content-center align-items-center m-auto py-3 text-center">
+    <?php echo $universes[$filter['universe']-1]["name"] ?> -
+    <?php echo $categories[$filter['category']-1]["name"] ?> -
+    <?php echo $filter['condition'] ?>
+</div>
+<?php } ?>
+<?php if(!empty($data)) { ?>
 <div class="row col d-inline-flex justify-content-center align-items-center m-auto py-3 text-center">
     <table>
         <tr>
             <th class="py-3 border-3 border-dark">Date</th>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 6, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 5, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 4, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 3, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 2, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - 1, date("Y"))); ?></td>
-            <td class="py-3 border-3 border-dark"><?php echo Date("Y-m-d"); ?></td>
+            <?php foreach($dates as $date){ ?>
+            <td class="py-3 border-3 border-dark"><?php echo $date ?></td>
+            <?PHP } ?>
         </tr>
         <tr>
             <th class="py-3 border-3 border-dark">Average price</th>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
-            <td class="py-3 border-3 border-dark"><?php echo '0.00'; ?> &euro;</td>
+            <?php foreach($data as $price){
+                if ($price == null) {
+                    $price = '0';
+                }
+                ?>
+            <td class="py-3 border-3 border-dark"><?php echo $price . ' &euro;'; ?></td>
+            <?php } ?>
         </tr>
 
 
     </table>
 </div>
+<?php } ?>
 <?php require 'includes/footer.php'; ?>
