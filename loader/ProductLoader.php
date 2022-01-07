@@ -38,7 +38,7 @@ class ProductLoader
         $product = $stmt->fetch();
         return new Product($product['id'], $product['name'], $product['condition'], $product['description'], $product['price'], $product['sold'], $product['image'], $product['userid'], $product['selldate'], $product['categoryid'], $product['uid']);
     }
-
+    // Read products by universe, category and condition
     public static function filterProducts(PDO $PDO, array $filter)
     {
         $productsArray=[];
@@ -113,7 +113,7 @@ class ProductLoader
         }
         return $productsArray;
     }
-
+    // Read products from a seller in dashboard
     public static function readUserProducts(PDO $PDO, int $id, string $filter): array
     {
         switch ($filter){
@@ -150,6 +150,7 @@ class ProductLoader
         return new User(0, $response['username'], $response['email'],'');
 
     }
+    // Read averaging price of product that were sold in the last 7 days
     public static function showAveragePrice(PDO $PDO, $filter, $dates){
         $pricesArray = [];
         foreach ($dates as $date){
