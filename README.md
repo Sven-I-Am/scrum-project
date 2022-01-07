@@ -6,7 +6,7 @@
 
 ## screenshot of user stories
 
-[!screenshot](./assets/screenshots/UserStories.png)
+![screenshot](./assets/screenshots/UserStories.png)
 
 ## link to the project board and tickets
 
