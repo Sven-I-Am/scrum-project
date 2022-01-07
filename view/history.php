@@ -1,4 +1,5 @@
 <?php require 'includes/header.php'; ?>.
+<!-- show averaging price of product that were sold in the last 7 days -->
 <div class="row col d-inline-flex justify-content-center align-items-center m-auto py-3 text-center">
     <div class="row">
         <h2>Check pricing history</h2>
