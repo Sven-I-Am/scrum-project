@@ -148,9 +148,18 @@ class ProductLoader
         $stmt->execute([':id' => $product->getUserId()]);
         $response = $stmt->fetch();
         return new User(0, $response['username'], $response['email'],'');
+
+    }
+    public static function showAveragePrice(PDO $PDO, $filter, $dates){
+        $pricesArray = [];
+        foreach ($dates as $date){
+            $stmt = $PDO->prepare("SELECT round(AVG(price),2) FROM PRODUCT WHERE selldate = :date AND uid = :uid AND categoryid = :catid AND `condition` = :cond AND sold = 1");
+            $stmt->execute([':date' => $date, ':uid' => $filter['universe'], ':catid' => $filter['category'], ':cond' => $filter['condition']]);
+                $response = $stmt->fetch();
+                array_push($pricesArray, $response["round(AVG(price),2)"]);
+            }
+            return $pricesArray;
     }
 }
-
-
     
 

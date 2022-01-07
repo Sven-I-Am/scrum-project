@@ -4,6 +4,14 @@
 
 [https://gbay-becode.000webhostapp.com/](https://gbay-becode.000webhostapp.com/)
 
+## screenshot of user stories
+
+![screenshot](./assets/screenshots/UserStories.png)
+
+## link to the project board and tickets
+
+[https://github.com/users/Sven-I-Am/projects/3](https://github.com/users/Sven-I-Am/projects/3)
+
 ### exercise in week 13 - 15 (20/12/2021 - 07/01/2022)<!-- NR (from date - to date)--> of our BeCode training
 You can find the original exercise readme [by clicking here](https://github.com/becodeorg/ANT-Lamarr-5.34/tree/main/3.The-Mountain/SCRUM)
 
@@ -201,7 +209,7 @@ Logos are added on a project basis, I have them stored in a separate folder loca
     - updated the readme
     - fixed minor responsive styling issues
     - cevora after lunch
-- day9 (:date: 04/01/2022)
+- day 9 (:date: 04/01/2022)
   - a quick standup meeting in the morning got everyone up to date on the project status and we startedwork on our respective tickets:
   - Barbara:
     - finished the 'buy-button' functionality
@@ -232,10 +240,46 @@ Logos are added on a project basis, I have them stored in a separate folder loca
     - made the cancel button work
     - logging out a user now automatically resets whatever is in their carts (any product in cart is reset to not sold in db)
     - updated this readme
+- day 10 (:date: 05/01/2022)
+  - on day 10 and 11 there's moreCevore meetings planned.
+  - Neha has a day of Cevore today
+  - we were on campus so the stand-up meeting went more smoothly then in a remote setting
+  - Nearing the deadline means that we have to figure out the hosting situation, that's Sven's task today
+  - In the mean time Zain and Barbara continue work on the functionalities
+  - Barbara tried working out a system to log out a user automatically, but in PHP this is quite a complex issue
+    - She researched and tested for almost the whole day
+  - Zain reseached hosting issues along with Sven.
+  - After lunch, once the page was hosted and working we all tested for bugs and fixed what we found through Sven's branch
+  - Before the end of the day we started work on the extra functionality of showing the average prices for the last 7 days
+- day 11 (:date: 06/01/2022)
+  - Neha was the only one working on the project today, since Barbara, Zain and Sven had a day of Cevore meetings
+  - She fine tuned the styling andgot started on adding comments to the code for clarification
+- day 12 (:date: 07/01/2022)
+  - :exclamation: deadline day! :exclamation:
+  - the minimal product is hosted and working, but we are still coding the average price page and continue to do so
+  - Barbara and Zain got the back-end working smoothly
+  - Sven implemented the data into the front-end of things
+  - As far as we can tell there are minimal bugs at this point.
+  - But we haven't limit tested anything yet due to time constraints
+  - Every one of us is also thinking about a bit to write in this readme under chapter 6 [What I learned from this exercise](#what-i-learned-from-this-exercise)
+  - The development branch is stable and got merged into main
+  - All latest updates have been uploaded to 000webhosting and the page looks to be holding steady
+  - :tada: We did it! :tada:
 
 ## 6. What I learned from this exercise
 
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->
+
+**Barbara:**
+
+
+**Neha:**
+
+
+**Zain:**
+
+
+**Sven:**
 
 ## 7. To Do
 
@@ -252,11 +296,11 @@ objectives they will be moved up into the timeline section and ticked off using 
         - When product gets added to cart/bought set it to sold to prevent double buys :heavy_check_mark:
         - If the buy gets canceled, sold can be reset to false :heavy_check_mark:
     - Searchbar
-        - with selection of type to limit the query
-        - with selection of universe to limit the query
+        - with selection of type to limit the query :heavy_check_mark:
+        - with selection of universe to limit the query :heavy_check_mark:
         - query for typed searches :heavy_check_mark:
     - Login (mandatory for sellers) :heavy_check_mark:
-    - Reset password functionality
+    - Reset password functionality :heavy_check_mark:
     - Logout :heavy_check_mark:
       - also removes all products in cart and resets them to not sold in the database :heavy_check_mark:
     - User dashboard
@@ -269,10 +313,11 @@ objectives they will be moved up into the timeline section and ticked off using 
         - Add product :heavy_check_mark:
           - can add multiple of the same product at once :heavy_check_mark:
     - Checkout
-        - Buyer has to provide valid email so seller can contact them
-        - seller gets email with buyer info to contact
+        - Buyer has to provide valid email so seller can contact them :heavy_check_mark:
+        - seller gets email with buyer info to contact :heavy_check_mark:
 
 ### Nice to have
+- a way to see the average prices over the last 7 days :heavy_check_mark:
 
 ## 8. Installation Instructions for developers
 

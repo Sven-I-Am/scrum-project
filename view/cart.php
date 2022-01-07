@@ -30,7 +30,7 @@
         <td><?php echo $product->getName(); ?></td>
         <td><?php echo $product->getDescription(); ?></td>
         <td><?php echo $product->getPrice(); ?> &euro;</td>
-        <td><form method="post" action="?action=cancelPurchase"><button name="productId" type="submit" class="btn btn-outline-primary btn-sm" value="<?php echo $product->getId(); ?>">Cancel</button></form></td>
+        <td><form method="post" action="?action=cancelPurchase"><button name="productId" type="submit" class="btn btn-danger btn-sm" value="<?php echo $product->getId(); ?>">Cancel</button></form></td>
     </tr>
 <?php }} ?>
   <tr>
@@ -52,11 +52,11 @@
   </div>
 
   <div class="form-group">
-    <label for="exampleFormControlTextarea1" class="font-weight-bold">Message to Seller: <span class="formFinePrint text-muted">(a default message will be sent automatically upon checkout)</span></label>
+    <label for="exampleFormControlTextarea1" class="font-weight-bold">Message to Seller: <span class="formFinePrint text-primary font-weight-normal">(a default message will be sent automatically upon checkout)</span></label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
   </div>
   <div class="text-center">
-  <button type="submit" class="btn btn-outline-primary btn-sm">Checkout</button>
+  <button type="submit" class="btn btn-success btn-sm">Checkout</button>
 </div>
 </form>
 </div>
