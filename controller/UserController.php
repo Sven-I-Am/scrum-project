@@ -9,7 +9,7 @@ class UserController
     public function __construct(){
         $this->db = new Connection();
     }
-// render a viewscript
+    //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST)
     {
         $categories = FilterLoader::getAllCategories($this->db);
