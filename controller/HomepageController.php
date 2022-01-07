@@ -52,7 +52,7 @@ class HomepageController
             }
         }
     }
-  
+    // Show on page products filtered by universe, category, condition and name from search bar
     public function search($POST) {
       $products = ProductLoader::readAllProductByName($this->db,$POST);
       $categories = FilterLoader::getAllCategories($this->db);
@@ -61,7 +61,7 @@ class HomepageController
       require 'view/homepage.php';
 
     }        
-
+    // Show on page products filtered by universe, category and condition
     public function filterProducts($GET){
         $filter = ['universe' => '', 'category' => '', 'condition' => ''];
         if(isset($GET['u'])){
@@ -78,7 +78,7 @@ class HomepageController
         $universes = FilterLoader::getAllUniverses($this->db);
         require 'view/homepage.php';
     }
-
+    // Show averaging price of product that were sold in the last 7 days
     public function showAveragePrice($POST){
         $dates = [];
         $filter = ['universe' => $POST['universe'], 'category' =>  $POST['category'], 'condition' =>  $POST['condition']];
@@ -91,7 +91,7 @@ class HomepageController
         $universes = FilterLoader::getAllUniverses($this->db);
         require 'view/history.php';
     }
-
+    // Send products to the cart and change the sold status and date in database of the product that was chose by user 
     public function productCart($POST){
         $id = $POST['productId'];
         $product = ProductLoader::readOneProduct($this->db, $id);
@@ -112,7 +112,7 @@ class HomepageController
         $products = ProductLoader::readAllProducts($this->db);
         require 'view/homepage.php';
     }
-
+    // Remove a product from cart and change sold status and date in database from the product that the user doesn't want buy anymore
     public function cancelPurchase($POST){
         foreach ($_SESSION['cart'] as $key=>$product){
             if($product->getId() == $POST['productId']){
@@ -126,7 +126,7 @@ class HomepageController
         header("location: https://gbay-becode.000webhostapp.com//?action=cart");
         require 'view/cart.php';
     }
-
+    // send an email to each seller of products that user chose when user clicks onn checkout button on cart page
     public function checkout($POST){
         $error = false;
         $emailCheck = Checks::checkEmail($this->db, $POST['email']);
