@@ -271,10 +271,20 @@ Logos are added on a project basis, I have them stored in a separate folder loca
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->
 
 **Barbara:**
-
+> During this project I learned a new way to access database (using prepare() and execute() => pdo and prepared statements). 
+I think the Neha's frontend work is very good and show me a new vision about how to do a frontend more independent, 
+stable and easy to manage. I also consolidated the concepts of CRUD, navigations between pages process using method GET 
+and POST and SQL. To me this project was a good opportunity to discuss and think about SOLID concepts principally about 
+code independence because I proposed to me try to apply this concepts while I was write my code.
 
 **Neha:**
-
+> - working on Scrum project I have chosen to work on FrontEnd.
+> - Came to know how we can make more creative websites by using FrontEnd.
+> - learn how to keep your code DRY,i used function and added product information and call function whenever require product information
+> - learn how to rotate image in 360 deg by hoverover it.
+> - learn how to add combination of colors with the help of linear gradient.
+> - learn how we can make responsive website by using bootstrap framework.
+> - Used first time tooltip.
 
 **Zain:**
 
