@@ -81,7 +81,7 @@ class UserLoader
         $stmt->execute([':id' => $user->getId()]);
         $stmt = null;
     }
-
+  //Update user using token when someone forgets the password
     public static function setToken(PDO $PDO, int $prehash, string $email): array
     {
         $token = password_hash($prehash, PASSWORD_DEFAULT);
