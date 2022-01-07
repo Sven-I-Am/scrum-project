@@ -21,9 +21,9 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand mx-2 logoname" href="?home">
-                    <img class="logo" src=".\assets\logo\pokeballLogo.png">
-                    Gbay</a>
+            <img class="logo"src=".\assets\logo\pokeballLogo.png">
+                <a class="navbar-brand mx-2 logoname" data-toggle="tooltip" data-placement="bottom" title="Home" href="?home">
+                Gbay</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,7 +58,9 @@
                         
                         <?php if(!isset($_SESSION['user'])) { ?>
                             <a href="?user"><button class="btn btn-danger">Login</button></a>
-                            <a href="?user&action=register"><button class="btn btn-primary">Register</button></a>
+                           
+                            <!-- <a href="?user&action=register"><button class="btn btn-primary">Register</button></a> -->
+                            <a href="?user&action=register"> <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Please register to sell products">Register</button></a>
                         <?php } else { ?>
                             <a href="?user&action=logout"><button class="btn btn-danger">Logout</button></a>
                             <a href="?user&action=dashboard"><button class="btn btn-primary">Dashboard</button></a>
@@ -67,7 +69,7 @@
                     <div>
                         <!--Shopping-Cart -->
                         <?php if(empty($_SESSION['cart'])){ ?>
-                            <a href="?action=cart"><i class="bi bi-cart"></i></a>
+                            <a href="?action=cart"><i class="bi bi-cart" data-toggle="tooltip" data-placement="bottom" title="Shopping Cart"></i></a>
                         <?php }else{?>
                             <a href="?action=cart"><i class="bi bi-cart-fill"></i></a>
                         <?php }?>
