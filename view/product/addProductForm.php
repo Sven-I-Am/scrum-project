@@ -12,6 +12,8 @@
                         <div class="col">
                             <label for="pUni">Universe</label>
                             <select id="pUni" name="universe" class="form-control">
+
+                            <!-- select universe from universe table in database  -->
                                 <?php forEach($universes as $universe) {?>
                                     <option value="<?php echo $universe["id"]; ?>"><?php echo $universe["name"]; ?></option>
                                 <?php } ?>
@@ -20,7 +22,9 @@
                         <div class="col">
                             <label for="pCat">Category</label>
                             <select id="pCat" name="category" class="form-control">
-                                <?php forEach($categories as $category) {?>
+                                
+                             <!-- select category from category table in database  -->    
+                            <?php forEach($categories as $category) {?>
                                     <option value="<?php echo $category["id"]; ?>"><?php echo $category["name"]; ?></option>
                                 <?php } ?>
                             </select>

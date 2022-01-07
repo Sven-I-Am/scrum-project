@@ -1,4 +1,5 @@
 <?php
+// to display products information
 
 function component($id, $img, $name, $description, $universe, $category, $condition, $uid, $catId){
 
@@ -13,6 +14,8 @@ function component($id, $img, $name, $description, $universe, $category, $condit
             $conditionClass = 'cardConditionUsed';
             break;
     }
+/* to avoid repeatation of code all products information 
+ is stored in function and when require just call function */
 
     $element="
         
