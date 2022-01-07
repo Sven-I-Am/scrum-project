@@ -5,7 +5,7 @@
         <p>Select the parameters below, press show and you should get a chart of the average sale prices for those products in the last 7 days.</p>
     </div>
     <div class="row">
-        <form method="post" action="?historyFilter">
+        <form method="post" action="?action=historyFilter">
             <div class="form-group my-3">
             <select class="nav-item dropdown mx-2 find" aria-label="Default select example" name="universe">
                 <?php forEach($universes as $universe) {?>

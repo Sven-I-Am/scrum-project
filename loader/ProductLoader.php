@@ -148,7 +148,14 @@ class ProductLoader
         $stmt->execute([':id' => $product->getUserId()]);
         $response = $stmt->fetch();
         return new User(0, $response['username'], $response['email'],'');
+
     }
+    public static function showAveragePrice(PDO $PDO, $universe, $category, $condition, $date, $sold){
+        foreach ($dates as $date){
+            $stmt = $PDO->prepare("SELECT AVG(price) FROM PRODUCT WHERE selldata = :date AND uid = :uid AND categoryid = :catid AND condition = :cond AND sold = 1");
+            $stmt->execute([':date' => $date, ':uid' => $universe, ':catid' => $category, ':cond' => $condition]);
+                $response = $stmt->fetchAll();
+                return $response;
 }
 
 
