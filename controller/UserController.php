@@ -9,7 +9,7 @@ class UserController
     public function __construct(){
         $this->db = new Connection();
     }
-
+// render a viewscript
     public function render(array $GET, array $POST)
     {
         $categories = FilterLoader::getAllCategories($this->db);
@@ -89,7 +89,7 @@ class UserController
             }
         }
     }
-
+        //register user
     public function registerUser($POST) {
         if ($POST['password'] === $POST['passwordRepeat']){
             $newUser = new User(0, '', '', '');
@@ -176,7 +176,7 @@ class UserController
         }
 
     }
-
+//login functionality
     public function loginUser($POST)
     {
         $userName = Sanitize::sanitizeInput($POST['userName']);
@@ -196,7 +196,7 @@ class UserController
             require 'view/user/loginForm.php';
         }
     }
-
+//logout functionality
     public function logoutUser($user) {
         $user->setOffline($this->db, $user->getId());
         unset($_SESSION['user']);
@@ -208,6 +208,7 @@ class UserController
                 $status = 0;
                 ProductLoader::updateSoldStatus($this->db, $id, $date, $status);
             }
+            // unset() destroys the information from session and cookies
             unset($_SESSION['cart']);
         }
         $categories = FilterLoader::getAllCategories($this->db);
@@ -216,7 +217,7 @@ class UserController
         header("location: https://gbay-becode.000webhostapp.com/");
         require 'view/homepage.php';
     }
-
+   //delete user
     public function deleteUser($user){
         UserLoader::deleteUser($this->db, $user);
         unset($_SESSION['user']);
@@ -226,7 +227,7 @@ class UserController
         header("location: https://gbay-becode.000webhostapp.com/");
         require 'view/homepage.php';
     }
-
+// ask for rest Email 
     public function askReset($POST){
         $error = false;
         $emailCheck = Checks::checkEmail($this->db, $POST['email']);
@@ -277,7 +278,7 @@ class UserController
         }
 
     }
-
+//reset password
     public function resetPassword($POST)
     {
         $error = false;
@@ -321,7 +322,7 @@ class UserController
             require 'view/user/passwordResetForm.php';
         }
     }
-
+//Read products based of card components
     public function doAction($POST,$user): array
     {
         if (isset($POST['showSoldProducts'])){
@@ -332,7 +333,7 @@ class UserController
             return Productloader::readUserProducts($this->db, $user->getId(), 'all');
         }
     }
-
+// Add products based on quantity
     public function writeProduct($POST, $user)
     {
         $error = false;
@@ -418,7 +419,7 @@ class UserController
             }
         }
     }
-
+// Delete the products using cancel buttton
     public function deleteProduct($id, $user)
     {
         $product = ProductLoader::readOneProduct($this->db, intval($id));
