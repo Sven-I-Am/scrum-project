@@ -7,7 +7,9 @@ class Checks
         if (empty($userName)) {
             return "Name is required";
         } else {
+            
             // check if name only contains letters and whitespace
+
             if (!preg_match("/^[a-zA-Z0-9]*$/",$userName)) {
                 return "Username can only have letters and numbers";
             } else {
@@ -25,7 +27,9 @@ class Checks
         if (empty($email)){
             return "Email is required";
         } else {
-            // check if e-mail address is well-formed
+
+            // check if email address is well-formed
+            
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return "Invalid email format";
             } else {
@@ -47,6 +51,8 @@ class Checks
     }
     public static function checkPassword(string $password): string
     {
+        // checking password matches
+        
         if (empty($password)){
             return "Password is required";
         } else {

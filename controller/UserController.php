@@ -266,7 +266,7 @@ class UserController
             $categories = FilterLoader::getAllCategories($this->db);
             $universes = FilterLoader::getAllUniverses($this->db);
             $products = ProductLoader::readAllProducts($this->db);
-//            header("location: https://gbay-becode.000webhostapp.com//");
+           header("location: https://gbay-becode.000webhostapp.com//");
             require 'view/homepage.php';
         } else {
             require 'view/user/askReset.php';
