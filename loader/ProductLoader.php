@@ -150,14 +150,16 @@ class ProductLoader
         return new User(0, $response['username'], $response['email'],'');
 
     }
-    public static function showAveragePrice(PDO $PDO, $universe, $category, $condition, $date, $sold){
+    public static function showAveragePrice(PDO $PDO, $filter, $dates){
+        $pricesArray = [];
         foreach ($dates as $date){
-            $stmt = $PDO->prepare("SELECT AVG(price) FROM PRODUCT WHERE selldata = :date AND uid = :uid AND categoryid = :catid AND condition = :cond AND sold = 1");
-            $stmt->execute([':date' => $date, ':uid' => $universe, ':catid' => $category, ':cond' => $condition]);
+            $stmt = $PDO->prepare("SELECT round(AVG(price),2) FROM PRODUCT WHERE selldate = :date AND uid = :uid AND categoryid = :catid AND `condition` = :cond AND sold = 1");
+            $stmt->execute([':date' => $date, ':uid' => $filter['universe'], ':catid' => $filter['category'], ':cond' => $filter['condition']]);
                 $response = $stmt->fetchAll();
-                return $response;
+                array_push($pricesArray, $response);   
+            }
+            return $pricesArray;
+    }
 }
-
-
     
 

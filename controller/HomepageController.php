@@ -88,9 +88,11 @@ class HomepageController
             array_push($dates, date('Y-m-d', mktime(0, 0, 0, date("m") , date("d") - $i, date("Y"))));
         }
         
-        $data = ProductLoader::XXXXXXX($this->db, $filter, $dates);
+        $data = ProductLoader::showAveragePrice($this->db, $filter, $dates);
+        $categories = FilterLoader::getAllCategories($this->db);
+        $universes = FilterLoader::getAllUniverses($this->db);
         require 'view/history.php';
-        var_dump("array: ", $dates);
+        var_dump("array: ", $data);
     }
 
     public function productCart($POST){
